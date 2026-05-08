@@ -1,0 +1,67 @@
+:host {
+  display: block;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.zorent-form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+
+.zorent-main-card {
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 12px;
+}
+
+.zorent-text-muted {
+  color: #6c757d;
+}
+
+.zorent-input {
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  color: #212529;
+  padding: 12px;
+  border-radius: 6px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+  .zorent-input:hover {
+    border-color: #adb5bd;
+  }
+
+  .zorent-input:focus {
+    background-color: #ffffff;
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: none;
+  }
+
+.zorent-btn-accent {
+  background-color: #1a5c8b;
+  color: #ffffff;
+  border: none;
+  font-weight: bold;
+  padding: 12px;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+  .zorent-btn-accent:hover:not(:disabled) {
+    background-color: #144a70;
+    cursor: pointer;
+    transform: translateY(-1px);
+  }
+
+  .zorent-btn-accent:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  .zorent-btn-accent:disabled {
+    background-color: #e9ecef;
+    color: #adb5bd;
+    cursor: not-allowed;
+  }

@@ -1,0 +1,114 @@
+:host {
+  display: block;
+}
+
+.zorent-auth-wrapper {
+  min-height: 100vh;
+  background-color: #f1f5f9;
+  font-family: 'Inter', sans-serif;
+}
+
+.zorent-logo-container {
+  width: 55px;
+  height: 55px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  padding: 8px;
+}
+
+.zorent-main-logo {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.encryption-container {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 110, 118, 0.1);
+  animation: float-box 4s infinite ease-in-out;
+}
+
+.shield-orb {
+  color: #006e76;
+  background: rgba(0, 110, 118, 0.08);
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.pulse-animation {
+  animation: banking-pulse 2.5s infinite;
+}
+
+@keyframes float-box {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.zorent-draw-line-target {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+
+  .zorent-draw-line-target::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #006e76;
+    transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  .zorent-draw-line-target:hover::after {
+    width: 100%;
+  }
+
+.zorent-btn-accent {
+  background: linear-gradient(135deg, #0f172a 0%,#144a70 100%);
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+  .zorent-btn-accent:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 110, 118, 0.2);
+    filter: brightness(1.1);
+  }
+
+.zorent-auth-card {
+  background-color: #f8fafc;
+  border: 1px solid rgba(0, 110, 118, 0.08) !important;
+  transition: transform 0.4s ease;
+}
+
+  .zorent-auth-card:hover {
+    transform: translateY(-10px);
+  }
+
+.zorent-input.is-invalid {
+  border-color: #dc3545 !important;
+  background-color: #fff1f2;
+}
+
+.error-msg {
+  color: #dc3545;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.zorent-text-accent {
+  color: #006e76;
+}

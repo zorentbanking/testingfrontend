@@ -1,0 +1,105 @@
+:host {
+  display: block;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.zorent-main-card {
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.zorent-label {
+  color: #1a1a1a !important;
+  font-weight: 700;
+}
+
+.apply-filters-box {
+  border: 2px solid #e0e0e0 !important;
+  background-color: #ffffff;
+}
+
+.zorent-input {
+  background-color: #ffffff !important;
+  border: 1px solid #e0e0e0 !important;
+  color: #000000 !important;
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+
+  .zorent-input:focus {
+    border-color: #1a5c8b !important;
+    box-shadow: none;
+  }
+
+.zorent-btn-green {
+  background-color: #28a745 !important;
+  color: #ffffff !important;
+  border-radius: 50px;
+  padding: 10px 25px;
+  transition: all 0.3s ease;
+  border: 1px solid #28a745 !important;
+}
+
+  .zorent-btn-green:hover {
+    background-color: #218838 !important;
+    transform: translateY(-1px);
+  }
+
+.zorent-btn-outline-dark {
+  background-color: transparent;
+  border: 2px solid #343a40 !important;
+  color: #343a40 !important;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+  .zorent-btn-outline-dark:hover {
+    background-color: #343a40;
+    color: #ffffff !important;
+  }
+
+.zorent-table thead th {
+  background-color: #f1f3f5;
+  color: #1a1a1a !important;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  padding: 15px;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.zorent-table td {
+  color: #1a1a1a !important;
+  padding: 15px;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.zorent-table-row:hover {
+  background-color: #fcfcfc;
+}
+
+.sortable-header {
+  cursor: pointer;
+}
+
+.zorent-badge-credit {
+  background-color: rgba(40, 167, 69, 0.1) !important;
+  color: #28a745 !important;
+  border: 1px solid #28a745;
+  font-weight: 600;
+  padding: 5px 12px;
+}
+
+.zorent-badge-debit {
+  background-color: rgba(220, 53, 69, 0.1) !important;
+  color: #dc3545 !important;
+  border: 1px solid #dc3545;
+  font-weight: 600;
+  padding: 5px 12px;
+}
+
+.text-success-bright {
+  color: #28a745 !important;
+}

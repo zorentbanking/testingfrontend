@@ -1,0 +1,57 @@
+<div class="container py-5">
+  <div class="card zorent-main-card rounded-4 border-0 mx-auto zorent-form-container">
+    <div class="card-body">
+      <div class="d-flex align-items-center mb-4">
+        <div class="zorent-icon-circle me-3">
+          <i class="fs-4 bi bi-arrow-left-right"></i>
+        </div>
+        <h3 class="fw-bold mb-0 text-dark">Transfer Funds</h3>
+      </div>
+      <div *ngIf="successMessage" class="alert alert-success">
+        {{ successMessage }}
+      </div>
+
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+      <form [formGroup]="transferForm" (ngSubmit)="onSubmit()">
+        <div class="mb-4">
+          <label class="form-label zorent-text-muted small fw-bold">From Account</label>
+          <select class="form-select zorent-input" formControlName="fromAccount">
+            <option value="" disabled selected>Select Source Account</option>
+            <option *ngFor="let acc of myAccounts" [value]="acc.id">
+              {{ acc.accountType }} - {{ acc.accountNumber }} (Avail: {{ acc.balance | currency:'INR' }})
+            </option>
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label zorent-text-muted small fw-bold">To Account Number</label>
+          <input type="text" class="form-control zorent-input" formControlName="toAccount" placeholder="Enter 10-digit account number">
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label zorent-text-muted small fw-bold">Amount (INR)</label>
+          <input type="number" class="form-control zorent-input" formControlName="amount" placeholder="0.00">
+          <div *ngIf="transferForm.get('amount')?.errors?.['max']" class="text-danger mt-2 small">
+            Insufficient funds. Maximum available: {{ selectedAccountBalance | currency:'INR' }}
+          </div>
+        </div>
+        <div class="mb-4">
+          <label class="form-label zorent-text-muted small fw-bold">
+            Description (Optional)
+          </label>
+
+          <textarea class="form-control zorent-input"
+                    rows="3"
+                    formControlName="description"
+                    placeholder="Enter transfer note">
+  </textarea>
+        </div>
+        <button type="submit" class="btn zorent-btn-accent w-500 rounded-pill mt-3 py-3" [disabled]="transferForm.invalid">
+          Secure Transfer &rarr;
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,242 @@
+:host {
+  display: block;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  color: #1a1a1b;
+}
+
+.header-border {
+  border-bottom: 1px solid #e9ecef;
+}
+
+/* --- Glowing ZORENT Logo --- */
+.logo-glow {
+  color: #1a5c8b;
+  text-shadow: 0 0 10px rgba(26, 92, 139, 0.3);
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+  .logo-glow:hover {
+    color: #007bff;
+    text-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+  }
+
+/* --- Navigation Underline Effects --- */
+.nav-link-custom {
+  text-decoration: none;
+  color: #6c757d;
+  font-weight: 500;
+  position: relative;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+}
+
+  .nav-link-custom::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(90deg, #1a5c8b, #007bff);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link-custom:hover::after, .nav-link-custom.active::after {
+    width: 100%;
+  }
+
+  .nav-link-custom:hover, .nav-link-custom.active {
+    color: #1a5c8b;
+  }
+
+/* --- Premium Profile Bar & Dropdown --- */
+.profile-area {
+  position: relative;
+}
+
+.profile-trigger {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 50px;
+  background: white;
+  border: 1px solid #e9ecef;
+  transition: all 0.2s ease;
+}
+
+  .profile-trigger:hover {
+    border-color: #1a5c8b;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+.avatar-circle {
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(135deg, #1a5c8b, #007bff);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+.custom-dropdown {
+  position: absolute;
+  right: 0;
+  top: 55px;
+  background: white;
+  border-radius: 15px;
+  min-width: 250px;
+  display: none;
+  list-style: none;
+  padding: 0;
+  z-index: 1000;
+  overflow: hidden;
+  border: 1px solid #e9ecef;
+}
+
+  .custom-dropdown.show {
+    display: block;
+    animation: slideIn 0.3s ease;
+  }
+
+.user-details-header {
+  padding: 20px;
+  background: #fcfcfc;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.user-name {
+  font-weight: 800;
+  color: #222;
+  font-size: 1rem;
+}
+
+.user-email {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+.logout-item {
+  display: block;
+  padding: 15px 20px;
+  color: #dc3545;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+  .logout-item:hover {
+    background: #fff5f5;
+  }
+
+/* --- Account Cards & Portfolio --- */
+.zorent-account-card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+}
+
+  .zorent-account-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  }
+
+.type-badge {
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.type-checking {
+  background: #e3f2fd;
+  color: #0d47a1;
+  border: 1px solid rgba(13, 71, 161, 0.1);
+}
+
+.type-savings {
+  background: #f3e5f5;
+  color: #4a148c;
+  border: 1px solid rgba(74, 20, 140, 0.1);
+}
+
+.status-indicator {
+  color: #2e7d32;
+  font-weight: 700;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  background-color: #2e7d32;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.pulse {
+  box-shadow: 0 0 0 rgba(46, 125, 50, 0.4);
+  animation: pulse-green 2s infinite;
+}
+
+/* --- General Components --- */
+.zorent-main-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+}
+
+.zorent-btn-accent {
+  background: #1a5c8b;
+  color: white;
+  border: none;
+  font-weight: 600;
+}
+
+.zorent-btn-outline {
+  border: 1.5px solid #1a5c8b;
+  color: #1a5c8b;
+  font-weight: 600;
+  background: transparent;
+}
+
+@keyframes pulse-green {
+  0% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(46, 125, 50, 0);
+  }
+
+  100% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(46, 125, 50, 0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

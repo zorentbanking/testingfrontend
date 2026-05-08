@@ -1,0 +1,38 @@
+<div class="container py-5 text-dark">
+  <div class="card zorent-main-card rounded-4 border-0 mx-auto zorent-form-container">
+    <div class="card-body p-5">
+      <h3 class="fw-bold mb-4 text-dark">Open New Account</h3>
+      <div *ngIf="successMessage" class="alert alert-success">
+        {{ successMessage }}
+      </div>
+
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+      <form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
+        <div class="mb-4">
+          <label class="form-label zorent-text-muted small fw-bold">Account Type</label>
+          <select class="form-select zorent-input" formControlName="accountType">
+            <option value="" disabled selected>Select Account Type</option>
+            <option value="Savings">Savings Account</option>
+            <option value="Checking">Checking Account</option>
+            <option value="Fixed Deposit">Fixed Deposit</option>
+            <option value="Recurring Deposit">Recurring Deposit</option>
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label zorent-text-muted small fw-bold">Initial Deposit (INR)</label>
+          <input type="number" class="form-control zorent-input" formControlName="initialDeposit" placeholder="Enter amount">
+          <div *ngIf="accountForm.get('initialDeposit')?.errors?.['min'] && accountForm.get('initialDeposit')?.touched" class="text-danger mt-2 small">
+            Minimum deposit required is ₹{{ minDeposit }}
+          </div>
+        </div>
+
+        <button type="submit" class="btn zorent-btn-accent w-100 rounded-pill mt-3" [disabled]="accountForm.invalid">
+          Confirm & Create Account →
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

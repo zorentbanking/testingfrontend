@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+.auth-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+}
+
+.auth-card, .register-card {
+  border-radius: 15px;
+  border: none;
+  width: 100%;
+}
+
+.auth-card {
+  max-width: 400px;
+}
+
+.register-card {
+  max-width: 700px;
+}
+
+.btn-primary {
+  background-color: #1e3c72;
+  border: none;
+}
+
+  .btn-primary:hover {
+    background-color: #2a5298;
+  }
+
+.tiny-text {
+  font-size: 11px;
+  margin-top: 4px;
+}
