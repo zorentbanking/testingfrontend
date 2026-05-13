@@ -1,5 +1,90 @@
 <div class="container py-5">
-  <div class="card zorent-main-card rounded-4 border-0 mx-auto zorent-form-container">
+    <div class="container py-4">
+      <div class="d-flex justify-content-between align-items-center mb-5 pb-3 header-border">
+        <nav class="d-flex gap-4 align-items-center">
+          <div class="zorent-logo-container me-3 shadow-sm">
+            <img src="https://logowik.com/content/uploads/images/t_zeronet1628.jpg" alt="Zorent Logo" class="zorent-main-logo">
+          </div>
+          <div class="fw-bold logo-glow fs-4 me-3">ZORENT</div>
+          <a routerLink="/dashboard" replaceUrl="true" class="nav-link-custom ">Dashboard</a>
+          <a routerLink="/transactions" class="nav-link-custom ">Transactions</a>
+          <a routerLink="/transfer" class="nav-link-custom active">Transfer</a>
+        </nav>
+        <div class="profile-area">
+          <div class="profile-trigger" (click)="toggleProfile()">
+            <div class="avatar-circle shadow-sm">
+              {{ userName.charAt(0).toUpperCase() }}
+            </div>
+            <i class="bi bi-chevron-down ms-2 small text-muted"></i>
+          </div>
+
+          <ul class="custom-dropdown shadow-lg"
+              [class.show]="isProfileOpen">
+
+            <li class="user-details-header">
+
+              <div class="text-center mb-3">
+
+
+
+                <h6 class="fw-bold mb-0">
+                  {{ userName }}
+                </h6>
+
+                <small class="text-muted">
+                  @{{ userUsername }}
+                </small>
+
+              </div>
+
+              <hr>
+
+              <div class="mb-2">
+
+                <i class="bi bi-envelope me-2"></i>
+
+                {{ userEmail }}
+
+              </div>
+
+              <div class="mb-2">
+
+                <i class="bi bi-telephone me-2"></i>
+
+                {{ userPhone }}
+
+              </div>
+
+              <div class="mb-2">
+
+                <i class="bi bi-geo-alt me-2"></i>
+
+                {{ userAddress }}
+
+              </div>
+
+            </li>
+
+            <li>
+              <a class="logout-item"
+                 (click)="logout()">
+
+                <i class="bi bi-box-arrow-right me-2"></i>
+
+                Logout
+
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      
+    </div>
+
+
+  
+
+    <div class="card zorent-main-card rounded-4 border-0 mx-auto zorent-form-container">
     <div class="card-body">
       <div class="d-flex align-items-center mb-4">
         <div class="zorent-icon-circle me-3">
@@ -25,18 +110,99 @@
           </select>
         </div>
 
-        <div class="mb-4">
-          <label class="form-label zorent-text-muted small fw-bold">To Account Number</label>
-          <input type="text" class="form-control zorent-input" formControlName="toAccount" placeholder="Enter 10-digit account number">
-        </div>
 
+
+
+        <!-- TO ACCOUNT -->
         <div class="mb-4">
-          <label class="form-label zorent-text-muted small fw-bold">Amount (INR)</label>
-          <input type="number" class="form-control zorent-input" formControlName="amount" placeholder="0.00">
-          <div *ngIf="transferForm.get('amount')?.errors?.['max']" class="text-danger mt-2 small">
-            Insufficient funds. Maximum available: {{ selectedAccountBalance | currency:'INR' }}
+
+          <label class="form-label zorent-text-muted small fw-bold">
+            To Account Number
+          </label>
+
+          <input type="text"
+                 class="form-control zorent-input"
+                 formControlName="toAccount"
+                 maxlength="10"
+                 inputmode="numeric"
+                 placeholder="Enter 10-digit account number"
+                 (keypress)="allowOnlyNumbers($event)"
+                 [class.is-invalid]="
+           transferForm.get('toAccount')?.invalid &&
+           transferForm.get('toAccount')?.touched
+         ">
+
+          <div class="text-danger small mt-2"
+               *ngIf="transferForm.get('toAccount')?.touched">
+
+            <span *ngIf="transferForm.get('toAccount')?.errors?.['required']">
+              Account number is required
+            </span>
+
+            <span *ngIf="transferForm.get('toAccount')?.errors?.['pattern']">
+              Account number must contain exactly 10 digits
+            </span>
+
+            <span *ngIf="transferForm.get('toAccount')?.errors?.['accountNotFound']">
+              This account does not exist
+            </span>
+
+            <span *ngIf="transferForm.get('toAccount')?.errors?.['sameAccount']">
+              Cannot transfer to same account
+            </span>
+
           </div>
         </div>
+
+        <!-- AMOUNT -->
+        <div class="mb-4">
+
+          <label class="form-label zorent-text-muted small fw-bold">
+            Amount (INR)
+          </label>
+
+          <input type="number"
+                 class="form-control zorent-input"
+                 formControlName="amount"
+                 placeholder="0.00"
+                 min="1">
+
+          <div class="text-danger mt-2 small"
+               *ngIf="transferForm.get('amount')?.touched">
+
+            <span *ngIf="transferForm.get('amount')?.errors?.['required']">
+              Amount is required
+            </span>
+
+            <span *ngIf="transferForm.get('amount')?.errors?.['min']">
+              Minimum transfer amount is
+            </span>
+
+            <span *ngIf="transferForm.get('amount')?.errors?.['max']">
+
+              Maintain minimum balance of
+              {{ minimumBalance | currency:'INR' }}
+
+            </span>
+
+            <span *ngIf="transferForm.get('amount')?.errors?.['minimumBalance']">
+              Minimum balance must be maintained
+            </span>
+
+          </div>
+
+          <div class="small mt-2 text-warning"
+               *ngIf="selectedAccountBalance">
+
+            Available Balance:
+            {{ selectedAccountBalance | currency:'INR' }}
+
+          </div>
+        </div>
+
+
+
+
         <div class="mb-4">
           <label class="form-label zorent-text-muted small fw-bold">
             Description (Optional)
@@ -52,6 +218,6 @@
           Secure Transfer &rarr;
         </button>
       </form>
-    </div>
+    </div>    
   </div>
-</div>
+      </div>

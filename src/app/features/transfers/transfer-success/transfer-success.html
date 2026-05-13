@@ -1,0 +1,90 @@
+<div class="success-page">
+
+  <div class="success-card">
+
+    <div class="success-animation">
+
+      <div class="checkmark-circle">
+        <i class="bi bi-check-lg"></i>
+      </div>
+
+    </div>
+
+    <h1 class="success-title">
+      Transfer Successful
+    </h1>
+
+    <p class="success-subtitle">
+      Your money transfer has been completed successfully.
+    </p>
+
+    <div class="success-amount-card">
+
+      <p class="amount-label">
+        Amount Sent
+      </p>
+
+      <h1 class="amount-value">
+        ₹{{ transaction.amount }}
+      </h1>
+
+    </div>
+
+    <div class="transaction-details">
+
+      <div class="detail-row">
+
+        <span class="label">
+          Sender Account
+        </span>
+
+        <span class="value">
+          {{ transaction.senderAccount }}
+        </span>
+
+      </div>
+
+      <div class="detail-row">
+
+        <span class="label">
+          Recipient Account
+        </span>
+
+        <span class="value">
+          {{ transaction.receiverAccount }}
+        </span>
+
+      </div>
+
+      <div class="detail-row">
+
+        <span class="label">
+          Transaction ID
+        </span>
+
+        <span class="value transaction-id">
+          {{ transaction.transactionId }}
+        </span>
+
+      </div>
+      <div class="detail-row">
+        <span>Time</span>
+
+        <strong>
+          {{ transaction.time }}
+        </strong>
+      </div>
+
+    </div>
+
+    <button class="dashboard-btn"
+            routerLink="/dashboard"
+            replaceUrl="true">
+
+      Back To Dashboard
+
+    </button>
+
+  </div>
+
+</div>

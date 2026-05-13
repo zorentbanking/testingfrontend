@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
 
   successMessage: string = '';
   errorMessage: string = '';
+  showPassword: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -47,25 +48,76 @@ export class LoginComponent implements OnInit {
 
         next: (res: any) => {
 
-          // ✅ handle backend failure
+          // BACKEND FAILURE
           if (!res.success) {
-            this.errorMessage = res.message || 'Login failed';
+
+            this.errorMessage =
+              res.message || 'Login failed';
+
             return;
           }
+
           this.authService.setLoginStatus(true);
 
-          // ✅ store tokens (FR-AUTH-02)
-          localStorage.setItem('accessToken', res.data.accessToken);
-          localStorage.setItem('refreshToken', res.data.refreshToken);
-          localStorage.setItem('user', JSON.stringify({
+          // STORE TOKENS
+          localStorage.setItem(
+            'accessToken',
+            res.data.accessToken
+          );
 
-            username: this.loginForm.value.username,
+          localStorage.setItem(
+            'refreshToken',
+            res.data.refreshToken
+          );
 
-            email: res.data.email || ''
+          console.log(res);
 
-          }));
-          // ✅ navigate
-          this.router.navigate(['/dashboard']);
+          // STORE COMPLETE USER DETAILS
+          localStorage.setItem(
+            'user',
+            JSON.stringify({
+
+              id:
+                res.data.id,
+
+              username:
+                res.data.username,
+
+              fullName:
+                res.data.fullName,
+
+              email:
+                res.data.email,
+
+              phone:
+                res.data.phone,
+
+              address:
+                res.data.address
+
+            })
+          );
+
+          // NAVIGATE
+          const userData =
+            res.data?.user ||
+            res.data ||
+            res.user ||
+            {};
+
+          const loggedUserName =
+            userData.username ||
+            userData.userName ||
+            userData.name ||
+            userData.fullName ||
+            this.loginForm.value.username;
+
+          localStorage.setItem(
+            'welcomeUser',
+            loggedUserName
+          );
+          this.router.navigate(['/dashboard'], { replaceUrl: true });
+        
         },
 
         error: (err: any) => {

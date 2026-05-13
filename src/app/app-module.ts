@@ -16,6 +16,7 @@ import { TransferComponent } from './features/transfers/transfer/transfer';
 import { TransactionHistoryComponent } from './features/transactions/transaction-history/transaction-history';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { TransferSuccessComponent } from './features/transfers/transfer-success/transfer-success';
 @NgModule({
   declarations: [
     App,
@@ -24,7 +25,8 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
     DashboardComponent,
     CreateAccountComponent,
     TransferComponent,
-    TransactionHistoryComponent
+    TransactionHistoryComponent,
+    TransferSuccessComponent
   ],
 
   imports: [

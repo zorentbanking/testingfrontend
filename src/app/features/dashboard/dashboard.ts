@@ -24,6 +24,15 @@ export class DashboardComponent implements OnInit {
   userName: string = 'User';
 
   userEmail: string = '';
+  userPhone: string = '';
+  userFullName: string = '';
+
+  userAddress: string = '';
+  userUsername: string = '';
+  showWelcomeMessage: boolean = false;
+
+  welcomeUserName: string = '';
+
 
   constructor(
     private router: Router,
@@ -35,11 +44,29 @@ export class DashboardComponent implements OnInit {
     this.loadUserData();
 
     this.loadAccounts();
+    const welcomeUser =
+      localStorage.getItem('welcomeUser');
+
+    if (welcomeUser) {
+
+      this.welcomeUserName = welcomeUser;
+
+      this.showWelcomeMessage = true;
+
+      setTimeout(() => {
+
+        this.showWelcomeMessage = false;
+
+        localStorage.removeItem('welcomeUser');
+
+      }, 3500);
+    }
   }
 
   loadUserData(): void {
 
-    const userData = localStorage.getItem('user');
+    const userData =
+      localStorage.getItem('user');
 
     if (userData) {
 
@@ -47,17 +74,20 @@ export class DashboardComponent implements OnInit {
 
       console.log(user);
 
-      // adjust according to backend response
       this.userName =
-        user.username ||
-        user.userName ||
-        user.name ||
-        'User';
+        user.fullName || 'User';
 
       this.userEmail =
-        user.email ||
-        user.emailAddress ||
-        '';
+        user.email || '';
+
+      this.userPhone =
+        user.phone || '';
+
+      this.userAddress =
+        user.address || '';
+
+      this.userUsername =
+        user.username || '';
     }
   }
 

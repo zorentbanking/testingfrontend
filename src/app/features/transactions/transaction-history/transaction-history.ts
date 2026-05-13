@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-transaction-history',
@@ -19,7 +20,7 @@ export class TransactionHistoryComponent implements OnInit {
   filterForm!: FormGroup;
 
   currentPage: number = 1;
-  itemsPerPage: number = 20;
+  itemsPerPage: number = 5;
   totalPages: number = 1;
 
   sortColumn: string = 'date';
@@ -27,7 +28,20 @@ export class TransactionHistoryComponent implements OnInit {
 
   loading = false;
 
+  hasAccounts: boolean = false;
+
+  userName: string = '';
+  userEmail: string = '';
+  isProfileOpen: boolean = false;
+
+  userPhone: string = '';
+  userFullName: string = '';
+
+  userAddress: string = '';
+  userUsername: string = '';
+
   constructor(
+    private router: Router,
     private fb: FormBuilder,
     private http: HttpClient
   ) { }
@@ -37,6 +51,7 @@ export class TransactionHistoryComponent implements OnInit {
     this.initForm();
 
     this.loadAccounts();
+    this.loadUserData();
   }
 
   initForm(): void {
@@ -50,6 +65,47 @@ export class TransactionHistoryComponent implements OnInit {
       maxAmount: [''],
       keyword: ['']
     });
+  }
+  loadUserData(): void {
+
+    const userData =
+      localStorage.getItem('user');
+
+    if (userData) {
+
+      const user = JSON.parse(userData);
+
+      console.log(user);
+
+      this.userName =
+        user.fullName || 'User';
+
+      this.userEmail =
+        user.email || '';
+
+      this.userPhone =
+        user.phone || '';
+
+      this.userAddress =
+        user.address || '';
+
+      this.userUsername =
+        user.username || '';
+    }
+  }
+  toggleProfile(): void {
+
+    this.isProfileOpen = !this.isProfileOpen;
+  }
+  logout(): void {
+
+    localStorage.removeItem('accessToken');
+
+    localStorage.removeItem('refreshToken');
+
+    localStorage.removeItem('user');
+
+    this.router.navigate(['/login']);
   }
 
   getHeaders() {
@@ -69,6 +125,7 @@ export class TransactionHistoryComponent implements OnInit {
 
         // REAL USER ACCOUNTS
         this.accounts = res.data || [];
+        this.hasAccounts = this.accounts.length > 0;
 
         // ✅ ADD "ALL ACCOUNTS" OPTION
        
@@ -77,19 +134,26 @@ export class TransactionHistoryComponent implements OnInit {
         if (this.accounts.length > 0) {
 
           this.filterForm.patchValue({
-            accountId: this.accounts[0].id
+            //accountId: this.accounts[0].id
+            accountId: '0'
           });
 
           this.applyFilters();
         }
+        else {
+          this.filteredTransactions = [];
+          this.paginatedTransactions = [];
+          this.totalPages = 1;
+        }
 
         // ✅ LOAD TRANSACTIONS
-        this.applyFilters();
+        //this.applyFilters();
       },
 
       error: (err) => {
 
         console.log(err);
+        this.hasAccounts = false;
       }
     });
   }
@@ -102,7 +166,8 @@ export class TransactionHistoryComponent implements OnInit {
 
     const body = {
 
-      accountId: Number(filters.accountId),
+      // accountId: Number(filters.accountId),
+     accountId: filters.accountId == '0' || filters.accountId == ' ' ? null: Number(filters.accountId),
 
       fromDate: filters.startDate || null,
 
@@ -284,4 +349,5 @@ export class TransactionHistoryComponent implements OnInit {
       window.URL.revokeObjectURL(url);
     });
   }
+
 }

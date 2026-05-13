@@ -11,6 +11,7 @@ import { TransactionHistoryComponent } from './features/transactions/transaction
 
 import { ForgotPasswordComponent } from './features/auth/forgot-password/forgot-password';
 import { ChangePasswordComponent } from './features/auth/change-password/change-password';
+import { TransferSuccessComponent } from './features/transfers/transfer-success/transfer-success';
 
 import { AuthGuard } from './core/guards/auth.guard';
 
@@ -47,6 +48,11 @@ const routes: Routes = [
   {
     path: 'transactions',
     component: TransactionHistoryComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'transfer-success',
+    component: TransferSuccessComponent,
     canActivate: [AuthGuard]
   },
 

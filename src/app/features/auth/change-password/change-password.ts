@@ -21,6 +21,9 @@ export class ChangePasswordComponent {
   newPassword = '';
   confirmPassword = '';
 
+  successMessage = '';
+  errorMessage = '';
+
   token = '';
 
   apiUrl = 'https://localhost:7085/api/auth/reset-password';
@@ -39,19 +42,38 @@ export class ChangePasswordComponent {
       this.token = params['token'];
 
       if (!this.token) {
-        alert('Invalid or missing token');
+        this.errorMessage = 'Invalid or missing token';
         this.router.navigate(['/login']);
       }
 
     });
   }
 
+  isPasswordValid(password: string): boolean {
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    return passwordRegex.test(password);
+  }
+
   onChangePassword(): void {
 
-    // Password match validation
+
+    if (!this.isPasswordValid(this.newPassword)) {
+
+      this.errorMessage =
+        'Password does not meet security requirements';
+
+      this.successMessage = '';
+
+      return;
+    }
+
     if (this.newPassword !== this.confirmPassword) {
 
-      alert('Passwords do not match');
+      this.errorMessage = 'Passwords do not match';
+
+      this.successMessage = '';
 
       return;
     }
@@ -68,7 +90,10 @@ export class ChangePasswordComponent {
 
       next: (response) => {
 
-        alert(response.message || 'Password reset successful');
+        this.successMessage =
+          response.message || 'Password reset successful';
+
+        this.errorMessage = '';
 
         // Redirect login
         this.router.navigate(['/login']);
@@ -78,12 +103,13 @@ export class ChangePasswordComponent {
 
         console.log(error);
 
-        alert(
-          error.error?.message ||
-          'Password reset failed'
-        );
+        this.errorMessage =
+          error.error?.message || 'Password reset failed';
+
+        this.successMessage = '';
       }
 
     });
   }
 }
+

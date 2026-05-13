@@ -35,6 +35,9 @@ export class ForgotPasswordComponent {
 
   loading = false;
 
+  successMessage = '';
+  errorMessage = '';
+
   apiUrl =
     'https://localhost:7085/api/auth/forgot-password';
 
@@ -77,10 +80,10 @@ export class ForgotPasswordComponent {
 
         this.loading = false;
 
-        alert(
-          response.message ||
-          'Reset link sent to your email'
-        );
+        this.successMessage =
+          response.message || 'Reset link sent to your email';
+
+        this.errorMessage = '';
 
         this.forgotPasswordForm.reset();
       },
@@ -91,12 +94,14 @@ export class ForgotPasswordComponent {
 
         console.log(error);
 
-        alert(
-          error.error?.message ||
-          'Something went wrong'
-        );
+        this.errorMessage =
+          error.error?.message || 'Something went wrong';
+
+        this.successMessage = '';
       }
 
     });
   }
 }
+
+

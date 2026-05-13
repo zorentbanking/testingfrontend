@@ -60,14 +60,41 @@
             </div>
 
             <div class="mb-3 input-group-custom">
-              <label class="form-label small fw-bold">Password</label>
-              <input type="password" class="form-control zorent-input"
-                     [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
-                     formControlName="password" placeholder="Enter password">
-              <span class="line-movement"></span>
-              <div class="error-msg" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-                Password is required.
+
+              <label class="form-label small fw-bold">
+                Password
+              </label>
+
+              <div class="position-relative">
+
+                <input [type]="showPassword ? 'text' : 'password'"
+                       class="form-control zorent-input pe-5"
+                       [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+                       formControlName="password"
+                       placeholder="Enter password">
+
+                <span class="position-absolute top-50 translate-middle-y"
+                      style="right: 45px; cursor:pointer;"
+                      (click)="showPassword = !showPassword">
+
+                  <i class="bi"
+                     [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'">
+                  </i>
+
+                </span>
+
               </div>
+
+              <span class="line-movement"></span>
+
+              <div class="error-msg"
+                   *ngIf="loginForm.get('password')?.invalid &&
+              loginForm.get('password')?.touched">
+
+                Password is required.
+
+              </div>
+
             </div>
 
             <button type="submit" class="btn zorent-btn-accent w-100 py-3 fw-bold rounded-pill mb-4 login-btn">

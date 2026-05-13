@@ -65,3 +65,45 @@
     color: #adb5bd;
     cursor: not-allowed;
   }
+.nav-link-custom {
+  text-decoration: none;
+  color: #6c757d;
+  font-weight: 500;
+  position: relative;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+}
+
+  .nav-link-custom::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(90deg, #1a5c8b, #007bff);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link-custom:hover::after, .nav-link-custom.active::after {
+    width: 100%;
+  }
+
+  .nav-link-custom:hover, .nav-link-custom.active {
+    color: #1a5c8b;
+  }
+.zorent-logo-container {
+  width: 42px;
+  height: 42px;
+  background: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+.zorent-main-logo {
+  max-width: 100%;
+  height: auto;
+}

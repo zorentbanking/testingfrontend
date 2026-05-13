@@ -72,3 +72,147 @@
     background-color: #e9ecef;
     color: #adb5bd;
   }
+.header-border {
+  border-bottom: 1px solid #e9ecef;
+}
+
+.zorent-logo-container {
+  width: 42px;
+  height: 42px;
+  background: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+.zorent-main-logo {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- Glowing ZORENT Logo --- */
+.logo-glow {
+  color: #1a5c8b;
+  text-shadow: 0 0 10px rgba(26, 92, 139, 0.3);
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+  .logo-glow:hover {
+    color: #007bff;
+    text-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+  }
+
+/* --- Navigation Underline Effects --- */
+.nav-link-custom {
+  text-decoration: none;
+  color: #6c757d;
+  font-weight: 500;
+  position: relative;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+}
+
+  .nav-link-custom::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(90deg, #1a5c8b, #007bff);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link-custom:hover::after, .nav-link-custom.active::after {
+    width: 100%;
+  }
+
+  .nav-link-custom:hover, .nav-link-custom.active {
+    color: #1a5c8b;
+  }
+.profile-area {
+  position: relative;
+}
+
+.profile-trigger {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 50px;
+  background: white;
+  border: 1px solid #e9ecef;
+  transition: all 0.2s ease;
+}
+
+  .profile-trigger:hover {
+    border-color: #1a5c8b;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+.avatar-circle {
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(135deg, #1a5c8b, #007bff);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+.custom-dropdown {
+  position: absolute;
+  right: 0;
+  top: 55px;
+  background: white;
+  border-radius: 15px;
+  min-width: 250px;
+  display: none;
+  list-style: none;
+  padding: 0;
+  z-index: 1000;
+  overflow: hidden;
+  border: 1px solid #e9ecef;
+}
+
+  .custom-dropdown.show {
+    display: block;
+    animation: slideIn 0.3s ease;
+  }
+
+.user-details-header {
+  padding: 20px;
+  background: #fcfcfc;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.user-name {
+  font-weight: 800;
+  color: #222;
+  font-size: 1rem;
+}
+
+.user-email {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+.logout-item {
+  display: block;
+  padding: 15px 20px;
+  color: #dc3545;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+  .logout-item:hover {
+    background: #fff5f5;
+  }
