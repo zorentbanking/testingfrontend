@@ -49,33 +49,7 @@
   border-radius: 50%;
 }
 
-.pulse-animation {
-  animation: shield-glow 2s infinite ease-in-out;
-}
 
-@keyframes shield-glow {
-  0% {
-    box-shadow: 0 0 0 0 rgba(0, 110, 118, 0.4);
-  }
-
-  70% {
-    box-shadow: 0 0 0 10px rgba(0, 110, 118, 0);
-  }
-
-  100% {
-    box-shadow: 0 0 0 0 rgba(0, 110, 118, 0);
-  }
-}
-
-@keyframes float-box {
-  0%, 100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-6px);
-  }
-}
 
 .error-msg {
   color: #e11d48;

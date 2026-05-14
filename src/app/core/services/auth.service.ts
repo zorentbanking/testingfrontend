@@ -14,6 +14,12 @@ export class AuthService {
   setLoginStatus(status: boolean): void {
     this.isAuthenticated = status;
   }
+  validateResetToken(token: string) {
+
+    return this.http.get(
+      `${this.apiUrl}/validate-reset-token?token=${token}`
+    );
+  }
 
   getLoginStatus(): boolean {
     return this.isAuthenticated;

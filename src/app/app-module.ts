@@ -17,6 +17,10 @@ import { TransactionHistoryComponent } from './features/transactions/transaction
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { TransferSuccessComponent } from './features/transfers/transfer-success/transfer-success';
+import { StatementComponent } from './features/transactions/statement/statement';
+import { ProfileSettingsComponent } from './features/accounts/profile-settings/profile-settings';
+import { AccountSuccessComponent }
+  from './features/accounts/account-success/account-success';
 @NgModule({
   declarations: [
     App,
@@ -26,7 +30,10 @@ import { TransferSuccessComponent } from './features/transfers/transfer-success/
     CreateAccountComponent,
     TransferComponent,
     TransactionHistoryComponent,
-    TransferSuccessComponent
+    TransferSuccessComponent,
+    AccountSuccessComponent,
+    StatementComponent,
+    ProfileSettingsComponent
   ],
 
   imports: [

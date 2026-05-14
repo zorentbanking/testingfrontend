@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
 import {
   FormBuilder,
   FormGroup,
@@ -32,6 +32,7 @@ export class TransferComponent implements OnInit {
   selectedAccountBalance: number = 0;
 
   minimumBalance: number = 0;
+  hasAccounts: boolean = false;
 
   loading: boolean = false;
 
@@ -54,10 +55,16 @@ export class TransferComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private accountService: AccountService,
-    private transactionService: TransactionService
+    private transactionService: TransactionService,
+    private http: HttpClient
   ) { }
 
   ngOnInit(): void {
+    
+
+      this.checkAccounts();
+
+    
     this.loadUserData();
 
     this.loadMyAccounts();
@@ -193,6 +200,31 @@ export class TransferComponent implements OnInit {
       });
   }
 
+  checkAccounts(): void {
+
+    this.http.get<any>(
+      'https://localhost:7085/api/accounts/my',
+      {
+        headers: {
+          Authorization:
+            `Bearer ${localStorage.getItem('accessToken')}`
+        }
+      }
+    ).subscribe({
+
+      next: (res :any) => {
+
+        this.hasAccounts =
+          (res.data || []).length > 0;
+      },
+
+      error: () => {
+
+        this.hasAccounts = false;
+      }
+    });
+  }
+
   loadUserData(): void {
 
     const userData =
@@ -250,7 +282,10 @@ export class TransferComponent implements OnInit {
 
           if (res.success) {
 
-            this.myAccounts = res.data;
+            this.myAccounts = res.data.filter(
+              (acc: Account) =>
+                acc.status === 'Active'
+            );
           }
         },
 

@@ -1,0 +1,573 @@
+<div class="statement-page">
+
+  <!-- TOP BAR -->
+
+  <div class="d-flex justify-content-between align-items-center mb-5 pb-3 header-border">
+
+    <!-- LEFT NAVIGATION -->
+
+    <nav class="d-flex gap-4 align-items-center">
+
+      <!-- LOGO -->
+
+      <a routerLink="/dashboard"
+         class="d-flex align-items-center text-decoration-none">
+
+        <div class="zorent-logo-container me-3 shadow-sm">
+
+          <img src="https://logowik.com/content/uploads/images/t_zeronet1628.jpg"
+               alt="Zorent Logo"
+               class="zorent-main-logo">
+
+        </div>
+
+        <div class="fw-bold logo-glow fs-4 me-3">
+
+          ZORENT
+
+        </div>
+
+      </a>
+
+      <!-- NAVIGATION -->
+
+      <a routerLink="/dashboard"
+         routerLinkActive="active"
+         class="nav-link-custom">
+
+        Dashboard
+
+      </a>
+
+      <a routerLink="/transactions"
+         routerLinkActive="active"
+         class="nav-link-custom">
+
+        Transactions
+
+      </a>
+
+      <a routerLink="/transfer"
+         routerLinkActive="active"
+         class="nav-link-custom">
+
+        Transfer
+
+      </a>
+
+    </nav>
+
+    <!-- RIGHT PROFILE -->
+
+    <div class="profile-area d-flex align-items-center gap-3">
+
+      <!-- LOGOUT BUTTON -->
+      <!-- PROFILE -->
+
+      <div class="profile-trigger"
+           (click)="toggleProfile()">
+
+        <div class="avatar-circle shadow-sm">
+
+          {{ userName.charAt(0).toUpperCase() }}
+
+        </div>
+
+        <i class="bi bi-chevron-down ms-2 small text-muted"></i>
+
+      </div>
+
+      <!-- DROPDOWN -->
+
+      <ul class="custom-dropdown shadow-lg"
+          [class.show]="isProfileOpen">
+
+        <li class="user-details-header">
+
+          <div class="text-center mb-3">
+
+            <h6 class="fw-bold mb-0">
+
+              {{ userName }}
+
+            </h6>
+
+            <small class="text-muted">
+
+              username : {{ userUsername }}
+
+            </small>
+
+          </div>
+
+        </li>
+
+        <li>
+
+          <a class="profile-item"
+             routerLink="/profile-settings">
+
+            <i class="bi bi-person-circle me-2"></i>
+
+            Profile Settings
+
+          </a>
+
+        </li>
+
+        <li>
+
+          <a class="logout-item"
+             (click)="logout()">
+
+            <i class="bi bi-box-arrow-right me-2"></i>
+
+            Logout
+
+          </a>
+
+        </li>
+
+      </ul>
+      <button class="logout-icon-btn"
+              (click)="logout()">
+
+        <i class="bi bi-box-arrow-right"></i>
+
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- ACCOUNT DETAILS -->
+
+  <div class="account-card">
+
+    <h2 class="passbook-title">
+
+      Account Details
+
+    </h2>
+
+    <div class="account-details">
+
+      <div class="detail-item">
+
+        <span class="label">
+          Customer Name
+        </span>
+
+        <span class="value">
+          {{ customerName }}
+        </span>
+
+      </div>
+
+      <div class="detail-item">
+
+        <span class="label">
+          Customer ID
+        </span>
+
+        <span class="value">
+          {{ customerId }}
+        </span>
+
+      </div>
+
+      <div class="detail-item">
+
+        <span class="label">
+          Account Number
+        </span>
+
+        <span class="value">
+          {{ accountNumber }}
+        </span>
+
+      </div>
+
+      <div class="detail-item">
+
+        <span class="label">
+          Account Type
+        </span>
+
+        <span class="value">
+          {{ accountType }}
+        </span>
+
+      </div>
+
+      <div class="detail-item">
+
+        <span class="label">
+          Branch Name
+        </span>
+
+        <span class="value">
+          {{ branchName }}
+        </span>
+
+      </div>
+
+      <div class="detail-item">
+
+        <span class="label">
+          Available Balance
+        </span>
+
+        <span class="value balance">
+          ₹{{ availableBalance }}
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- FD / RD DETAILS -->
+
+  <div class="account-card"
+       *ngIf="
+      accountType === 'Fixed Deposit'
+      || accountType === 'Recurring Deposit'
+    ">
+
+    <h2 class="passbook-title">
+
+      Deposit Details
+
+    </h2>
+
+    <div class="account-details">
+
+      <div class="detail-item">
+
+        <span class="label">
+          Interest Rate
+        </span>
+
+        <span class="value">
+          {{ interestRate }}%
+        </span>
+
+      </div>
+
+      <div class="detail-item">
+
+        <span class="label">
+          Duration Months
+        </span>
+
+        <span class="value">
+          {{ durationMonths }}
+        </span>
+
+      </div>
+
+      <div class="detail-item">
+
+        <span class="label">
+          Maturity Date
+        </span>
+
+        <span class="value">
+          {{ maturityDate | date:'mediumDate' }}
+        </span>
+
+      </div>
+
+      <div class="detail-item">
+
+        <span class="label">
+          Estimated Maturity Amount
+        </span>
+
+        <span class="value">
+          ₹{{ estimatedMaturityAmount }}
+        </span>
+
+      </div>
+
+      <!-- RD ONLY -->
+
+      <div class="detail-item"
+           *ngIf="
+          accountType === 'Recurring Deposit'
+        ">
+
+        <span class="label">
+          Installment Date
+        </span>
+
+        <span class="value">
+          {{ installmentDate }}
+        </span>
+
+      </div>
+
+      <div class="detail-item"
+           *ngIf="
+          accountType === 'Recurring Deposit'
+        ">
+
+        <span class="label">
+          Total Installments
+        </span>
+
+        <span class="value">
+          {{ totalInstallments }}
+        </span>
+
+      </div>
+
+      <div class="detail-item"
+           *ngIf="
+          accountType === 'Recurring Deposit'
+        ">
+
+        <span class="label">
+          Paid Installments
+        </span>
+
+        <span class="value">
+          {{ paidInstallments }}
+        </span>
+
+      </div>
+
+      <div class="detail-item"
+           *ngIf="
+          accountType === 'Recurring Deposit'
+        ">
+
+        <span class="label">
+          Remaining Installments
+        </span>
+
+        <span class="value">
+          {{ remainingInstallments }}
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- STATEMENT TABLE -->
+
+  <div class="statement-card">
+
+    <div class="statement-header">
+
+      <h2>
+
+        Account Statement
+
+      </h2>
+
+    </div>
+
+    <div *ngIf="loading"
+         class="loading-section">
+
+      Loading...
+
+    </div>
+
+    <div class="table-responsive"
+         *ngIf="!loading">
+
+      <table class="table statement-table">
+
+        <thead>
+
+          <tr>
+
+            <th>Date & Time</th>
+
+            <th>Transaction ID</th>
+
+            <th>Type</th>
+
+            <!-- SAVINGS / CHECKING -->
+
+            <th *ngIf="
+                accountType === 'Savings'
+                || accountType === 'Checking'
+              ">
+
+              From Account
+
+            </th>
+
+            <th *ngIf="
+                accountType === 'Savings'
+                || accountType === 'Checking'
+              ">
+
+              To Account
+
+            </th>
+
+            <th>Description</th>
+
+            <!-- SAVINGS / CHECKING -->
+
+            <th *ngIf="
+                accountType === 'Savings'
+                || accountType === 'Checking'
+              ">
+
+              Amount
+
+            </th>
+
+            <th>Closing Balance</th>
+
+            <!-- FD / RD -->
+
+            <th *ngIf="
+                accountType === 'Fixed Deposit'
+                || accountType === 'Recurring Deposit'
+              ">
+
+              Interest Earned
+
+            </th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr *ngFor="
+              let txn of paginatedStatements
+            ">
+
+            <td>
+              {{ txn.date | date:'medium' }}
+            </td>
+
+            <td>
+              {{ txn.transactionId }}
+            </td>
+
+            <td>
+
+              <span class="badge"
+                    [ngClass]="
+                  txn.type === 'Credit'
+                  ? 'credit-badge'
+                  : 'debit-badge'
+                ">
+
+                {{ txn.type }}
+
+              </span>
+
+            </td>
+
+            <!-- SAVINGS / CHECKING -->
+
+            <td *ngIf="
+                accountType === 'Savings'
+                || accountType === 'Checking'
+              ">
+
+              {{ txn.fromAccount || '-' }}
+
+            </td>
+
+            <td *ngIf="
+                accountType === 'Savings'
+                || accountType === 'Checking'
+              ">
+
+              {{ txn.toAccount || '-' }}
+
+            </td>
+
+            <td>
+              {{ txn.description || '-' }}
+            </td>
+
+            <!-- SAVINGS / CHECKING -->
+
+            <td *ngIf="
+                accountType === 'Savings'
+                || accountType === 'Checking'
+              "
+                [ngClass]="
+                txn.type === 'Credit'
+                ? 'credit-text'
+                : 'debit-text'
+              ">
+
+              ₹{{ txn.amount }}
+
+            </td>
+
+            <td>
+
+              ₹{{ txn.balance }}
+
+            </td>
+
+            <!-- FD / RD -->
+
+            <td *ngIf="
+                accountType === 'Fixed Deposit'
+                || accountType === 'Recurring Deposit'
+              ">
+
+              ₹{{ txn.interestEarned }}
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+      <!-- PAGINATION -->
+
+      <div class="pagination-section">
+
+        <button class="page-btn"
+                (click)="previousPage()"
+                [disabled]="currentPage === 1">
+
+          Prev
+
+        </button>
+
+        <span class="page-info">
+
+          Page {{ currentPage }}
+          of
+          {{ totalPages }}
+
+        </span>
+
+        <button class="page-btn"
+                (click)="nextPage()"
+                [disabled]="currentPage === totalPages">
+
+          Next
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

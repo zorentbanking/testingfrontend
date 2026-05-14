@@ -25,6 +25,23 @@ export class RegisterComponent implements OnInit {
 
     return /^[0-9]/.test(value);
   }
+  startsWithLetter(value: string): boolean {
+
+    if (!value) {
+      return true;
+    }
+
+    return /^[A-Za-z]/.test(value);
+  }
+
+  containsValidUsernameChars(value: string): boolean {
+
+    if (!value) {
+      return true;
+    }
+
+    return /^[A-Za-z0-9_]+$/.test(value);
+  }
 
   registerForm!: FormGroup;
   showPassword: boolean = false;
@@ -50,17 +67,19 @@ export class RegisterComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.minLength(3)
+          Validators.minLength(3),
+          Validators.pattern(/^[A-Za-z]+$/)
         ]
       ],
 
+      // EMAIL
       // EMAIL
       email: [
         '',
         [
           Validators.required,
           Validators.pattern(
-            /^[a-z][a-z0-9._%+-]*@[a-z0-9.-]+\.[a-z]{2,}$/
+            /^[A-Za-z][A-Za-z0-9._%+-]*@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/
           )
         ]
       ],
@@ -100,8 +119,10 @@ export class RegisterComponent implements OnInit {
           Validators.required,
           Validators.minLength(4),
           Validators.maxLength(20),
-          Validators.pattern(/^[A-Za-z][A-Za-z0-9_]*$/)
-        ]
+          Validators.pattern(/^[A-Za-z]/),
+
+         
+          Validators.pattern(/^[A-Za-z0-9_]+$/) ]
       ],
 
       // PASSWORD
@@ -124,6 +145,7 @@ export class RegisterComponent implements OnInit {
     if (!control.value) {
       return null;
     }
+
 
     const dob = new Date(control.value);
 
@@ -189,7 +211,7 @@ export class RegisterComponent implements OnInit {
 
       fullName: formValue.fullName.trim(),
 
-      email: formValue.email.trim(),
+      email: formValue.email.trim().toLowerCase(),
 
       phone: formValue.phone.trim(),
 

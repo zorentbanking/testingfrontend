@@ -33,22 +33,46 @@
   <div class="container py-4">
     <div class="d-flex justify-content-between align-items-center mb-5 pb-3 header-border">
       <nav class="d-flex gap-4 align-items-center">
-        <div class="zorent-logo-container me-3 shadow-sm">
-          <img src="https://logowik.com/content/uploads/images/t_zeronet1628.jpg" alt="Zorent Logo" class="zorent-main-logo">
-        </div>
-        <div class="fw-bold logo-glow fs-4 me-3">ZORENT</div>
+        <a routerLink="/dashboard"
+           class="d-flex align-items-center text-decoration-none">
+
+          <div class="zorent-logo-container me-3 shadow-sm">
+
+            <img src="https://logowik.com/content/uploads/images/t_zeronet1628.jpg"
+                 alt="Zorent Logo"
+                 class="zorent-main-logo">
+
+          </div>
+
+          <div class="fw-bold logo-glow fs-4 me-3">
+
+            ZORENT
+
+          </div>
+
+        </a>
         <a routerLink="/dashboard" replaceUrl="true" class="nav-link-custom active">Dashboard</a>
         <a routerLink="/transactions" class="nav-link-custom">Transactions</a>
         <a routerLink="/transfer" class="nav-link-custom">Transfer</a>
       </nav>
 
 
-      <div class="profile-area">
-        <div class="profile-trigger" (click)="toggleProfile()">
+      <div class="profile-area d-flex align-items-center gap-3">
+
+        <!-- LOGOUT ICON -->
+        <!-- PROFILE -->
+
+        <div class="profile-trigger"
+             (click)="toggleProfile()">
+
           <div class="avatar-circle shadow-sm">
+
             {{ userName.charAt(0).toUpperCase() }}
+
           </div>
+
           <i class="bi bi-chevron-down ms-2 small text-muted"></i>
+
         </div>
 
         <ul class="custom-dropdown shadow-lg"
@@ -58,47 +82,37 @@
 
             <div class="text-center mb-3">
 
-
-
               <h6 class="fw-bold mb-0">
+
                 {{ userName }}
+
               </h6>
 
               <small class="text-muted">
-                @{{ userUsername }}
+
+                username : {{ userUsername }}
+
               </small>
-
-            </div>
-
-            <hr>
-
-            <div class="mb-2">
-
-              <i class="bi bi-envelope me-2"></i>
-
-              {{ userEmail }}
-
-            </div>
-
-            <div class="mb-2">
-
-              <i class="bi bi-telephone me-2"></i>
-
-              {{ userPhone }}
-
-            </div>
-
-            <div class="mb-2">
-
-              <i class="bi bi-geo-alt me-2"></i>
-
-              {{ userAddress }}
 
             </div>
 
           </li>
 
           <li>
+
+            <a class="profile-item"
+               routerLink="/profile-settings">
+
+              <i class="bi bi-person-circle me-2"></i>
+
+              Profile Settings
+
+            </a>
+
+          </li>
+
+          <li>
+
             <a class="logout-item"
                (click)="logout()">
 
@@ -107,9 +121,18 @@
               Logout
 
             </a>
+
           </li>
 
         </ul>
+
+        <button class="logout-icon-btn"
+                (click)="logout()">
+
+          <i class="bi bi-box-arrow-right"></i>
+
+        </button>
+
       </div>
     </div>
 
@@ -149,7 +172,17 @@
                 {{ acc.accountType }}
               </span>
               <span class="status-indicator">
-                <span class="dot pulse"></span> {{ acc.status }}
+
+                <span class="dot"
+                      [ngClass]="
+      acc.status === 'Active'
+      ? 'pulse'
+      : 'inactive-dot'
+    ">
+                </span>
+
+                {{ acc.status }}
+
               </span>
             </div>
             <p class="zorent-text-muted small mb-1">Account Number</p>
@@ -159,8 +192,60 @@
           </div>
           <div class="card-footer bg-transparent border-0 p-4 pt-0">
             <div class="row g-2">
-              <div class="col-6"><button class="btn zorent-btn-outline w-100 rounded-pill">Statement</button></div>
-              <div class="col-6"><button class="btn zorent-btn-accent w-100 rounded-pill" routerLink="/transfer">Transfer</button></div>
+              <div class="col-6">
+                <button class="btn zorent-btn-outline w-100 rounded-pill"
+                        [routerLink]="['/statement']"
+                        [queryParams]="{
+      accountNumber: acc.accountNumber
+    }">
+
+                  Statement
+
+                </button>
+              </div><!-- TRANSFER BUTTON -->
+              <div class="col-6">
+
+                <!-- ACTIVE SAVINGS/CHECKING -->
+                <button *ngIf="
+          acc.status === 'Active'
+          &&
+          acc.accountType !== 'Fixed Deposit'
+          &&
+          acc.accountType !== 'Recurring Deposit'
+        "
+                        class="btn zorent-btn-accent w-100 rounded-pill"
+                        routerLink="/transfer">
+
+                  Transfer
+
+                </button>
+
+                <!-- FD ONLY -->
+                <button *ngIf="acc.accountType === 'Fixed Deposit'"
+                        class="btn btn-warning w-100 rounded-pill">
+
+                  Withdraw
+
+                </button>
+
+                <!-- RD + INACTIVE -->
+                <button *ngIf="
+          acc.accountType === 'Recurring Deposit'
+          ||
+          (
+            acc.status !== 'Active'
+            &&
+            acc.accountType !== 'Fixed Deposit'
+          )
+        "
+                        class="btn btn-secondary w-100 rounded-pill"
+                        disabled>
+
+                  Deposit
+
+                </button>
+
+              </div>
             </div>
           </div>
         </div>

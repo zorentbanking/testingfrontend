@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   standalone: false
 })
 export class TransactionHistoryComponent implements OnInit {
+  todayDate: string = new Date().toISOString().split('T')[0];
 
   allTransactions: any[] = [];
   filteredTransactions: any[] = [];
@@ -158,7 +159,12 @@ export class TransactionHistoryComponent implements OnInit {
     });
   }
 
-  applyFilters(): void {
+  applyFilters(resetPage: boolean = true): void {
+
+    // ✅ RESET TO FIRST PAGE WHEN FILTERING
+    if (resetPage) {
+      this.currentPage = 1;
+    }
 
     this.loading = true;
 
@@ -166,16 +172,19 @@ export class TransactionHistoryComponent implements OnInit {
 
     const body = {
 
-      // accountId: Number(filters.accountId),
-     accountId: filters.accountId == '0' || filters.accountId == ' ' ? null: Number(filters.accountId),
+      accountId:
+        filters.accountId == '0' || filters.accountId == ' '
+          ? null
+          : Number(filters.accountId),
 
       fromDate: filters.startDate || null,
 
       toDate: filters.endDate || null,
 
-      type: filters.type === 'All'
-        ? null
-        : filters.type,
+      type:
+        filters.type === 'All'
+          ? null
+          : filters.type,
 
       minAmount: filters.minAmount || null,
 
@@ -198,7 +207,8 @@ export class TransactionHistoryComponent implements OnInit {
 
         const responseData = res.data;
 
-        this.filteredTransactions = responseData.data || [];
+        this.filteredTransactions =
+          responseData.data || [];
 
         this.filteredTransactions =
           this.sortTransactions(this.filteredTransactions);
@@ -223,14 +233,26 @@ export class TransactionHistoryComponent implements OnInit {
   resetFilters(): void {
 
     this.filterForm.reset({
-      accountId: this.accounts.length > 0
-        ? this.accounts[0].id
-        : '',
-      type: 'All'
+
+      // DEFAULT TO ALL ACCOUNTS
+      accountId: '0',
+
+      // DEFAULT TYPE
+      type: 'All',
+
+      // CLEAR OTHER FILTERS
+      startDate: '',
+      endDate: '',
+      minAmount: '',
+      maxAmount: '',
+      keyword: ''
+
     });
 
+    // RESET PAGE
     this.currentPage = 1;
 
+    // LOAD DATA AGAIN
     this.applyFilters();
   }
 
@@ -283,14 +305,9 @@ export class TransactionHistoryComponent implements OnInit {
 
   updatePagination(): void {
 
-    const startIndex =
-      (this.currentPage - 1) * this.itemsPerPage;
-
+    // BACKEND ALREADY RETURNS PAGINATED DATA
     this.paginatedTransactions =
-      this.filteredTransactions.slice(
-        startIndex,
-        startIndex + this.itemsPerPage
-      );
+      this.filteredTransactions;
   }
 
   nextPage(): void {
@@ -299,7 +316,8 @@ export class TransactionHistoryComponent implements OnInit {
 
       this.currentPage++;
 
-      this.applyFilters();
+      // ❌ DON'T RESET PAGE HERE
+      this.applyFilters(false);
     }
   }
 
@@ -309,7 +327,8 @@ export class TransactionHistoryComponent implements OnInit {
 
       this.currentPage--;
 
-      this.applyFilters();
+      // ❌ DON'T RESET PAGE HERE
+      this.applyFilters(false);
     }
   }
 

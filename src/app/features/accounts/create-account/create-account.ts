@@ -29,11 +29,24 @@ export class CreateAccountComponent
 
   maturityAmount: number = 0;
 
+  maturityDate: Date | null = null;
+
   loading: boolean = false;
 
   successMessage: string = '';
 
   errorMessage: string = '';
+
+  userName: string = '';
+
+  userUsername: string = '';
+
+  isProfileOpen: boolean = false;
+
+  minInstallmentDate: string = '';
+
+  maxInstallmentDate: string = '';
+
 
   constructor(
     private fb: FormBuilder,
@@ -42,6 +55,17 @@ export class CreateAccountComponent
   ) { }
 
   ngOnInit(): void {
+
+    const user =
+      JSON.parse(
+        localStorage.getItem('user') || '{}'
+      );
+
+    this.userName =
+      user.fullName || 'User';
+
+    this.userUsername =
+      user.username || '';
 
     this.accountForm = this.fb.group({
 
@@ -54,7 +78,8 @@ export class CreateAccountComponent
         '',
         [
           Validators.required,
-          Validators.min(1)
+          Validators.min(1),
+          Validators.max(10000000)
         ]
       ],
 
@@ -71,8 +96,9 @@ export class CreateAccountComponent
 
       });
 
-    // LIVE MATURITY CALCULATION
-    this.accountForm.valueChanges
+    // LIVE CALCULATION
+    this.accountForm
+      .valueChanges
       .subscribe(() => {
 
         this.calculateMaturity();
@@ -80,7 +106,20 @@ export class CreateAccountComponent
       });
   }
 
-  // UPDATE RULES
+  toggleProfile(): void {
+
+    this.isProfileOpen =
+      !this.isProfileOpen;
+  }
+
+  logout(): void {
+
+    localStorage.clear();
+
+    this.router.navigate(['/login']);
+  }
+
+  // ACCOUNT RULES
   updateAccountRules(type: string): void {
 
     const tenureControl =
@@ -92,7 +131,7 @@ export class CreateAccountComponent
 
         this.minDeposit = 500;
 
-        this.interestRate = 3;
+        this.interestRate = 3.5;
 
         tenureControl?.clearValidators();
 
@@ -157,6 +196,52 @@ export class CreateAccountComponent
         tenureControl?.clearValidators();
     }
 
+    // RD DATE FIELD
+    if (type === 'Recurring Deposit') {
+
+      const today = new Date();
+
+      const next30 = new Date();
+
+      next30.setDate(
+        today.getDate() + 30
+      );
+
+      this.minInstallmentDate =
+        today.toISOString().split('T')[0];
+
+      this.maxInstallmentDate =
+        next30.toISOString().split('T')[0];
+
+      if (
+        !this.accountForm.contains(
+          'installmentDate'
+        )
+      ) {
+
+        this.accountForm.addControl(
+          'installmentDate',
+          this.fb.control(
+            '',
+            Validators.required
+          )
+        );
+      }
+
+    } else {
+
+      if (
+        this.accountForm.contains(
+          'installmentDate'
+        )
+      ) {
+
+        this.accountForm.removeControl(
+          'installmentDate'
+        );
+      }
+    }
+
     tenureControl?.updateValueAndValidity();
 
     // INITIAL DEPOSIT VALIDATION
@@ -166,7 +251,9 @@ export class CreateAccountComponent
 
         Validators.required,
 
-        Validators.min(this.minDeposit)
+        Validators.min(this.minDeposit),
+
+        Validators.max(10000000)
 
       ]);
 
@@ -177,7 +264,7 @@ export class CreateAccountComponent
     this.calculateMaturity();
   }
 
-  // CALCULATE MATURITY
+  // MATURITY CALCULATION
   calculateMaturity(): void {
 
     const type =
@@ -193,8 +280,9 @@ export class CreateAccountComponent
         this.accountForm.value.tenureMonths
       );
 
-    // RESET
     this.maturityAmount = 0;
+
+    this.maturityDate = null;
 
     if (
       !principal ||
@@ -203,49 +291,63 @@ export class CreateAccountComponent
       return;
     }
 
-    // FD
+    // FIXED DEPOSIT
     if (
       type === 'Fixed Deposit'
       &&
       months >= 6
     ) {
 
-      const years = months / 12;
-
+      // SAME AS BACKEND
       this.maturityAmount =
-        principal *
-        Math.pow(
-          (
-            1 + (
-              this.interestRate / 100 / 4
-            )
-          ),
-          4 * years
+        principal +
+        (
+          principal *
+          this.interestRate *
+          months
+          / 12
+          / 100
+        );
+
+      const today = new Date();
+
+      this.maturityDate =
+        new Date(
+          today.setMonth(
+            today.getMonth() + months
+          )
         );
     }
 
-    // RD
+    // RECURRING DEPOSIT
     else if (
       type === 'Recurring Deposit'
       &&
       months >= 6
     ) {
 
-      const monthlyInvestment =
-        principal;
-
       const totalInvestment =
-        monthlyInvestment * months;
+        principal * months;
 
       const interest =
         (
           totalInvestment *
           this.interestRate *
           months
-        ) / (12 * 100);
+        )
+        / (12 * 100);
 
       this.maturityAmount =
         totalInvestment + interest;
+
+      const today = new Date();
+
+      this.maturityDate =
+        new Date(
+          today.setMonth(
+            today.getMonth() + months
+          )
+        );
     }
   }
 
@@ -288,8 +390,17 @@ export class CreateAccountComponent
       maturityAmount:
         Number(
           this.maturityAmount.toFixed(2)
-        )
+        ),
+
+      maturityDate:
+        this.maturityDate,
+
+      installmentDate:
+        this.accountForm.value.installmentDate
+        || null
     };
+
+    console.log(payload);
 
     this.accountService
       .createAccount(payload)
@@ -308,21 +419,43 @@ export class CreateAccountComponent
             return;
           }
 
-          this.successMessage =
-            res.message ||
-            'Account created successfully';
+          const accountData =
+            res.data;
 
-          this.accountForm.reset();
+          this.router.navigate(
+            ['/account-success'],
+            {
+              state: {
+                account: {
 
-          this.maturityAmount = 0;
+                  accountNumber:
+                    accountData.accountNumber,
 
-          setTimeout(() => {
+                  accountType:
+                    accountData.accountType,
 
-            this.router.navigate([
-              '/dashboard'
-            ]);
+                  balance:
+                    accountData.balance,
 
-          }, 1500);
+                  interestRate:
+                    accountData.interestRate,
+
+                  maturityAmount:
+                    accountData.maturityAmount,
+
+                  maturityDate:
+                    accountData.maturityDate,
+
+                  tenureMonths:
+                    accountData.tenureMonths,
+
+                  createdAt:
+                    new Date()
+                      .toLocaleString()
+                }
+              }
+            }
+          );
         },
 
         error: (err) => {
@@ -335,5 +468,4 @@ export class CreateAccountComponent
         }
       });
   }
-
 }

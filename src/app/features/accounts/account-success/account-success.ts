@@ -1,0 +1,47 @@
+import { Component, OnInit } from '@angular/core';
+
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-account-success',
+  templateUrl: './account-success.html',
+  styleUrls: ['./account-success.css'],
+  standalone: false
+})
+
+export class AccountSuccessComponent
+  implements OnInit {
+
+  account: any;
+
+  constructor(
+    private router: Router
+  ) { }
+
+  ngOnInit(): void {
+
+    const nav = window.history.state;
+
+    this.account = nav?.account;
+
+    // DIRECT URL ACCESS BLOCK
+    if (!this.account) {
+
+      this.router.navigate(['/dashboard']);
+
+      return;
+    }
+
+    console.log(this.account);
+  }
+
+  goDashboard(): void {
+
+    this.router.navigate(
+      ['/dashboard'],
+      {
+        replaceUrl: true
+      }
+    );
+  }
+}

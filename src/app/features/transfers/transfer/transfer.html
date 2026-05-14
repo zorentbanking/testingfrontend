@@ -1,22 +1,82 @@
 <div class="container py-5">
-    <div class="container py-4">
+  <div class="container py-4">
+    <div class="navbar-wrapper">
       <div class="d-flex justify-content-between align-items-center mb-5 pb-3 header-border">
+
+        <!-- LEFT NAVIGATION -->
+
         <nav class="d-flex gap-4 align-items-center">
-          <div class="zorent-logo-container me-3 shadow-sm">
-            <img src="https://logowik.com/content/uploads/images/t_zeronet1628.jpg" alt="Zorent Logo" class="zorent-main-logo">
-          </div>
-          <div class="fw-bold logo-glow fs-4 me-3">ZORENT</div>
-          <a routerLink="/dashboard" replaceUrl="true" class="nav-link-custom ">Dashboard</a>
-          <a routerLink="/transactions" class="nav-link-custom ">Transactions</a>
-          <a routerLink="/transfer" class="nav-link-custom active">Transfer</a>
-        </nav>
-        <div class="profile-area">
-          <div class="profile-trigger" (click)="toggleProfile()">
-            <div class="avatar-circle shadow-sm">
-              {{ userName.charAt(0).toUpperCase() }}
+
+          <!-- LOGO -->
+
+          <a routerLink="/dashboard"
+             class="d-flex align-items-center text-decoration-none">
+
+            <div class="zorent-logo-container me-3 shadow-sm">
+
+              <img src="https://logowik.com/content/uploads/images/t_zeronet1628.jpg"
+                   alt="Zorent Logo"
+                   class="zorent-main-logo">
+
             </div>
+
+            <div class="fw-bold logo-glow fs-4 me-3">
+
+              ZORENT
+
+            </div>
+
+          </a>
+
+          <!-- NAVIGATION -->
+
+          <a routerLink="/dashboard"
+             routerLinkActive="active"
+             class="nav-link-custom">
+
+            Dashboard
+
+          </a>
+
+          <a routerLink="/transactions"
+             routerLinkActive="active"
+             class="nav-link-custom">
+
+            Transactions
+
+          </a>
+
+          <a routerLink="/transfer"
+             routerLinkActive="active"
+             class="nav-link-custom">
+
+            Transfer
+
+          </a>
+
+        </nav>
+
+        <!-- RIGHT PROFILE -->
+
+        <div class="profile-area d-flex align-items-center gap-3">
+
+          <!-- LOGOUT BUTTON -->
+          <!-- PROFILE -->
+
+          <div class="profile-trigger"
+               (click)="toggleProfile()">
+
+            <div class="avatar-circle shadow-sm">
+
+              {{ userName.charAt(0).toUpperCase() }}
+
+            </div>
+
             <i class="bi bi-chevron-down ms-2 small text-muted"></i>
+
           </div>
+
+          <!-- DROPDOWN -->
 
           <ul class="custom-dropdown shadow-lg"
               [class.show]="isProfileOpen">
@@ -25,47 +85,37 @@
 
               <div class="text-center mb-3">
 
-
-
                 <h6 class="fw-bold mb-0">
+
                   {{ userName }}
+
                 </h6>
 
                 <small class="text-muted">
-                  @{{ userUsername }}
+
+                  username : {{ userUsername }}
+
                 </small>
-
-              </div>
-
-              <hr>
-
-              <div class="mb-2">
-
-                <i class="bi bi-envelope me-2"></i>
-
-                {{ userEmail }}
-
-              </div>
-
-              <div class="mb-2">
-
-                <i class="bi bi-telephone me-2"></i>
-
-                {{ userPhone }}
-
-              </div>
-
-              <div class="mb-2">
-
-                <i class="bi bi-geo-alt me-2"></i>
-
-                {{ userAddress }}
 
               </div>
 
             </li>
 
             <li>
+
+              <a class="profile-item"
+                 routerLink="/profile-settings">
+
+                <i class="bi bi-person-circle me-2"></i>
+
+                Profile Settings
+
+              </a>
+
+            </li>
+
+            <li>
+
               <a class="logout-item"
                  (click)="logout()">
 
@@ -74,150 +124,202 @@
                 Logout
 
               </a>
+
             </li>
 
           </ul>
+
+          <button class="logout-icon-btn"
+                  (click)="logout()">
+
+            <i class="bi bi-box-arrow-right"></i>
+
+          </button>
+
         </div>
-      
+
+      </div>
     </div>
 
 
-  
+      <div class="transfer-wrapper"
+           [class.blur-content]="!hasAccounts">
+        <div class="card zorent-main-card rounded-4 border-0 mx-auto zorent-form-container">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-4">
+              <div class="zorent-icon-circle me-3">
+                <i class="fs-4 bi bi-arrow-left-right"></i>
+              </div>
+              <h3 class="fw-bold mb-0 text-dark">Transfer Funds</h3>
+            </div>
+            <div *ngIf="successMessage" class="alert alert-success">
+              {{ successMessage }}
+            </div>
 
-    <div class="card zorent-main-card rounded-4 border-0 mx-auto zorent-form-container">
-    <div class="card-body">
-      <div class="d-flex align-items-center mb-4">
-        <div class="zorent-icon-circle me-3">
-          <i class="fs-4 bi bi-arrow-left-right"></i>
-        </div>
-        <h3 class="fw-bold mb-0 text-dark">Transfer Funds</h3>
-      </div>
-      <div *ngIf="successMessage" class="alert alert-success">
-        {{ successMessage }}
-      </div>
+            <div *ngIf="errorMessage" class="alert alert-danger">
+              {{ errorMessage }}
+            </div>
+            <form [formGroup]="transferForm" (ngSubmit)="onSubmit()">
+              <div class="mb-4">
+                <label class="form-label zorent-text-muted small fw-bold">From Account</label>
+                <select class="form-select zorent-input" formControlName="fromAccount">
+                  <option value="" disabled selected>Select Source Account</option>
+                  <ng-container *ngFor="let acc of myAccounts">
 
-      <div *ngIf="errorMessage" class="alert alert-danger">
-        {{ errorMessage }}
-      </div>
-      <form [formGroup]="transferForm" (ngSubmit)="onSubmit()">
-        <div class="mb-4">
-          <label class="form-label zorent-text-muted small fw-bold">From Account</label>
-          <select class="form-select zorent-input" formControlName="fromAccount">
-            <option value="" disabled selected>Select Source Account</option>
-            <option *ngFor="let acc of myAccounts" [value]="acc.id">
-              {{ acc.accountType }} - {{ acc.accountNumber }} (Avail: {{ acc.balance | currency:'INR' }})
-            </option>
-          </select>
-        </div>
+                    <option *ngIf="
+    acc.status === 'Active' &&
+    acc.accountType !== 'Fixed Deposit' &&
+    acc.accountType !== 'Recurring Deposit'
+  "
+                            [value]="acc.id">
 
+                      {{ acc.accountType }} - {{ acc.accountNumber }}
+                      (Avail: {{ acc.balance | currency:'INR' }})
 
+                    </option>
+
+                  </ng-container>
+                </select>
+              </div>
 
 
-        <!-- TO ACCOUNT -->
-        <div class="mb-4">
 
-          <label class="form-label zorent-text-muted small fw-bold">
-            To Account Number
-          </label>
 
-          <input type="text"
-                 class="form-control zorent-input"
-                 formControlName="toAccount"
-                 maxlength="10"
-                 inputmode="numeric"
-                 placeholder="Enter 10-digit account number"
-                 (keypress)="allowOnlyNumbers($event)"
-                 [class.is-invalid]="
+              <!-- TO ACCOUNT -->
+              <div class="mb-4">
+
+                <label class="form-label zorent-text-muted small fw-bold">
+                  To Account Number
+                </label>
+
+                <input type="text"
+                       class="form-control zorent-input"
+                       formControlName="toAccount"
+                       maxlength="10"
+                       inputmode="numeric"
+                       placeholder="Enter 10-digit account number"
+                       (keypress)="allowOnlyNumbers($event)"
+                       [class.is-invalid]="
            transferForm.get('toAccount')?.invalid &&
            transferForm.get('toAccount')?.touched
          ">
 
-          <div class="text-danger small mt-2"
-               *ngIf="transferForm.get('toAccount')?.touched">
+                <div class="text-danger small mt-2"
+                     *ngIf="transferForm.get('toAccount')?.touched">
 
-            <span *ngIf="transferForm.get('toAccount')?.errors?.['required']">
-              Account number is required
-            </span>
+                  <span *ngIf="transferForm.get('toAccount')?.errors?.['required']">
+                    Account number is required
+                  </span>
 
-            <span *ngIf="transferForm.get('toAccount')?.errors?.['pattern']">
-              Account number must contain exactly 10 digits
-            </span>
+                  <span *ngIf="transferForm.get('toAccount')?.errors?.['pattern']">
+                    Account number must contain exactly 10 digits
+                  </span>
 
-            <span *ngIf="transferForm.get('toAccount')?.errors?.['accountNotFound']">
-              This account does not exist
-            </span>
+                  <span *ngIf="transferForm.get('toAccount')?.errors?.['accountNotFound']">
+                    This account does not exist
+                  </span>
 
-            <span *ngIf="transferForm.get('toAccount')?.errors?.['sameAccount']">
-              Cannot transfer to same account
-            </span>
+                  <span *ngIf="transferForm.get('toAccount')?.errors?.['sameAccount']">
+                    Cannot transfer to same account
+                  </span>
 
-          </div>
-        </div>
+                </div>
+              </div>
 
-        <!-- AMOUNT -->
-        <div class="mb-4">
+              <!-- AMOUNT -->
+              <div class="mb-4">
 
-          <label class="form-label zorent-text-muted small fw-bold">
-            Amount (INR)
-          </label>
+                <label class="form-label zorent-text-muted small fw-bold">
+                  Amount (INR)
+                </label>
 
-          <input type="number"
-                 class="form-control zorent-input"
-                 formControlName="amount"
-                 placeholder="0.00"
-                 min="1">
+                <input type="number"
+                       class="form-control zorent-input"
+                       formControlName="amount"
+                       placeholder="0.00"
+                       min="1">
 
-          <div class="text-danger mt-2 small"
-               *ngIf="transferForm.get('amount')?.touched">
+                <div class="text-danger mt-2 small"
+                     *ngIf="transferForm.get('amount')?.touched">
 
-            <span *ngIf="transferForm.get('amount')?.errors?.['required']">
-              Amount is required
-            </span>
+                  <span *ngIf="transferForm.get('amount')?.errors?.['required']">
+                    Amount is required
+                  </span>
 
-            <span *ngIf="transferForm.get('amount')?.errors?.['min']">
-              Minimum transfer amount is
-            </span>
+                  <span *ngIf="transferForm.get('amount')?.errors?.['min']">
+                    Minimum transfer amount is 1
+                  </span>
 
-            <span *ngIf="transferForm.get('amount')?.errors?.['max']">
+                  <span *ngIf="transferForm.get('amount')?.errors?.['max']">
 
-              Maintain minimum balance of
-              {{ minimumBalance | currency:'INR' }}
+                    Maintain minimum balance of
+                    {{ minimumBalance | currency:'INR' }}
 
-            </span>
+                  </span>
 
-            <span *ngIf="transferForm.get('amount')?.errors?.['minimumBalance']">
-              Minimum balance must be maintained
-            </span>
+                  <span *ngIf="transferForm.get('amount')?.errors?.['minimumBalance']">
+                    Minimum balance must be maintained
+                  </span>
 
-          </div>
+                </div>
 
-          <div class="small mt-2 text-warning"
-               *ngIf="selectedAccountBalance">
+                <div class="small mt-2 text-warning"
+                     *ngIf="selectedAccountBalance">
 
-            Available Balance:
-            {{ selectedAccountBalance | currency:'INR' }}
+                  Available Balance:
+                  {{ selectedAccountBalance | currency:'INR' }}
 
-          </div>
-        </div>
-
-
+                </div>
+              </div>
 
 
-        <div class="mb-4">
-          <label class="form-label zorent-text-muted small fw-bold">
-            Description (Optional)
-          </label>
 
-          <textarea class="form-control zorent-input"
-                    rows="3"
-                    formControlName="description"
-                    placeholder="Enter transfer note">
+
+              <div class="mb-4">
+                <label class="form-label zorent-text-muted small fw-bold">
+                  Description (Optional)
+                </label>
+
+                <textarea class="form-control zorent-input"
+                          rows="3"
+                          formControlName="description"
+                          placeholder="Enter transfer note">
   </textarea>
+              </div>
+              <button type="submit" class="btn zorent-btn-accent w-500 rounded-pill mt-3 py-3" [disabled]="transferForm.invalid">
+                Secure Transfer &rarr;
+              </button>
+            </form>
+          </div>
         </div>
-        <button type="submit" class="btn zorent-btn-accent w-500 rounded-pill mt-3 py-3" [disabled]="transferForm.invalid">
-          Secure Transfer &rarr;
-        </button>
-      </form>
-    </div>    
-  </div>
       </div>
+    </div>
+
+
+
+    <div class="empty-account-overlay"
+         *ngIf="!hasAccounts">
+
+      <div class="empty-account-card">
+
+        <div class="empty-icon">
+          <i class="bi bi-bank"></i>
+        </div>
+
+        <h3>No Accounts Linked</h3>
+
+        <p>
+          You need to create a bank account
+          before accessing transfers.
+        </p>
+
+        <button class="btn zorent-btn-accent rounded-pill px-4"
+                routerLink="/create-account">
+
+          Create Account
+
+        </button>
+
+      </div>
+
+    </div>

@@ -313,4 +313,40 @@
     transform: translateX(0);
   }
 }
+.inactive-dot {
+  background: red;
+}
+.profile-item {
+  display: block;
+  padding: 15px 20px;
+  color: #212529;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
 
+  .profile-item:hover {
+    background: #f5f9ff;
+    color: #0d6efd;
+  }
+
+.logout-icon-btn {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: #ef4444;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+  .logout-icon-btn:hover {
+    background: #dc2626;
+    transform: scale(1.08);
+  }

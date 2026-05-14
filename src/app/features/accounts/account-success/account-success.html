@@ -1,0 +1,121 @@
+<div class="success-page">
+
+  <div class="success-card">
+
+    <div class="success-animation">
+
+      <div class="checkmark-circle">
+        <i class="bi bi-check-lg"></i>
+      </div>
+
+    </div>
+
+    <h1 class="success-title">
+      Account Created Successfully
+    </h1>
+
+    <p class="success-subtitle">
+      Your new account has been opened successfully.
+    </p>
+
+    <div class="success-amount-card">
+
+      <p class="amount-label">
+        Current Balance
+      </p>
+
+      <h1 class="amount-value">
+        ₹{{ account.balance }}
+      </h1>
+
+    </div>
+
+    <div class="transaction-details">
+
+      <div class="detail-row">
+
+        <span class="label">
+          Account Number
+        </span>
+
+        <span class="value">
+          {{ account.accountNumber }}
+        </span>
+
+      </div>
+
+      <div class="detail-row">
+
+        <span class="label">
+          Account Type
+        </span>
+
+        <span class="value">
+          {{ account.accountType }}
+        </span>
+
+      </div>
+
+      <div class="detail-row"
+           *ngIf="account.interestRate">
+
+        <span class="label">
+          Interest Rate
+        </span>
+
+        <span class="value">
+          {{ account.interestRate }}%
+        </span>
+
+      </div>
+
+      <div class="detail-row"
+           *ngIf="account.tenureMonths">
+
+        <span class="label">
+          Duration
+        </span>
+
+        <span class="value">
+          {{ account.tenureMonths }} Months
+        </span>
+
+      </div>
+
+      <div class="detail-row"
+           *ngIf="account.maturityAmount">
+
+        <span class="label">
+          Maturity Amount
+        </span>
+
+        <span class="value">
+          ₹{{ account.maturityAmount }}
+        </span>
+
+      </div>
+
+      <div class="detail-row">
+
+        <span class="label">
+          Created Time
+        </span>
+
+        <span class="value">
+          {{ account.createdAt }}
+        </span>
+
+      </div>
+
+    </div>
+
+    <button class="dashboard-btn"
+            (click)="goDashboard()">
+
+      Back To Dashboard
+
+    </button>
+
+  </div>
+
+</div>

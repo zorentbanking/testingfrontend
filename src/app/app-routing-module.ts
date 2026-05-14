@@ -12,6 +12,10 @@ import { TransactionHistoryComponent } from './features/transactions/transaction
 import { ForgotPasswordComponent } from './features/auth/forgot-password/forgot-password';
 import { ChangePasswordComponent } from './features/auth/change-password/change-password';
 import { TransferSuccessComponent } from './features/transfers/transfer-success/transfer-success';
+import { StatementComponent } from './features/transactions/statement/statement';
+import { ProfileSettingsComponent } from './features/accounts/profile-settings/profile-settings';
+import { AccountSuccessComponent }
+  from './features/accounts/account-success/account-success';
 
 import { AuthGuard } from './core/guards/auth.guard';
 
@@ -54,6 +58,18 @@ const routes: Routes = [
     path: 'transfer-success',
     component: TransferSuccessComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'account-success',
+    component: AccountSuccessComponent
+  },
+  {
+    path: 'statement',
+    component: StatementComponent
+  },
+  {
+    path: 'profile-settings',
+    component: ProfileSettingsComponent
   },
 
   { path: '', redirectTo: 'login', pathMatch: 'full' },

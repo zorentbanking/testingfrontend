@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-change-password',
@@ -23,6 +24,8 @@ export class ChangePasswordComponent {
 
   successMessage = '';
   errorMessage = '';
+  showPassword: boolean = false;
+  tokenInvalid: boolean = false;
 
   token = '';
 
@@ -31,20 +34,47 @@ export class ChangePasswordComponent {
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
 
-    // Get token from URL
+    // GET TOKEN FROM URL
     this.route.queryParams.subscribe(params => {
 
       this.token = params['token'];
 
+      // TOKEN MISSING
       if (!this.token) {
-        this.errorMessage = 'Invalid or missing token';
-        this.router.navigate(['/login']);
+
+        this.tokenInvalid = true;
+
+        this.errorMessage =
+          'Reset link has expired or already been used';
+
+        return;
       }
+
+      // VALIDATE TOKEN
+      this.authService
+        .validateResetToken(this.token)
+        .subscribe({
+
+          next: () => {
+
+            // TOKEN VALID
+          },
+
+          error: (err: any) => {
+
+            this.tokenInvalid = true;
+
+            this.errorMessage =
+              err.error?.message ||
+              'Reset link has expired or already been used';
+          }
+        });
 
     });
   }
@@ -95,8 +125,16 @@ export class ChangePasswordComponent {
 
         this.errorMessage = '';
 
+        this.newPassword = '';
+
+        this.confirmPassword = '';
+
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 2000);
+
         // Redirect login
-        this.router.navigate(['/login']);
+
       },
 
       error: (error) => {
@@ -112,4 +150,3 @@ export class ChangePasswordComponent {
     });
   }
 }
-
