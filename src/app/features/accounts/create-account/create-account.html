@@ -164,6 +164,11 @@
             </label>
             <input type="number" class="form-control zorent-input" formControlName="initialDeposit"
                    placeholder="Enter amount" [min]="minDeposit" max="10000000">
+            <div class="info"
+                 style="color:brown;"
+                 *ngIf="accountForm.value.accountType">
+              minimum deposit is ₹{{ minDeposit }}
+            </div>
 
             <div *ngIf="accountForm.get('initialDeposit')?.touched && accountForm.get('initialDeposit')?.invalid" class="text-danger mt-2 small">
               <div *ngIf="accountForm.get('initialDeposit')?.errors?.['min']">
@@ -184,7 +189,7 @@
                    [min]="minInstallmentDate" [max]="maxInstallmentDate">
             <div class="mt-2">
               <small class="text-muted">
-                Select a date within the next 30 days for your monthly deduction.
+                Select any day of this month for your monthly installment.
               </small>
             </div>
           </div>
@@ -219,7 +224,7 @@
                style="background-color: #f8f9fa; border: 1px solid #dee2e6;">
 
             <h6 class="fw-bold text-primary mb-3">
-              <i class="bi bi-graph-up-arrow me-2"></i>Maturity Summary
+              <i class="bi bi-graph-up-arrow me-2"></i>Summary
             </h6>
 
             <div class="row g-3">
@@ -230,14 +235,14 @@
                 <p class="fw-bold mb-0 text-dark">₹{{ accountForm.value.initialDeposit | number:'1.2-2' }}</p>
               </div>
               <div class="col-6 text-end">
-                <p class="zorent-text-muted small mb-1">Total Interest Earned</p>
+                <p class="zorent-text-muted small mb-1">Total Interest To be Earned</p>
                 <p class="fw-bold text-success mb-0">+ ₹{{ (maturityAmount - (accountForm.value.accountType === 'Recurring Deposit' ? (accountForm.value.initialDeposit * accountForm.value.tenureMonths) : accountForm.value.initialDeposit)) | number:'1.2-2' }}</p>
               </div>
 
               <div class="col-12 mt-2" *ngIf="accountForm.value.accountType === 'Recurring Deposit'">
                 <div class="p-2 rounded-2" style="background: #eef2f7; border-left: 3px solid #1a5c8b;">
-                  <span class="zorent-text-muted small">Tenure Commitment: </span>
-                  <span class="fw-bold text-dark">{{ accountForm.value.tenureMonths }} Monthly Installments</span>
+                  <span class="zorent-text-muted small">Total Period: </span>
+                  <span class="fw-bold text-dark">{{ accountForm.value.tenureMonths }} Monthly Deposit</span>
                 </div>
               </div>
 
@@ -248,7 +253,7 @@
                     <p class="fw-bold text-dark mb-0">{{ maturityDate | date:'dd/MM/yyyy' }}</p>
                   </div>
                   <div class="text-end">
-                    <p class="text-primary small mb-0">Estimated Final Balance</p>
+                    <p class="text-primary small mb-0"> Final Total</p>
                     <h4 class="fw-bold text-primary mb-0">₹{{ maturityAmount | number:'1.2-2' }}</h4>
                   </div>
                 </div>

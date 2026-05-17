@@ -125,7 +125,11 @@ export class TransactionHistoryComponent implements OnInit {
       next: (res) => {
 
         // REAL USER ACCOUNTS
-        this.accounts = res.data || [];
+        this.accounts =
+          (res.data || []).filter(
+            (acc: any) =>
+              acc.status !== 'Closed'
+          );
         this.hasAccounts = this.accounts.length > 0;
 
         // ✅ ADD "ALL ACCOUNTS" OPTION

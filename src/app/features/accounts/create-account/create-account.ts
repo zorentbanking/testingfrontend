@@ -197,21 +197,24 @@ export class CreateAccountComponent
     }
 
     // RD DATE FIELD
+    // RD DATE FIELD
     if (type === 'Recurring Deposit') {
 
       const today = new Date();
 
-      const next30 = new Date();
-
-      next30.setDate(
-        today.getDate() + 30
-      );
-
+      // Today's date
       this.minInstallmentDate =
         today.toISOString().split('T')[0];
 
+      // Last day of current month
+      const lastDayOfMonth = new Date(
+        today.getFullYear(),
+        today.getMonth() + 1,
+        0
+      );
+
       this.maxInstallmentDate =
-        next30.toISOString().split('T')[0];
+        lastDayOfMonth.toISOString().split('T')[0];
 
       if (
         !this.accountForm.contains(
@@ -326,16 +329,19 @@ export class CreateAccountComponent
       months >= 6
     ) {
 
+      const monthlyDeposit = principal;
+
       const totalInvestment =
-        principal * months;
+        monthlyDeposit * months;
 
       const interest =
         (
-          totalInvestment *
-          this.interestRate *
-          months
+          monthlyDeposit *
+          months *
+          (months + 1) *
+          this.interestRate
         )
-        / (12 * 100);
+        / (2 * 12 * 100);
 
       this.maturityAmount =
         totalInvestment + interest;
@@ -448,6 +454,9 @@ export class CreateAccountComponent
 
                   tenureMonths:
                     accountData.tenureMonths,
+
+                  transactionId:
+                    accountData.transactionId || '',
 
                   createdAt:
                     new Date()

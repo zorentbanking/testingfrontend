@@ -1,0 +1,338 @@
+<div class="dashboard-wrapper">
+
+  <div class="container py-4">
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-5 pb-3 header-border">
+
+      <nav class="d-flex gap-4 align-items-center">
+
+        <a routerLink="/dashboard"
+           class="d-flex align-items-center text-decoration-none">
+
+          <div class="zorent-logo-container me-3 shadow-sm">
+
+            <img src="https://logowik.com/content/uploads/images/t_zeronet1628.jpg"
+                 alt="Zorent Logo"
+                 class="zorent-main-logo">
+
+          </div>
+
+          <div class="fw-bold logo-glow fs-4 me-3">
+
+            ZORENT
+
+          </div>
+
+        </a>
+
+        <a routerLink="/dashboard"
+           class="nav-link-custom">
+
+          Dashboard
+
+        </a>
+
+        <a class="nav-link-custom active">
+
+          Closed Accounts
+
+        </a>
+
+      </nav>
+
+      <!-- PROFILE -->
+      <div class="profile-area d-flex align-items-center gap-3">
+
+        <div class="profile-trigger"
+             (click)="toggleProfile()">
+
+          <div class="avatar-circle shadow-sm">
+
+            {{ userName.charAt(0).toUpperCase() }}
+
+          </div>
+
+        </div>
+
+        <ul class="custom-dropdown shadow-lg"
+            [class.show]="isProfileOpen">
+
+          <li class="user-details-header">
+
+            <div class="text-center mb-3">
+
+              <h6 class="fw-bold mb-0">
+
+                {{ userName }}
+
+              </h6>
+
+              <small class="text-muted">
+
+                username : {{ userUsername }}
+
+              </small>
+
+            </div>
+
+          </li>
+
+          <li>
+
+            <a class="profile-item"
+               routerLink="/dashboard">
+
+              Dashboard
+
+            </a>
+
+          </li>
+
+          <li>
+
+            <a class="logout-item"
+               (click)="logout()">
+
+              Logout
+
+            </a>
+
+          </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+    <!-- NET WORTH -->
+   
+
+    <!-- TITLE -->
+    <div class="mb-4">
+
+      <h3 class="fw-bold">
+
+        Closed Accounts
+
+      </h3>
+
+    </div>
+
+    <!-- LOADING -->
+    <div *ngIf="loading"
+         class="text-center py-5">
+
+      Loading accounts...
+
+    </div>
+
+    <!-- ERROR -->
+    <div *ngIf="errorMessage"
+         class="alert alert-danger">
+
+      {{ errorMessage }}
+
+    </div>
+
+    <!-- EMPTY -->
+    <div *ngIf="!loading && accounts.length === 0"
+         class="text-center">
+
+      No Closed Accounts Found
+
+    </div>
+
+    <!-- ACCOUNT CARDS -->
+    <!-- ACCOUNT CARDS -->
+    <div class="row g-4">
+
+      <div class="col-md-6"
+           *ngFor="let acc of accounts">
+
+        <div class="flip-card-container">
+
+          <div class="flip-card-inner"
+               [class.flipped]="isFlipped[acc.accountNumber]">
+
+            <!-- FRONT -->
+            <div class="card h-100 zorent-account-card border-0 flip-front"
+                 (click)="isFlipped[acc.accountNumber] = true">
+
+              <div class="card-body p-4 d-flex flex-column">
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+
+                  <span class="type-badge">
+
+                    {{ acc.accountType }}
+
+                  </span>
+
+                  <span class="status-indicator text-danger">
+
+                    Closed
+
+                  </span>
+
+                </div>
+
+                <div class="mb-3">
+
+                  <p class="zorent-text-muted small mb-1">
+
+                    Account Number
+
+                  </p>
+
+                  <h5 class="fw-bold mb-0">
+
+                    {{ acc.accountNumber }}
+
+                  </h5>
+
+                </div>
+
+                <!-- BALANCE -->
+                <div class="mb-4">
+
+                  <p class="zorent-text-muted small mb-1">
+
+                    Final Settlement Amount
+
+                  </p>
+
+                  <h2 class="fw-bold mb-0">
+
+                    ₹{{ acc.balance | number:'1.2-2' }}
+
+                  </h2>
+
+                </div>
+
+                <!-- BUTTON -->
+                <div class="mt-auto">
+
+                  <div class="row g-2">
+
+                    <div class="col-12">
+
+                      <button class="btn btn-primary w-100 rounded-pill"
+                              (click)="$event.stopPropagation()"
+                              [routerLink]="['/statement']"
+                              [queryParams]="{
+                            accountNumber: acc.accountNumber
+                          }">
+
+                        Statement
+
+                      </button>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- BACK -->
+            <div class="card h-100 zorent-account-card border-0 flip-back"
+                 (click)="isFlipped[acc.accountNumber] = false">
+
+              <div class="card-body p-4 d-flex flex-column">
+
+                <h5 class="fw-bold mb-4">
+
+                  Account Details
+
+                </h5>
+
+                <div class="border rounded-4 p-3 bg-light mb-4">
+
+                  <div class="d-flex justify-content-between mb-3">
+
+                    <span class="text-muted small">
+                      Account Holder
+                    </span>
+
+                    <span class="fw-semibold">
+                      {{ userName }}
+                    </span>
+
+                  </div>
+
+                  <div class="d-flex justify-content-between mb-3">
+
+                    <span class="text-muted small">
+                      Username
+                    </span>
+
+                    <span class="fw-semibold">
+                      {{ userUsername }}
+                    </span>
+
+                  </div>
+
+                  <div class="d-flex justify-content-between mb-3">
+
+                    <span class="text-muted small">
+                      Phone Number
+                    </span>
+
+                    <span class="fw-semibold">
+                      {{ userPhone }}
+                    </span>
+
+                  </div>
+
+                  <div class="d-flex justify-content-between">
+
+                    <span class="text-muted small">
+                      Status
+                    </span>
+
+                    <span class="text-danger fw-semibold">
+                      Closed
+                    </span>
+
+                  </div>
+
+                </div>
+
+                <!-- CLOSED DATE -->
+                <div class="mt-auto text-center">
+
+                  <small class="text-muted">
+
+                    Closed On :
+                    {{ acc.closedAt | date:'mediumDate' }}
+
+                  </small>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+  </div>
+
+      </div>
+
+    
+
+

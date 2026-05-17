@@ -500,3 +500,6 @@ input[readonly].zorent-input {
     background: #dc2626;
     transform: scale(1.08);
   }
+.info {
+  text-decoration-color: yellow;
+}

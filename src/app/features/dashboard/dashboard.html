@@ -30,226 +30,610 @@
 
 
 
-  <div class="container py-4">
-    <div class="d-flex justify-content-between align-items-center mb-5 pb-3 header-border">
-      <nav class="d-flex gap-4 align-items-center">
-        <a routerLink="/dashboard"
-           class="d-flex align-items-center text-decoration-none">
+    <div class="container py-4">
+      <div class="d-flex justify-content-between align-items-center mb-5 pb-3 header-border">
+        <nav class="d-flex gap-4 align-items-center">
+          <a routerLink="/dashboard"
+             class="d-flex align-items-center text-decoration-none">
 
-          <div class="zorent-logo-container me-3 shadow-sm">
+            <div class="zorent-logo-container me-3 shadow-sm">
 
-            <img src="https://logowik.com/content/uploads/images/t_zeronet1628.jpg"
-                 alt="Zorent Logo"
-                 class="zorent-main-logo">
-
-          </div>
-
-          <div class="fw-bold logo-glow fs-4 me-3">
-
-            ZORENT
-
-          </div>
-
-        </a>
-        <a routerLink="/dashboard" replaceUrl="true" class="nav-link-custom active">Dashboard</a>
-        <a routerLink="/transactions" class="nav-link-custom">Transactions</a>
-        <a routerLink="/transfer" class="nav-link-custom">Transfer</a>
-      </nav>
-
-
-      <div class="profile-area d-flex align-items-center gap-3">
-
-        <!-- LOGOUT ICON -->
-        <!-- PROFILE -->
-
-        <div class="profile-trigger"
-             (click)="toggleProfile()">
-
-          <div class="avatar-circle shadow-sm">
-
-            {{ userName.charAt(0).toUpperCase() }}
-
-          </div>
-
-          <i class="bi bi-chevron-down ms-2 small text-muted"></i>
-
-        </div>
-
-        <ul class="custom-dropdown shadow-lg"
-            [class.show]="isProfileOpen">
-
-          <li class="user-details-header">
-
-            <div class="text-center mb-3">
-
-              <h6 class="fw-bold mb-0">
-
-                {{ userName }}
-
-              </h6>
-
-              <small class="text-muted">
-
-                username : {{ userUsername }}
-
-              </small>
+              <img src="https://logowik.com/content/uploads/images/t_zeronet1628.jpg"
+                   alt="Zorent Logo"
+                   class="zorent-main-logo">
 
             </div>
 
-          </li>
+            <div class="fw-bold logo-glow fs-4 me-3">
 
-          <li>
+              ZORENT
 
-            <a class="profile-item"
-               routerLink="/profile-settings">
-
-              <i class="bi bi-person-circle me-2"></i>
-
-              Profile Settings
-
-            </a>
-
-          </li>
-
-          <li>
-
-            <a class="logout-item"
-               (click)="logout()">
-
-              <i class="bi bi-box-arrow-right me-2"></i>
-
-              Logout
-
-            </a>
-
-          </li>
-
-        </ul>
-
-        <button class="logout-icon-btn"
-                (click)="logout()">
-
-          <i class="bi bi-box-arrow-right"></i>
-
-        </button>
-
-      </div>
-    </div>
-
-    <div class="card zorent-main-card mb-5 border-0">
-      <div class="card-body p-4">
-        <div *ngIf="loading" class="text-center py-5">
-          Loading accounts...
-        </div>
-        <div *ngIf="errorMessage" class="alert alert-danger">
-          {{ errorMessage }}
-        </div>
-        <div *ngIf="!loading && accounts.length === 0"
-             class="text-center text-muted py-5">
-
-          No accounts found.
-
-        </div>
-        <h5 class="zorent-text-muted text-uppercase small fw-bold mb-2">Total Net Worth</h5>
-        <h1 class="display-4 fw-bold mb-0">₹{{ netWorth | number:'1.2-2' }}</h1>
-      </div>
-    </div>
-
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <h3 class="fw-bold m-0">Account Portfolio</h3>
-      <div class="d-flex gap-2">
-        <button class="btn zorent-btn-outline rounded-pill px-4" routerLink="/transactions">Transactions</button>
-        <button class="btn zorent-btn-accent rounded-pill px-4" routerLink="/create-account">+ New Account</button>
-      </div>
-    </div>
-
-    <div class="row g-4">
-      <div class="col-md-6" *ngFor="let acc of accounts">
-        <div class="card h-100 zorent-account-card border-0">
-          <div class="card-body p-4">
-            <div class="d-flex justify-content-between mb-4">
-              <span class="type-badge" [ngClass]="acc.accountType === 'Checking' ? 'type-checking' : 'type-savings'">
-                {{ acc.accountType }}
-              </span>
-              <span class="status-indicator">
-
-                <span class="dot"
-                      [ngClass]="
-      acc.status === 'Active'
-      ? 'pulse'
-      : 'inactive-dot'
-    ">
-                </span>
-
-                {{ acc.status }}
-
-              </span>
             </div>
-            <p class="zorent-text-muted small mb-1">Account Number</p>
-            <h5 class="fw-bold mb-3">{{ acc.accountNumber }}</h5>
-            <p class="zorent-text-muted small mb-1">Available Balance</p>
-            <h2 class="fw-bold mb-0">₹{{ acc.balance | number:'1.2-2' }}</h2>
+
+          </a>
+          <a routerLink="/dashboard" replaceUrl="true" class="nav-link-custom active">Dashboard</a>
+          <a routerLink="/transactions" class="nav-link-custom">Transactions</a>
+          <a routerLink="/transfer" class="nav-link-custom">Transfer</a>
+        </nav>
+
+
+        <div class="profile-area d-flex align-items-center gap-3">
+
+          <!-- LOGOUT ICON -->
+          <!-- PROFILE -->
+
+          <div class="profile-trigger"
+               (click)="toggleProfile()">
+
+            <div class="avatar-circle shadow-sm">
+
+              {{ userName.charAt(0).toUpperCase() }}
+
+            </div>
+
+            <i class="bi bi-chevron-down ms-2 small text-muted"></i>
+
           </div>
-          <div class="card-footer bg-transparent border-0 p-4 pt-0">
-            <div class="row g-2">
-              <div class="col-6">
-                <button class="btn zorent-btn-outline w-100 rounded-pill"
-                        [routerLink]="['/statement']"
-                        [queryParams]="{
-      accountNumber: acc.accountNumber
-    }">
 
-                  Statement
+          <ul class="custom-dropdown shadow-lg"
+              [class.show]="isProfileOpen">
 
-                </button>
-              </div><!-- TRANSFER BUTTON -->
-              <div class="col-6">
+            <li class="user-details-header">
 
-                <!-- ACTIVE SAVINGS/CHECKING -->
-                <button *ngIf="
-          acc.status === 'Active'
-          &&
-          acc.accountType !== 'Fixed Deposit'
-          &&
-          acc.accountType !== 'Recurring Deposit'
-        "
-                        class="btn zorent-btn-accent w-100 rounded-pill"
-                        routerLink="/transfer">
+              <div class="text-center mb-3">
 
-                  Transfer
+                <h6 class="fw-bold mb-0">
 
-                </button>
+                  {{ userName }}
 
-                <!-- FD ONLY -->
-                <button *ngIf="acc.accountType === 'Fixed Deposit'"
-                        class="btn btn-warning w-100 rounded-pill">
+                </h6>
 
-                  Withdraw
+                <small class="text-muted">
 
-                </button>
+                  username : {{ userUsername }}
 
-                <!-- RD + INACTIVE -->
-                <button *ngIf="
-          acc.accountType === 'Recurring Deposit'
-          ||
-          (
-            acc.status !== 'Active'
-            &&
-            acc.accountType !== 'Fixed Deposit'
-          )
-        "
-                        class="btn btn-secondary w-100 rounded-pill"
-                        disabled>
-
-                  Deposit
-
-                </button>
+                </small>
 
               </div>
-            </div>
-          </div>
+
+            </li>
+
+            <li>
+
+              <a class="profile-item"
+                 routerLink="/profile-settings">
+
+                <i class="bi bi-person-circle me-2"></i>
+
+                Profile Settings
+
+              </a>
+
+            </li>
+            <li>
+
+              <a class="profile-item"
+                 routerLink="/closed-accounts">
+
+                <i class="bi bi-archive me-2"></i>
+
+                Closed Accounts
+
+              </a>
+
+            </li>
+
+            <li>
+
+              <a class="logout-item"
+                 (click)="logout()">
+
+                <i class="bi bi-box-arrow-right me-2"></i>
+
+                Logout
+
+              </a>
+
+            </li>
+
+          </ul>
+
+          <button class="logout-icon-btn"
+                  (click)="logout()">
+
+            <i class="bi bi-box-arrow-right"></i>
+
+          </button>
+
         </div>
       </div>
+
+      <div class="card zorent-main-card mb-5 border-0">
+        <div class="card-body p-4">
+          <div *ngIf="loading" class="text-center py-5">
+            Loading accounts...
+          </div>
+          <div *ngIf="errorMessage" class="alert alert-danger">
+            {{ errorMessage }}
+          </div>
+          <div *ngIf="!loading && accounts.length === 0"
+               class="no-account-box text-center">
+
+            <div class="no-account-icon">
+              <i class="bi bi-wallet2"></i>
+            </div>
+
+            <h4><b>No Accounts Found</b></h4>
+
+            <p>
+              You have not created any bank accounts yet.
+            </p>
+
+         
+
+          </div>
+          <h5 class="zorent-text-muted text-uppercase small fw-bold mb-2">Total Net Worth</h5>
+          <h1 class="display-4 fw-bold mb-0">₹{{ netWorth | number:'1.2-2' }}</h1>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-4"
+             *ngIf="accounts.length > 0">
+          <h3 class="fw-bold m-0">Account Portfolio</h3>
+        </div>
+        <div class="d-flex gap-2">
+          <button class="btn zorent-btn-outline rounded-pill px-4" routerLink="/transactions">Transactions</button>
+          <button class="btn zorent-btn-accent rounded-pill px-4" routerLink="/create-account">+ New Account</button>
+        </div>
+      </div>
+
+      <!-- ACCOUNT CARDS -->
+      <!-- ACCOUNT CARDS -->
+      <div class="row g-4">
+
+        <div class="col-md-6"
+             *ngFor="let acc of accounts">
+
+          <!-- FLIP CONTAINER -->
+          <div class="flip-card-container">
+
+            <div class="flip-card-inner"
+                 [class.flipped]="isFlipped[acc.accountNumber]">
+
+              <!-- FRONT SIDE -->
+              <div class="card h-100 zorent-account-card border-0 flip-front"
+                   (click)="isFlipped[acc.accountNumber] = true">
+
+                <div class="card-body p-4 d-flex flex-column">
+
+                  <!-- TOP -->
+                  <div class="d-flex justify-content-between align-items-center mb-4">
+
+                    <span class="type-badge"
+                          [ngClass]="
+                      acc.accountType === 'Checking'
+                      ? 'type-checking'
+                      : 'type-savings'
+                    ">
+
+                      {{ acc.accountType }}
+
+                    </span>
+
+                    <span class="status-indicator">
+
+                      <span class="dot"
+                            [ngClass]="
+                        acc.status === 'Active'
+                        ? 'pulse'
+                        : 'inactive-dot'
+                      ">
+                      </span>
+
+                      {{ acc.status }}
+
+                    </span>
+
+                  </div>
+
+                  <!-- ACCOUNT -->
+                  <div class="mb-3">
+
+                    <p class="zorent-text-muted small mb-1">
+
+                      Account Number
+
+                    </p>
+
+                    <h5 class="fw-bold mb-0">
+
+                      {{ acc.accountNumber }}
+
+                    </h5>
+
+                  </div>
+
+                  <!-- BALANCE -->
+                  <div class="mb-4">
+
+                    <p class="zorent-text-muted small mb-1">
+
+                      Available Balance
+
+                    </p>
+
+                    <h2 class="fw-bold mb-0">
+
+                      ₹{{ acc.balance | number:'1.2-2' }}
+
+                    </h2>
+
+                  </div>
+
+                  <!-- BUTTONS -->
+                  <!-- BUTTONS -->
+                  <div class="mt-auto">
+
+                    <!-- SAVINGS -->
+                    <div class="row g-2"
+                         *ngIf="acc.accountType === 'Savings'">
+
+                      <div class="col-6">
+
+                        <button class="btn btn-primary w-100 rounded-pill"
+                                (click)="$event.stopPropagation()"
+                                [routerLink]="['/statement']"
+                                [queryParams]="{
+                accountNumber: acc.accountNumber
+              }">
+
+                          Statement
+
+                        </button>
+
+                      </div>
+
+                      <div class="col-6">
+
+                        <button class="btn btn-success w-100 rounded-pill"
+                                (click)="$event.stopPropagation()"
+                                routerLink="/transfer">
+
+                          Transfer
+
+                        </button>
+
+                      </div>
+
+                    </div>
+
+                    <!-- CHECKING -->
+                    <div class="row g-2"
+                         *ngIf="acc.accountType === 'Checking'">
+
+                      <div class="col-6">
+
+                        <button class="btn btn-primary w-100 rounded-pill"
+                                (click)="$event.stopPropagation()"
+                                [routerLink]="['/statement']"
+                                [queryParams]="{
+                accountNumber: acc.accountNumber
+              }">
+
+                          Statement
+
+                        </button>
+
+                      </div>
+
+                      <div class="col-6">
+
+                        <button class="btn btn-success w-100 rounded-pill"
+                                (click)="$event.stopPropagation()"
+                                routerLink="/transfer">
+
+                          Transfer
+
+                        </button>
+
+                      </div>
+
+                    </div>
+
+                    <!-- FD -->
+
+                    <div class="row g-2"
+                         *ngIf="acc.accountType === 'Fixed Deposit'">
+
+                     
+                      
+
+                      <div class="col-12">
+
+                        <button class="  btn btn-warning text-dark  w-100 rounded-pill"
+                                [routerLink]="['/close-fd']"
+                                [disabled]="acc.status === 'Closed'"
+                                [queryParams]="{
+  accountNumber: acc.accountNumber
+}"
+                                (click)="$event.stopPropagation()">
+
+                          Withdraw
+
+                        </button>
+
+                      </div>
+
+                    </div>
+
+                    <!-- FD -->
+                    <div class="row g-2"
+                         *ngIf="acc.accountType === 'Recurring Deposit'">
+
+                      <div class="col-6">
+
+                        <button class="btn btn-primary w-100 rounded-pill"
+                                (click)="$event.stopPropagation()"
+                                [routerLink]="['/statement']"
+                                [queryParams]="{
+              accountNumber: acc.accountNumber
+            }">
+
+                          Statement
+
+                        </button>
+
+                      </div>
+
+                      <div class="col-6">
+
+                        <button class="btn btn-warning text-dark w-100 rounded-pill"
+                                [routerLink]="['/close-fd']"
+                                [disabled]="acc.status === 'Closed'"
+                                [queryParams]="{
+              accountNumber: acc.accountNumber
+            }"
+                                (click)="$event.stopPropagation()">
+
+                          Withdraw
+
+                        </button>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <!-- BACK SIDE -->
+              <div class="card h-100 zorent-account-card border-0 flip-back"
+                   (click)="isFlipped[acc.accountNumber] = false">
+
+                <div class="card-body p-4 d-flex flex-column">
+
+                  <h5 class="fw-bold mb-4">
+
+                    Account Details
+
+                  </h5>
+
+                  <!-- DETAILS -->
+                  <div class="border rounded-4 p-3 bg-light mb-4">
+
+                    <div class="d-flex justify-content-between mb-3">
+
+                      <span class="text-muted small">
+                        Account Holder
+                      </span>
+
+                      <span class="fw-semibold">
+                        {{ userName }}
+                      </span>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-3">
+
+                      <span class="text-muted small">
+                        Username
+                      </span>
+
+                      <span class="fw-semibold">
+                        {{ userUsername }}
+                      </span>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-3">
+
+                      <span class="text-muted small">
+                        Phone Number
+                      </span>
+
+                      <span class="fw-semibold">
+                        {{ userPhone }}
+                      </span>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+
+                      <span class="text-muted small">
+                        Account Status
+                      </span>
+
+                      <span class="fw-semibold"
+                            [ngClass]="
+            acc.status === 'Active'
+            ? 'text-success'
+            : 'text-danger'
+          ">
+
+                        {{ acc.status }}
+
+                      </span>
+
+                    </div>
+
+                  </div>
+
+                  <!-- EXTRA BUTTONS -->
+                  <!-- EXTRA BUTTONS -->
+                  <div class="mt-auto">
+
+                    <!-- SAVINGS BACK -->
+                    <div *ngIf="acc.accountType === 'Savings'">
+
+                      <div class="row g-2">
+
+                        <!-- DEPOSIT -->
+                        <div class="col-6">
+                          <button class="btn btn-success w-100 rounded-pill"
+                                  [routerLink]="['/deposit-money']"
+                                  [state]="{
+          accountNumber: acc.accountNumber
+        }"
+                                  (click)="$event.stopPropagation()">
+
+                            Deposit
+
+                          </button>
+
+                        </div>
+
+                        <!-- CLOSE ACCOUNT -->
+                        <div class="col-6">
+
+                          <button class="btn btn-danger w-100 rounded-pill"
+                                  (click)="$event.stopPropagation()">
+
+                            Close Account
+
+                          </button>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                      <!-- CHECKING BACK -->
+                      <div *ngIf="acc.accountType === 'Checking'">
+
+                        <div class="row g-2 mb-2">
+
+                          <div class="col-6">
+
+                            <button class="btn btn-warning text-dark w-100 rounded-pill"
+                                    [disabled]="acc.status === 'Closed'"
+                                    [routerLink]="['/close-fd']"
+                                    [queryParams]="{
+          accountNumber: acc.accountNumber
+        }"
+                                    (click)="$event.stopPropagation()">
+
+                              Withdraw
+
+                            
+                            </button>
+
+                          </div>
+
+                          <div class="col-6">
+
+                            <button class="btn btn-success w-100 rounded-pill"
+                                    [routerLink]="['/deposit-money']"
+                                    [state]="{
+          accountNumber: acc.accountNumber
+        }"
+                                    (click)="$event.stopPropagation()">
+
+                              Deposit
+
+                            
+                            </button>
+
+                          </div>
+
+                        </div>
+
+                        <div class="row g-2 mb-2">
+
+
+
+                        </div>
+
+                        <button class="btn btn-danger w-100 rounded-pill"
+                                (click)="$event.stopPropagation()">
+
+                          Close Account
+
+                        </button>
+
+                      </div>
+
+                      <!-- FD BACK -->
+                      <div *ngIf="acc.accountType === 'Fixed Deposit'">
+
+                        <button class="btn btn-danger w-100 rounded-pill"
+                                (click)="$event.stopPropagation()">
+
+                          Close Account
+
+                        </button>
+
+                      </div>
+
+                      <!-- RD BACK -->
+                      <div *ngIf="acc.accountType === 'Recurring Deposit'">
+
+                        <div class="row g-2">
+
+                          <div class="col-6">
+
+                            <button class="btn btn-danger w-100 rounded-pill"
+                                    (click)="$event.stopPropagation()">
+
+                              Close Account
+
+                            </button>
+
+                          </div>
+
+                          <div class="col-6">
+
+                            <button class="btn btn-success w-100 rounded-pill"
+                                    [routerLink]="['/deposit-money']"
+                                    [state]="{
+          accountNumber: acc.accountNumber
+        }"
+                                    (click)="$event.stopPropagation()">
+
+                              Deposit
+
+                            </button>
+
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
     </div>
-  </div>
 </div>

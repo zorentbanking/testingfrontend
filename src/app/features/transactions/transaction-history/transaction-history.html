@@ -199,7 +199,7 @@
           <div class="card-body p-4 p-md-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
               <h3 class="fw-bold text-white mb-0">Results</h3>
-              <button class="btn zorent-btn-outline rounded-pill px-4"
+              <button class="btn zorent-btn-outline rounded-pill px-4" style="background: #1a5c8b; border-color: #1a5c8b; color: white;"
                       (click)="exportCsv()">
 
                 Export
@@ -215,7 +215,7 @@
                     <th>Type</th>
                     <th>Description</th>
                     <th (click)="sortBy('amount')" class="text-end sortable-header">Amount <span>&#8693;</span></th>
-                    <th class="text-end">Running Balance</th>
+                   
                   </tr>
                 </thead>
                 <tbody>
@@ -231,7 +231,7 @@
                     <td class="text-end fw-bold" [ngClass]="txn.type === 'Credit' ? 'text-success' : 'text-white'">
                       {{ txn.type === 'Credit' ? '+' : '-' }}{{ txn.amount | currency:'INR' }}
                     </td>
-                    <td class="text-end zorent-text-muted">{{ txn.balanceAfter | currency:'INR' }}</td>
+                   
                   </tr>
                   <tr *ngIf="paginatedTransactions.length === 0">
                     <td colspan="6" class="text-center text-muted py-4">No transactions found matching your criteria.</td>

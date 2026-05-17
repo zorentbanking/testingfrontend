@@ -101,7 +101,7 @@
 
         </li>
 
-      
+
 
         <li>
 
@@ -157,22 +157,26 @@
 
         <h4>Quick Links</h4>
 
-        <a (click)="scrollToSection('personal-info')">
+        <a [class.active-link]="activeSession === 'personal'"
+           (click)="setSection('personal')">
           <i class="bi bi-person me-2"></i>
           Personal Information
         </a>
 
-        <a (click)="scrollToSection('security-settings')">
+        <a [class.active-link]="activeSession === 'security'"
+           (click)="setSection('security')">
           <i class="bi bi-shield-lock me-2"></i>
-          Security Settings
+          Change Password
         </a>
 
-        <a (click)="scrollToSection('pin-settings')">
+        <a [class.active-link]="activeSession === 'pin'"
+           (click)="setSection('pin')">
           <i class="bi bi-key me-2"></i>
           Transaction PIN
         </a>
 
-        <a (click)="scrollToSection('kyc-settings')">
+        <a [class.active-link]="activeSession === 'kyc'"
+           (click)="setSection('kyc')">
           <i class="bi bi-patch-check me-2"></i>
           KYC Verification
         </a>
@@ -199,12 +203,7 @@
 
         </div>
 
-        <button class="save-btn"
-                (click)="saveProfile()">
 
-          Save Changes
-
-        </button>
 
       </div>
       <div class="mb-3">
@@ -228,7 +227,7 @@
 
         <!-- PERSONAL INFO -->
 
-        <div class="section-card" id="personal-info">
+        <div class="section-card fade-card" *ngIf="activeSession === 'personal'">
 
           <h3>Personal Information</h3>
 
@@ -236,10 +235,12 @@
 
             <div class="form-group">
 
-              <label>Full Name</label>
+              <label>Name</label>
 
               <input type="text"
-                     formControlName="fullName">
+                     formControlName="fullName"
+                     [class.invalid-field]="profileForm.get('fullName')?.invalid
+       && profileForm.get('fullName')?.touched">
 
               <small class="text-danger"
                      *ngIf="profileForm.get('fullName')?.touched &&
@@ -290,7 +291,9 @@
               <label>Phone Number</label>
 
               <input type="text"
-                     formControlName="phone">
+                     formControlName="phone"
+                     [class.invalid-field]="profileForm.get('phone')?.invalid
+       && profileForm.get('phone')?.touched">
 
               <small class="text-danger"
                      *ngIf="profileForm.get('phone')?.touched &&
@@ -313,8 +316,7 @@
               <label>Date Of Birth</label>
 
               <input type="date"
-                     formControlName="dateOfBirth"
-                     [max]="todayDate">
+                     formControlName="dateOfBirth">
 
               <small class="text-danger"
                      *ngIf="profileForm.get('dateOfBirth')?.errors?.['required']">
@@ -353,7 +355,21 @@
             <label>Residential Address</label>
 
             <textarea rows="4"
-                      formControlName="address"></textarea>
+                      formControlName="address"
+                      maxlength="1500"
+                      placeholder="Enter complete residential address including house number, street, city, state and PIN code."
+                      [class.invalid-field]="profileForm.get('address')?.invalid
+          && profileForm.get('address')?.touched"></textarea>
+
+            <div class="address-info d-flex justify-content-end">
+
+              <small class="text-primary fw-semibold">
+                {{
+      1500 - (profileForm.get('address')?.value?.length || 0)
+                }} characters remaining
+              </small>
+
+            </div>
 
             <small class="text-danger"
                    *ngIf="profileForm.get('address')?.errors?.['required']">
@@ -371,13 +387,20 @@
 
           </div>
 
+          <button class="save-btn"
+                  (click)="saveProfile()">
+
+            Save Changes
+
+          </button>
         </div>
+
 
         <!-- PASSWORD -->
 
-        <div class="section-card" id="security-settings">
+        <div class="section-card fade-card" *ngIf="activeSession === 'security'">
 
-          <h3>Security Settings</h3>
+          <h3>Change Password</h3>
 
           <div class="form-grid">
 
@@ -393,9 +416,10 @@
             <div class="form-group password-box">
 
               <label>New Password</label>
-
               <input [type]="showPassword ? 'text' : 'password'"
-                     formControlName="newPassword">
+                     formControlName="newPassword"
+                     [class.invalid-field]="profileForm.get('newPassword')?.invalid
+       && profileForm.get('newPassword')?.touched">
               <small class="text-danger"
                      *ngIf="profileForm.get('newPassword')?.touched &&
               profileForm.get('newPassword')?.errors?.['pattern']">
@@ -472,9 +496,9 @@
 
         <!-- TRANSACTION PIN -->
 
-        <div class="section-card" id="pin-settings">
+        <div class="section-card fade-card" *ngIf="activeSession === 'pin'">
 
-          <h3>Transaction PIN Settings</h3>
+          <h3>Transaction PIN</h3>
 
           <div class="form-grid">
 
@@ -552,7 +576,7 @@
 
         <!-- KYC -->
 
-        <div class="section-card" id="kyc-settings">
+        <div class="section-card fade-card" *ngIf="activeSession === 'kyc'">
 
           <h3>KYC Verification</h3>
 
@@ -577,6 +601,7 @@
           </button>
 
         </div>
+
 
       </form>
 

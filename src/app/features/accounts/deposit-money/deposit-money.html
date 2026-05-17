@@ -1,0 +1,133 @@
+<div class="closure-container">
+
+  <!-- FORM -->
+  <div *ngIf="!isSuccess"
+       class="professional-card">
+
+    <div class="card-header">
+
+      <div class="shield-icon">
+        <i class="bi bi-cash-stack"></i>
+      </div>
+
+      <h2>Deposit Money</h2>
+
+      <p class="account-badge">
+        A/C : {{ accountNumber }}
+      </p>
+
+    </div>
+
+    <div *ngIf="errorMessage"
+         class="error-box">
+
+      {{ errorMessage }}
+
+    </div>
+
+    <!-- ACCOUNT DETAILS -->
+    <div class="details-box">
+
+      <p class="section-title">
+        Account Details
+      </p>
+
+      <div class="info-grid">
+
+        <div class="info-item">
+
+          <span>Account Type</span>
+
+          <strong>
+            {{ accountDetails.accountType }}
+          </strong>
+
+        </div>
+
+        <div class="info-item">
+
+          <span>Current Balance</span>
+
+          <strong>
+            ₹{{ accountDetails.availableBalance | number:'1.2-2' }}
+          </strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- INPUT -->
+    <div class="input-field">
+
+      <label>Deposit Amount</label>
+
+      <input type="number"
+       [(ngModel)]="depositAmount"
+       placeholder="Enter amount"
+       min="100"
+       max="100000">
+             
+
+    </div>
+
+    <!-- BUTTON -->
+    <button class="btn-submit"
+            [disabled]="loading || depositAmount <= 0"
+            (click)="processDeposit()">
+
+      Deposit Now
+
+    </button>
+
+  </div>
+
+  <!-- SUCCESS -->
+  <div *ngIf="isSuccess"
+       class="professional-card success-layout">
+
+    <div class="success-ring">
+      ✓
+    </div>
+
+    <h2 class="success-title">
+      Deposit Successful
+    </h2>
+
+    <p class="success-msg">
+      Amount deposited successfully.
+    </p>
+
+    <div class="receipt-box">
+
+      <div class="receipt-row">
+
+        <span>Transaction ID</span>
+
+        <span>{{ transactionId }}</span>
+
+      </div>
+
+      <div class="receipt-row">
+
+        <span>Amount</span>
+
+        <span>
+          ₹{{ depositAmount | number:'1.2-2' }}
+        </span>
+
+      </div>
+
+    </div>
+
+    <button class="btn-dashboard"
+            (click)="navDashboard()">
+
+      Back to Dashboard
+
+    </button>
+
+  </div>
+
+</div>

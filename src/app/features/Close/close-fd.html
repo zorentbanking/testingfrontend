@@ -1,0 +1,76 @@
+<div class="closure-container">
+
+  <div *ngIf="!isSuccess" class="professional-card">
+    <div class="card-header">
+      <div class="shield-icon">
+        <i class="bi bi-shield-lock-fill"></i>
+      </div>
+      <h2>
+        {{ fdDetails.accountType }} Closure
+      </h2>
+      <p class="account-badge">ID: {{fdDetails.fdAccountNumber}}</p>
+    </div>
+    <div *ngIf="errorMessage" class="error-box">
+      {{ errorMessage }}
+    </div>
+    <div class="details-box">
+      <p class="section-title">Investment Details</p>
+      <div class="info-grid">
+        <div class="info-item"><span>Start Date:</span> <strong>{{ fdDetails.startDate | date:'dd MMM yyyy' }}</strong></div>
+        <div class="info-item"><span>End Date:</span> <strong>{{ fdDetails.endDate | date:'dd MMM yyyy' }}</strong></div>
+        <div class="info-item"><span>Source:</span> <strong>{{fdDetails.sourceAccount}}</strong></div>
+      </div>
+
+      <label class="agreement-label">
+        <input type="checkbox" [(ngModel)]="isAgreed">
+        <span class="custom-check"></span>
+        I verify and authorize this account closure.
+      </label>
+    </div>
+
+    <div *ngIf="isAgreed" class="settlement-summary animate-fade">
+      <p class="summary-header">Settlement Breakdown</p>
+      <div class="data-row">
+        <span>Principal Amount</span>
+        <span>₹{{fdDetails.principal | number:'1.2-2'}}</span>
+      </div>
+      <div class="data-row">
+        <span>Total Interest</span>
+        <span class="text-accent">+ ₹{{totalInterest | number:'1.2-2'}}</span>
+      </div>
+      <div class="total-divider"></div>
+      <div class="data-row">
+        <span class="total-label">Total Payout</span>
+        <span class="payout-value">₹{{finalPayout | number:'1.2-2'}}</span>
+      </div>
+    </div>
+
+    <div *ngIf="isAgreed" class="security-section animate-fade">
+      <div class="input-field">
+        <label>Transfer to Account</label>
+        <input type="text" [(ngModel)]="targetAccount" placeholder="Account Number">
+      </div>
+
+    </div>
+
+    <button class="btn-submit"
+        [disabled]="!isAgreed || !targetAccount || loading"
+            (click)="processClosure()">
+      Authorize Closure
+    </button>
+  </div>
+
+  <div *ngIf="isSuccess" class="professional-card success-layout">
+    <div class="success-ring">✓</div>
+    <h2 class="success-title">Closure Authorized</h2>
+    <p class="success-msg">Funds have been successfully liquidated and transferred.</p>
+
+    <div class="receipt-box">
+      <div class="receipt-row"><span>Ref ID:</span> <span>{{ transactionId }}</span></div>
+      <div class="receipt-row"><span>Transferred To:</span> <span>{{targetAccount}}</span></div>
+      <div class="receipt-row"><span>Amount:</span> <span class="fw-bold text-dark">₹{{finalPayout | number:'1.2-2'}}</span></div>
+    </div>
+
+    <button class="btn-dashboard" (click)="navDashboard()">Back to Dashboard</button>
+  </div>
+</div>

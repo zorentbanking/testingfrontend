@@ -18,6 +18,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { TransferSuccessComponent } from './features/transfers/transfer-success/transfer-success';
 import { StatementComponent } from './features/transactions/statement/statement';
+import { ClosedAccountsComponent } from './features/closed-accounts/closed-accounts';
+
 import { ProfileSettingsComponent } from './features/accounts/profile-settings/profile-settings';
 import { AccountSuccessComponent }
   from './features/accounts/account-success/account-success';
@@ -33,7 +35,10 @@ import { AccountSuccessComponent }
     TransferSuccessComponent,
     AccountSuccessComponent,
     StatementComponent,
-    ProfileSettingsComponent
+    ProfileSettingsComponent,
+    ClosedAccountsComponent
+   
+   
   ],
 
   imports: [
@@ -41,7 +46,8 @@ import { AccountSuccessComponent }
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+   
   ],
 
   providers: [{

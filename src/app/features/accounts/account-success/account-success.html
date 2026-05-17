@@ -55,9 +55,23 @@
         </span>
 
       </div>
+      <div class="detail-row">
+
+        <span class="label">
+          Transaction ID
+        </span>
+
+        <span class="value transaction-id">
+          {{ account.transactionId}}
+        </span>
+
+      </div>
 
       <div class="detail-row"
-           *ngIf="account.interestRate">
+           *ngIf="
+       account.accountType === 'Fixed Deposit' ||
+       account.accountType === 'Recurring Deposit'
+     ">
 
         <span class="label">
           Interest Rate

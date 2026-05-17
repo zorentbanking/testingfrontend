@@ -15,10 +15,11 @@ export class ProfileSettingsComponent implements OnInit {
   profileErrorMessage: string = '';
   profileSuccessMessage: string = '';
   passwordErrorMessage: string = '';
-passwordSuccessMessage: string = '';
+  passwordSuccessMessage: string = '';
 
-pinErrorMessage: string = '';
-pinSuccessMessage: string = '';
+  pinErrorMessage: string = '';
+  pinSuccessMessage: string = '';
+  activeSession: string = 'personal';
 
   profileForm!: FormGroup;
 
@@ -142,11 +143,10 @@ pinSuccessMessage: string = '';
 
       // DATE OF BIRTH
       dateOfBirth: [
-        '',
-        [
-          Validators.required,
-          this.ageValidator
-        ]
+        {
+          value: '',
+          disabled: true
+        }
       ],
 
       // ADDRESS
@@ -252,7 +252,7 @@ pinSuccessMessage: string = '';
       !this.isProfileOpen;
   }
 
-  
+
   togglePassword(): void {
 
     this.showPassword = !this.showPassword;
@@ -272,20 +272,17 @@ pinSuccessMessage: string = '';
 
       return;
     }
+    const formData = this.profileForm.getRawValue();
 
     const payload = {
 
-      fullName:
-        this.profileForm.value.fullName,
+      fullName: formData.fullName,
 
-      phone:
-        this.profileForm.value.phone,
+      phone: formData.phone,
 
-      address:
-        this.profileForm.value.address,
+      address: formData.address,
 
-      dateOfBirth:
-        this.profileForm.value.dateOfBirth
+      dateOfBirth: formData.dateOfBirth
     };
 
     this.profileService
@@ -474,19 +471,21 @@ pinSuccessMessage: string = '';
 
     this.router.navigate(['/login']);
   }
-  scrollToSection(sectionId: string): void {
+  setSection(section: string): void {
 
-    const element =
-      document.getElementById(sectionId);
+    this.activeSession = section;
 
-    if (element) {
+    // CLEAR PROFILE MESSAGES
+    this.profileErrorMessage = '';
+    this.profileSuccessMessage = '';
 
-      element.scrollIntoView({
+    // CLEAR PASSWORD MESSAGES
+    this.passwordErrorMessage = '';
+    this.passwordSuccessMessage = '';
 
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
+    // CLEAR PIN MESSAGES
+    this.pinErrorMessage = '';
+    this.pinSuccessMessage = '';
   }
 
   get fullName() {

@@ -1,40 +1,43 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Router } from '@angular/router';
-import { Account } from '../../core/models/account.model';
+
 import { AccountService } from '../../core/services/account.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.html',
-  styleUrls: ['./dashboard.css'],
+  selector: 'app-closed-accounts',
+
+  templateUrl: './closed-accounts.html',
+
+  styleUrls: ['./closed-accounts.css'],
+
   standalone: false
 })
-export class DashboardComponent implements OnInit {
 
-  accounts: Account[] = [];
+export class ClosedAccountsComponent implements OnInit {
 
-  netWorth: number = 0;
+  accounts: any[] = [];
+  closedAccounts: any[] = [];
 
   loading: boolean = false;
 
   errorMessage: string = '';
-  isFlipped: { [key: string]: boolean } = {};
 
+  isFlipped: { [key: string]: boolean } = {};
 
   isProfileOpen: boolean = false;
 
   userName: string = 'User';
 
   userEmail: string = '';
+
   userPhone: string = '';
-  userFullName: string = '';
 
   userAddress: string = '';
+
   userUsername: string = '';
-  showWelcomeMessage: boolean = false;
 
-  welcomeUserName: string = '';
-
+  netWorth: number = 0;
 
   constructor(
     private router: Router,
@@ -45,24 +48,8 @@ export class DashboardComponent implements OnInit {
 
     this.loadUserData();
 
-    this.loadAccounts();
-    const welcomeUser =
-      localStorage.getItem('welcomeUser');
+    this.loadClosedAccounts();
 
-    if (welcomeUser) {
-
-      this.welcomeUserName = welcomeUser;
-
-      this.showWelcomeMessage = true;
-
-      setTimeout(() => {
-
-        this.showWelcomeMessage = false;
-
-        localStorage.removeItem('welcomeUser');
-
-      }, 3500);
-    }
   }
 
   loadUserData(): void {
@@ -73,8 +60,6 @@ export class DashboardComponent implements OnInit {
     if (userData) {
 
       const user = JSON.parse(userData);
-
-      console.log(user);
 
       this.userName =
         user.fullName || 'User';
@@ -93,32 +78,28 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  loadAccounts(): void {
+  loadClosedAccounts(): void {
 
     this.loading = true;
-
-    this.errorMessage = '';
 
     this.accountService.getMyAccounts().subscribe({
 
       next: (res: any) => {
 
         this.loading = false;
-
-        if (!res.success) {
-
-          this.errorMessage =
-            res.message || 'Failed to load accounts';
-
-          return;
-        }
+        this.closedAccounts =
+          (res.data || []).filter(
+            (x: any) =>
+              x.status === 'Closed'
+          );
 
         this.accounts =
           (res.data || []).filter(
-            (acc: any) => acc.status !== 'Closed'
+            (a: any) => a.status === 'Closed'
           );
 
         this.calculateNetWorth();
+
       },
 
       error: (err: any) => {
@@ -126,23 +107,31 @@ export class DashboardComponent implements OnInit {
         this.loading = false;
 
         this.errorMessage =
-          err.error?.message ||
-          'Unable to fetch accounts';
+          err.error?.message
+          ||
+          'Failed to load closed accounts';
+
       }
+
     });
+
   }
 
   calculateNetWorth(): void {
 
     this.netWorth = this.accounts.reduce(
-      (total, account) => total + account.balance,
+      (total, account) =>
+        total + account.balance,
       0
     );
+
   }
 
   toggleProfile(): void {
 
-    this.isProfileOpen = !this.isProfileOpen;
+    this.isProfileOpen =
+      !this.isProfileOpen;
+
   }
 
   logout(): void {
@@ -154,5 +143,7 @@ export class DashboardComponent implements OnInit {
     localStorage.removeItem('user');
 
     this.router.navigate(['/login']);
+
   }
+
 }

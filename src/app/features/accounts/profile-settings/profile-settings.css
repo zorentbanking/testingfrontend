@@ -17,6 +17,9 @@
   box-shadow: 0 10px 40px rgba(0,0,0,0.08);
   text-align: center;
   padding-bottom: 30px;
+  flex-direction: column;
+  display: flex;
+  align-items: self;
 }
 
 .profile-cover {
@@ -41,10 +44,14 @@
 
 .profile-sidebar h2 {
   margin-bottom: 5px;
+  text-align: center;
+  font-weight: 700;
 }
 
 .profile-sidebar p {
   color: gray;
+  text-align: center;
+  margin-bottom: 0;
 }
 
 .verified-badge {
@@ -56,6 +63,7 @@
   border-radius: 30px;
   font-size: 14px;
   font-weight: 600;
+  text-align: center;
 }
 
 .stats-section {
@@ -137,6 +145,7 @@
     font-size: 15px;
     outline: none;
     transition: 0.3s;
+    margin-bottom: 30px;
   }
 
     .form-group input:focus,
@@ -206,6 +215,7 @@ input[maxlength="4"] {
   font-weight: 600;
   text-align: center;
 }
+
 .profile-topbar {
   display: flex;
   justify-content: flex-start;
@@ -226,6 +236,7 @@ input[maxlength="4"] {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(13,110,253,0.2);
   }
+
 .quick-links {
   margin-top: 30px;
   width: 100%;
@@ -256,9 +267,11 @@ input[maxlength="4"] {
       transform: translateX(5px);
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
+
 html {
   scroll-behavior: smooth;
 }
+
 .header-border {
   border-bottom: 1px solid #e9ecef;
 }
@@ -425,3 +438,66 @@ html {
     background: #dc2626;
     transform: scale(1.08);
   }
+
+.active-link {
+  background: linear-gradient(135deg,#0d6efd,#00bcd4) !important;
+  color: white !important;
+  transform: translateX(8px);
+  box-shadow: 0 8px 18px rgba(13,110,253,0.2);
+}
+
+.profile-sidebar {
+  position: sticky;
+  top: 20px;
+  height: fit-content;
+  text-align: left;
+}
+
+.fade-card {
+  animation: fadeSlide 0.4s ease;
+}
+
+@keyframes fadeSlide {
+
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.save-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  padding-left: 10px;
+}
+
+.bottom-save-btn {
+  min-width: 260px;
+  padding: 16px 28px;
+  font-size: 16px;
+  border-radius: 16px;
+  transition: 0.3s ease;
+}
+
+  .bottom-save-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(0,123,255,0.25);
+  }
+
+.quick-links a {
+  cursor: pointer;
+}
+.address-info {
+  margin-top: -6px;
+  margin-bottom: 6px;
+}
+.invalid-field {
+  border: 1.5px solid #dc3545 !important;
+  box-shadow: 0 0 0 0.12rem rgba(220, 53, 69, 0.15);
+}
