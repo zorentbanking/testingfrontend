@@ -160,7 +160,7 @@
 
           <div class="mb-4">
             <label class="form-label zorent-text-muted small fw-bold">
-              {{ accountForm.value.accountType === 'Recurring Deposit' ? 'Monthly Installment Amount (INR)' : 'Initial Deposit (INR)' }}
+              {{ accountForm.value.accountType === 'Recurring Deposit' ? 'Monthly Installment Amount (USD)' : 'Initial Deposit (USD)' }}
             </label>
             <input type="number" class="form-control zorent-input" formControlName="initialDeposit"
                    placeholder="Enter amount" [min]="minDeposit" max="10000000">
