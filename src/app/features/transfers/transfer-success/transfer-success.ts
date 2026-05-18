@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 
+import { APP_CONSTANTS } from '../../../app.constants';
+
 @Component({
   selector: 'app-transfer-success',
   templateUrl: './transfer-success.html',
@@ -12,6 +14,8 @@ import { Router } from '@angular/router';
 export class TransferSuccessComponent implements OnInit {
 
   transaction: any;
+
+  currencySymbol = APP_CONSTANTS.currencySymbol;
 
   constructor(
     private router: Router

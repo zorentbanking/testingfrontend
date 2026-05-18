@@ -445,3 +445,17 @@
     background: #dc2626;
     transform: scale(1.08);
   }
+.zorent-sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  background: rgba(248,249,250,0.92);
+
+  backdrop-filter: blur(8px);
+
+  padding-top: 0;
+  padding-bottom: 0;
+
+  transition: all 0.3s ease;
+}

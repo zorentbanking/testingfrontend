@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Account } from '../../core/models/account.model';
 import { AccountService } from '../../core/services/account.service';
+import { APP_CONSTANTS } from '../../app.constants';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,6 +16,8 @@ export class DashboardComponent implements OnInit {
 
   netWorth: number = 0;
 
+  currencySymbol = APP_CONSTANTS.currencySymbol;
+
   loading: boolean = false;
 
   errorMessage: string = '';
@@ -22,6 +25,8 @@ export class DashboardComponent implements OnInit {
 
 
   isProfileOpen: boolean = false;
+
+  selectedAccountType: string = 'All';
 
   userName: string = 'User';
 
@@ -155,4 +160,14 @@ export class DashboardComponent implements OnInit {
 
     this.router.navigate(['/login']);
   }
+  get filteredAccounts() {
+
+  if (this.selectedAccountType === 'All') {
+    return this.accounts;
+  }
+
+  return this.accounts.filter(
+    acc => acc.accountType === this.selectedAccountType
+  );
+}
 }

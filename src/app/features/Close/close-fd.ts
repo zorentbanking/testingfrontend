@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 
 import { FormsModule } from '@angular/forms';
 
+import { APP_CONSTANTS } from '../../app.constants';
+
 import {
   Router,
   ActivatedRoute
@@ -16,12 +18,8 @@ import {
 @Component({
   selector: 'app-close-fd',
 
-  standalone: true,
+  standalone: false,
 
-  imports: [
-    CommonModule,
-    FormsModule
-  ],
 
   templateUrl: './close-fd.html',
 
@@ -33,6 +31,8 @@ export class CloseFd implements OnInit {
   isAgreed = false;
 
   isSuccess = false;
+
+  currencySymbol = APP_CONSTANTS.currencySymbol;
 
   loading = false;
 

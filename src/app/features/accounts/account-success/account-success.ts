@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 
+import { APP_CONSTANTS } from '../../../app.constants';
+
 @Component({
   selector: 'app-account-success',
   templateUrl: './account-success.html',
@@ -13,6 +15,7 @@ export class AccountSuccessComponent
   implements OnInit {
 
   account: any;
+  currencySymbol = APP_CONSTANTS.currencySymbol;
 
   constructor(
     private router: Router

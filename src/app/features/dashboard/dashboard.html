@@ -31,7 +31,7 @@
 
 
     <div class="container py-4">
-      <div class="d-flex justify-content-between align-items-center mb-5 pb-3 header-border">
+      <div class="d-flex justify-content-between align-items-center mb-5 pb-3 header-border zorent-sticky-header">
         <nav class="d-flex gap-4 align-items-center">
           <a routerLink="/dashboard"
              class="d-flex align-items-center text-decoration-none">
@@ -173,7 +173,7 @@
 
           </div>
           <h5 class="zorent-text-muted text-uppercase small fw-bold mb-2">Total Net Worth</h5>
-          <h1 class="display-4 fw-bold mb-0">₹{{ netWorth | number:'1.2-2' }}</h1>
+          <h1 class="display-4 fw-bold mb-0">{{ currencySymbol }}{{ netWorth | number:'1.2-2' }}</h1>
         </div>
       </div>
 
@@ -182,6 +182,54 @@
              *ngIf="accounts.length > 0">
           <h3 class="fw-bold m-0">Account Portfolio</h3>
         </div>
+        <div class="account-type-toggle mt-3">
+
+  <button
+    class="toggle-btn"
+    [class.active-toggle]="selectedAccountType === 'All'"
+    (click)="selectedAccountType = 'All'">
+
+    All Accounts
+
+  </button>
+
+  <button
+    class="toggle-btn savings-toggle"
+    [class.active-toggle]="selectedAccountType === 'Savings'"
+    (click)="selectedAccountType = 'Savings'">
+
+    Savings
+
+  </button>
+
+  <button
+    class="toggle-btn checking-toggle"
+    [class.active-toggle]="selectedAccountType === 'Checking'"
+    (click)="selectedAccountType = 'Checking'">
+
+    Checking
+
+  </button>
+
+  <button
+    class="toggle-btn fd-toggle"
+    [class.active-toggle]="selectedAccountType === 'Fixed Deposit'"
+    (click)="selectedAccountType = 'Fixed Deposit'">
+
+    Fixed Deposit
+
+  </button>
+
+  <button
+    class="toggle-btn rd-toggle"
+    [class.active-toggle]="selectedAccountType === 'Recurring Deposit'"
+    (click)="selectedAccountType = 'Recurring Deposit'">
+
+    Recurring Deposit
+
+  </button>
+
+</div>
         <div class="d-flex gap-2">
           <button class="btn zorent-btn-outline rounded-pill px-4" routerLink="/transactions">Transactions</button>
           <button class="btn zorent-btn-accent rounded-pill px-4" routerLink="/create-account">+ New Account</button>
@@ -193,7 +241,7 @@
       <div class="row g-4">
 
         <div class="col-md-6"
-             *ngFor="let acc of accounts">
+             *ngFor="let acc of filteredAccounts">
 
           <!-- FLIP CONTAINER -->
           <div class="flip-card-container">
@@ -265,7 +313,7 @@
 
                     <h2 class="fw-bold mb-0">
 
-                      ₹{{ acc.balance | number:'1.2-2' }}
+                      {{ currencySymbol }}{{ acc.balance | number:'1.2-2' }}
 
                     </h2>
 

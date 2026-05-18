@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 
 import { FormsModule } from '@angular/forms';
 
+import { APP_CONSTANTS } from '../../../app.constants';
+
 import {
   Router
 } from '@angular/router';
@@ -36,6 +38,8 @@ export class DepositMoney implements OnInit {
   accountDetails: any = {};
 
   loading = false;
+
+  currencySymbol = APP_CONSTANTS.currencySymbol;
 
   isSuccess = false;
 

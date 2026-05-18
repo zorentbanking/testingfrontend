@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { APP_CONSTANTS } from '../../../app.constants';
 
 import {
   FormBuilder,
@@ -22,7 +23,7 @@ export class CreateAccountComponent
   implements OnInit {
 
   accountForm!: FormGroup;
-
+currencySymbol = APP_CONSTANTS.currencySymbol;
   minDeposit: number = 0;
 
   interestRate: number = 0;

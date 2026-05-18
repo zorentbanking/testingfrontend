@@ -1,3 +1,128 @@
+ <div class="zorent-sticky-header container py-4">
+
+
+
+      <div class="d-flex justify-content-between align-items-center mb-5 pb-3 header-border">
+         
+        <nav class="d-flex gap-4 align-items-center">
+          <a routerLink="/dashboard"
+             class="d-flex align-items-center text-decoration-none">
+
+            <div class="zorent-logo-container me-3 shadow-sm">
+
+              <img src="https://logowik.com/content/uploads/images/t_zeronet1628.jpg"
+                   alt="Zorent Logo"
+                   class="zorent-main-logo">
+
+            </div>
+
+            <div class="fw-bold logo-glow fs-4 me-3">
+
+              ZORENT
+
+            </div>
+
+          </a>
+          <a routerLink="/dashboard" replaceUrl="true" class="nav-link-custom active">Dashboard</a>
+          <a routerLink="/transactions" class="nav-link-custom">Transactions</a>
+          <a routerLink="/transfer" class="nav-link-custom">Transfer</a>
+        </nav>
+
+
+        <div class="profile-area d-flex align-items-center gap-3">
+
+          <!-- LOGOUT ICON -->
+          <!-- PROFILE -->
+
+          <div class="profile-trigger"
+               (click)="toggleProfile()">
+
+            <div class="avatar-circle shadow-sm">
+
+              {{ userName.charAt(0).toUpperCase() }}
+
+            </div>
+
+            <i class="bi bi-chevron-down ms-2 small text-muted"></i>
+
+          </div>
+
+          <ul class="custom-dropdown shadow-lg"
+              [class.show]="isProfileOpen">
+
+            <li class="user-details-header">
+
+              <div class="text-center mb-3">
+
+                <h6 class="fw-bold mb-0">
+
+                  {{ userName }}
+
+                </h6>
+
+                <small class="text-muted">
+
+                  username : {{ userUsername }}
+
+                </small>
+
+              </div>
+
+            </li>
+
+            <li>
+
+              <a class="profile-item"
+                 routerLink="/profile-settings">
+
+                <i class="bi bi-person-circle me-2"></i>
+
+                Profile Settings
+
+              </a>
+
+            </li>
+            <li>
+
+              <a class="profile-item"
+                 routerLink="/closed-accounts">
+
+                <i class="bi bi-archive me-2"></i>
+
+                Closed Accounts
+
+              </a>
+
+            </li>
+
+            <li>
+
+              <a class="logout-item"
+                 (click)="logout()">
+
+                <i class="bi bi-box-arrow-right me-2"></i>
+
+                Logout
+
+              </a>
+
+            </li>
+
+          </ul>
+
+          <button class="logout-icon-btn"
+                  (click)="logout()">
+
+            <i class="bi bi-box-arrow-right"></i>
+
+          </button>
+
+        </div>
+      </div>
+      </div>
+      
+   
+
 <div class="closure-container">
 
   <div *ngIf="!isSuccess" class="professional-card">
@@ -32,16 +157,16 @@
       <p class="summary-header">Settlement Breakdown</p>
       <div class="data-row">
         <span>Principal Amount</span>
-        <span>₹{{fdDetails.principal | number:'1.2-2'}}</span>
+        <span>{{currencySymbol}}{{fdDetails.principal | number:'1.2-2'}}</span>
       </div>
       <div class="data-row">
         <span>Total Interest</span>
-        <span class="text-accent">+ ₹{{totalInterest | number:'1.2-2'}}</span>
+        <span class="text-accent">+ {{currencySymbol}}{{totalInterest | number:'1.2-2'}}</span>
       </div>
       <div class="total-divider"></div>
       <div class="data-row">
         <span class="total-label">Total Payout</span>
-        <span class="payout-value">₹{{finalPayout | number:'1.2-2'}}</span>
+        <span class="payout-value">{{currencySymbol}}{{finalPayout | number:'1.2-2'}}</span>
       </div>
     </div>
 
@@ -68,7 +193,7 @@
     <div class="receipt-box">
       <div class="receipt-row"><span>Ref ID:</span> <span>{{ transactionId }}</span></div>
       <div class="receipt-row"><span>Transferred To:</span> <span>{{targetAccount}}</span></div>
-      <div class="receipt-row"><span>Amount:</span> <span class="fw-bold text-dark">₹{{finalPayout | number:'1.2-2'}}</span></div>
+      <div class="receipt-row"><span>Amount:</span> <span class="fw-bold text-dark">{{currencySymbol}}{{finalPayout | number:'1.2-2'}}</span></div>
     </div>
 
     <button class="btn-dashboard" (click)="navDashboard()">Back to Dashboard</button>

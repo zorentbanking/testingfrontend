@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AccountService } from '../../core/services/account.service';
+import { APP_CONSTANTS } from '../../app.constants';
 
 @Component({
   selector: 'app-closed-accounts',
@@ -20,6 +21,8 @@ export class ClosedAccountsComponent implements OnInit {
   closedAccounts: any[] = [];
 
   loading: boolean = false;
+
+  currencySymbol = APP_CONSTANTS.currencySymbol;
 
   errorMessage: string = '';
 

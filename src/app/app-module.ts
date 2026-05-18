@@ -23,6 +23,8 @@ import { ClosedAccountsComponent } from './features/closed-accounts/closed-accou
 import { ProfileSettingsComponent } from './features/accounts/profile-settings/profile-settings';
 import { AccountSuccessComponent }
   from './features/accounts/account-success/account-success';
+
+  import { CloseFd } from './features/Close/close-fd';
 @NgModule({
   declarations: [
     App,
@@ -36,7 +38,8 @@ import { AccountSuccessComponent }
     AccountSuccessComponent,
     StatementComponent,
     ProfileSettingsComponent,
-    ClosedAccountsComponent
+    ClosedAccountsComponent,
+    CloseFd
    
    
   ],

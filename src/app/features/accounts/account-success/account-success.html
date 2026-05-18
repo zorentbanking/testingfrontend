@@ -25,7 +25,7 @@
       </p>
 
       <h1 class="amount-value">
-        ₹{{ account.balance }}
+        {{ currencySymbol }}{{ account.balance }}
       </h1>
 
     </div>
@@ -104,7 +104,7 @@
         </span>
 
         <span class="value">
-          ₹{{ account.maturityAmount }}
+          {{ currencySymbol }}{{ account.maturityAmount }}
         </span>
 
       </div>

@@ -2,216 +2,194 @@
   display: block;
   min-height: 100vh;
   background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
-  padding: 24px;
   font-family: 'Inter', sans-serif;
+   padding: 0px;
 }
-
-/* MAIN CONTAINER */
-
-.closure-container {
-  width: 100%;
+.py-4 {
+    padding-top: 1.5rem !important;
+    padding-bottom: 0rem !important;
 }
-
-/* =========================
-   NAVBAR
-========================= */
 
 .header-border {
-  background: linear-gradient(135deg, #0f172a, #1e293b);
-  border-radius: 24px;
-  padding: 22px 30px;
-  margin-bottom: 35px;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
-  border: 1px solid rgba(255,255,255,0.05);
-  flex-wrap: wrap;
-  gap: 20px;
+  border-bottom: 1px solid #e9ecef;
 }
 
-/* NAV LINKS */
-
-.nav-link-custom {
-  position: relative;
-  text-decoration: none;
-  color: #cbd5e1;
-  font-weight: 600;
-  transition: all 0.25s ease;
-  padding-bottom: 5px;
-  font-size: 15px;
-}
-
-  .nav-link-custom:hover {
-    color: #ffffff;
-  }
-
-  .nav-link-custom.active,
-  .nav-link-custom.router-link-active {
-    color: #ffffff;
-  }
-
-    .nav-link-custom.active::after,
-    .nav-link-custom.router-link-active::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -7px;
-      width: 100%;
-      height: 2px;
-      background: #60a5fa;
-      border-radius: 20px;
-    }
-
-/* LOGO */
-
-.zorent-logo-container {
-  width: 50px;
-  height: 50px;
-  border-radius: 14px;
-  overflow: hidden;
-  background: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.zorent-main-logo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
+/* --- Glowing ZORENT Logo --- */
 .logo-glow {
-  color: #ffffff;
+  color: #1a5c8b;
+  text-shadow: 0 0 10px rgba(26, 92, 139, 0.3);
   letter-spacing: 1px;
-  text-shadow: 0 0 18px rgba(96,165,250,0.35);
+  transition: all 0.3s ease;
 }
 
-/* =========================
-   PROFILE
-========================= */
+  .logo-glow:hover {
+    color: #007bff;
+    text-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+  }
 
+/* --- Navigation Underline Effects --- */
+.nav-link-custom {
+  text-decoration: none;
+  color: #6c757d;
+  font-weight: 500;
+  position: relative;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+}
+
+  .nav-link-custom::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(90deg, #1a5c8b, #007bff);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link-custom:hover::after, .nav-link-custom.active::after {
+    width: 100%;
+  }
+
+  .nav-link-custom:hover, .nav-link-custom.active {
+    color: #1a5c8b;
+  }
+
+/* --- Premium Profile Bar & Dropdown --- */
 .profile-area {
   position: relative;
 }
 
 .profile-trigger {
+  cursor: pointer;
   display: flex;
   align-items: center;
-  cursor: pointer;
-  user-select: none;
-  padding: 6px 10px;
+  padding: 6px 12px;
   border-radius: 50px;
-  transition: 0.25s ease;
+  background: white;
+  border: 1px solid #e9ecef;
+  transition: all 0.2s ease;
 }
 
   .profile-trigger:hover {
-    background: rgba(255,255,255,0.08);
+    border-color: #1a5c8b;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   }
 
 .avatar-circle {
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(135deg, #1a5c8b, #007bff);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+
+
+.custom-dropdown {
+  position: absolute;
+  right: 0;
+  top: 55px;
+  background: white;
+  border-radius: 15px;
+  min-width: 250px;
+  display: none;
+  list-style: none;
+  padding: 0;
+  z-index: 1000;
+  overflow: hidden;
+  border: 1px solid #e9ecef;
+}
+
+  .custom-dropdown.show {
+    display: block;
+    animation: slideIn 0.3s ease;
+  }
+
+.user-details-header {
+  padding: 20px;
+  background: #fcfcfc;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.user-name {
+  font-weight: 800;
+  color: #222;
+  font-size: 1rem;
+}
+
+.user-email {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+.logout-item {
+  display: block;
+  padding: 15px 20px;
+  color: #dc3545;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+  .logout-item:hover {
+    background: #fff5f5;
+  }
+.zorent-logo-container {
   width: 42px;
   height: 42px;
+  background: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+.zorent-main-logo {
+  max-width: 100%;
+  height: auto;
+}
+.logout-icon-btn {
+  width: 42px;
+  height: 42px;
+  border: none;
   border-radius: 50%;
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  background: #ef4444;
   color: white;
-  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 18px;
-  transition: 0.25s ease;
-  box-shadow: 0 4px 12px rgba(37,99,235,0.3);
-}
-
-.profile-trigger:hover .avatar-circle {
-  transform: scale(1.05);
-}
-
-/* DROPDOWN */
-
-.custom-dropdown {
-  position: absolute;
-  top: 62px;
-  right: 0;
-  width: 260px;
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 10px 0;
-  list-style: none;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: all 0.25s ease;
-  z-index: 1000;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 12px 30px rgba(15,23,42,0.12);
-}
-
-  .custom-dropdown.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-
-.user-details-header {
-  padding: 18px 20px;
-  border-bottom: 1px solid #f1f5f9;
-}
-
-  .user-details-header h6 {
-    color: #0f172a;
-  }
-
-  .user-details-header small {
-    color: #64748b;
-  }
-
-/* MENU ITEMS */
-
-.profile-item,
-.logout-item {
-  display: flex;
-  align-items: center;
-  padding: 13px 20px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-.profile-item {
-  color: #0f172a;
-}
-
-  .profile-item:hover {
-    background: #f8fafc;
-    color: #2563eb;
-  }
-
-.logout-item {
-  color: #dc2626;
-}
-
-  .logout-item:hover {
-    background: #fef2f2;
-  }
-
-/* LOGOUT BUTTON */
-
-.logout-icon-btn {
-  border: none;
-  background: rgba(255,255,255,0.12);
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  color: white;
-  transition: all 0.25s ease;
+  transition: 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
   .logout-icon-btn:hover {
-    background: rgba(255,255,255,0.2);
-    transform: scale(1.05);
+    background: #dc2626;
+    transform: scale(1.08);
   }
+.profile-item {
+  display: block;
+  padding: 15px 20px;
+  color: #212529;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
 
+  .profile-item:hover {
+    background: #f5f9ff;
+    color: #0d6efd;
+  }
 /* =========================
    MAIN CARD
 ========================= */
@@ -534,6 +512,7 @@
 
   :host {
     padding: 14px;
+
   }
 
   .header-border {
@@ -564,4 +543,33 @@
   .custom-dropdown {
     width: 220px;
   }
+}
+/* Sticky Header Only */
+.zorent-sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  background: rgba(248,249,250,0.92);
+
+  backdrop-filter: blur(8px);
+
+  padding-top: 0;
+  padding-bottom: 0;
+
+  transition: all 0.3s ease;
+
+}
+.zorent-sticky-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  backdrop-filter: blur(8px);
+
+  transition: all 0.3s ease;
+}
+.zorent-navbar-row {
+  background: rgba(248,249,250,0.92);
+  border-bottom: 1px solid #e9ecef;
 }

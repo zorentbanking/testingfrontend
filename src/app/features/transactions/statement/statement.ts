@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { APP_CONSTANTS } from '../../../app.constants';
 
 @Component({
   selector: 'app-statement',
@@ -17,6 +18,8 @@ export class StatementComponent implements OnInit {
   statements: any[] = [];
 
   loading = false;
+
+  currencySymbol = APP_CONSTANTS.currencySymbol;
 
   // ACCOUNT DETAILS
 
