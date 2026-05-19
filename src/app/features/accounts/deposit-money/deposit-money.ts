@@ -274,9 +274,7 @@ export class DepositMoney implements OnInit {
 
   toggleProfile(): void {
 
-    this.isProfileOpen =
-      !this.isProfileOpen;
-
+    this.isProfileOpen = !this.isProfileOpen;
   }
 
   logout(): void {

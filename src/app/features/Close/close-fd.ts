@@ -4,8 +4,6 @@ import { CommonModule } from '@angular/common';
 
 import { FormsModule } from '@angular/forms';
 
-import { APP_CONSTANTS } from '../../app.constants';
-
 import {
   Router,
   ActivatedRoute
@@ -14,6 +12,7 @@ import {
 import {
   HttpClient
 } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-close-fd',
@@ -32,7 +31,7 @@ export class CloseFd implements OnInit {
 
   isSuccess = false;
 
-  currencySymbol = APP_CONSTANTS.currencySymbol;
+  accounts:any[]=[];
 
   loading = false;
 
@@ -64,6 +63,8 @@ export class CloseFd implements OnInit {
     this.userUsername =
       user.username || '';
 
+      this.loadAccounts();
+
     this.route.queryParams.subscribe(params => {
 
       const accountNumber =
@@ -92,6 +93,57 @@ export class CloseFd implements OnInit {
     this.router.navigate(['/login']);
 
   }
+
+  getHeaders() {
+
+  return {
+    Authorization:
+      `Bearer ${localStorage.getItem('accessToken')}`
+  };
+
+}
+
+loadAccounts(): void {
+
+  this.http.get<any>(
+    'https://localhost:7085/api/accounts/my',
+    {
+      headers: this.getHeaders()
+    }
+  ).subscribe({
+
+    next: (res) => {
+
+      this.accounts =
+        (res.data || []).filter(
+          (acc: any) =>
+
+            acc.status !== 'Closed'
+            &&
+
+            (
+              acc.accountType === 'Savings'
+              ||
+              acc.accountType === 'Checking'
+            )
+        );
+
+      console.log(
+        'AVAILABLE ACCOUNTS',
+        this.accounts
+      );
+
+    },
+
+    error: (err) => {
+
+      console.log(err);
+
+    }
+
+  });
+
+}
 
 
   loadDepositDetails(
@@ -148,7 +200,16 @@ export class CloseFd implements OnInit {
 
           // BALANCE
           principal:
-            data.availableBalance || 0,
+            data.accountType === 'Recurring Deposit'
+              ? (
+                (data.paidInstallments || 0) > 0
+                  ? (
+                    (data.monthlyInstallment || 0) *
+                    (data.paidInstallments || 0)
+                  )
+                  : (data.availableBalance || 0)
+              )
+              : (data.availableBalance || 0),
 
           // FD/RD VALUES
           interestRate:
@@ -242,22 +303,19 @@ export class CloseFd implements OnInit {
       return 0;
     }
 
-    
+
     // RECURRING DEPOSIT
     // RECURRING DEPOSIT (FIXED - MATCH BACKEND EXACTLY)
+    // RECURRING DEPOSIT
+    // RECURRING DEPOSIT
     if (
       this.fdDetails.accountType === 'Recurring Deposit'
     ) {
-      const earnedInterest =
-        this.fdDetails.earnedInterest ?? 0;
 
-      // BEFORE CLOSURE → NEVER GUESS OR CALCULATE
-      if (!this.isSuccess) {
-        return 0;
-      }
+      return Number(
+        this.fdDetails.earnedInterest || 0
+      );
 
-      // AFTER CLOSURE → TRUST BACKEND ONLY
-      return earnedInterest;
     }
 
     // FIXED DEPOSIT
@@ -281,9 +339,12 @@ export class CloseFd implements OnInit {
   get finalPayout(): number {
 
     // AFTER CLOSURE USE BACKEND VALUE
+    // AFTER CLOSURE USE EXACT BACKEND VALUE
     if (this.isSuccess) {
 
-      return this.fdDetails.amount || 0;
+      return Number(
+        this.fdDetails.amount || 0
+      );
 
     }
 
@@ -351,18 +412,31 @@ export class CloseFd implements OnInit {
     ).subscribe({
 
       next: (res) => {
+
         this.loading = false;
+
         this.isSuccess = true;
 
         this.transactionId =
           res.data.transactionId;
 
-        // UPDATE REAL VALUES FROM BACKEND
-        this.fdDetails.earnedInterest =
-          res.data.earnedInterest;
+        // FORCE FULL OBJECT UPDATE
+        this.fdDetails = {
 
-        this.fdDetails.amount =
-          res.data.amount;
+          ...this.fdDetails,
+
+          principal:
+            Number(res.data.principal || 0),
+
+          earnedInterest:
+            Number(res.data.earnedInterest || 0),
+
+          amount:
+            Number(res.data.amount || 0)
+
+        };
+
+        console.log('UPDATED FD DETAILS', this.fdDetails);
 
       },
 
@@ -387,3 +461,4 @@ export class CloseFd implements OnInit {
 
   }
 }
+

@@ -1,3 +1,4 @@
+<div class="zorent-auth-wrapper">
 <div class="statement-page">
 
   <!-- TOP BAR -->
@@ -396,19 +397,13 @@
 
             <!-- SAVINGS / CHECKING -->
 
-            <th *ngIf="
-                accountType === 'Savings'
-                || accountType === 'Checking'
-              ">
+            <th>
 
               From Account
 
             </th>
 
-            <th *ngIf="
-                accountType === 'Savings'
-                || accountType === 'Checking'
-              ">
+            <th>
 
               To Account
 
@@ -418,10 +413,7 @@
 
             <!-- SAVINGS / CHECKING -->
 
-            <th *ngIf="
-                accountType === 'Savings'
-                || accountType === 'Checking'
-              ">
+            <th>
 
               Amount
 
@@ -431,14 +423,7 @@
 
             <!-- FD / RD -->
 
-            <th *ngIf="
-                accountType === 'Fixed Deposit'
-                || accountType === 'Recurring Deposit'
-              ">
-
-              Interest Earned
-
-            </th>
+            
 
           </tr>
 
@@ -475,19 +460,13 @@
 
             <!-- SAVINGS / CHECKING -->
 
-            <td *ngIf="
-                accountType === 'Savings'
-                || accountType === 'Checking'
-              ">
+            <td>
 
               {{ txn.fromAccount || '-' }}
 
             </td>
 
-            <td *ngIf="
-                accountType === 'Savings'
-                || accountType === 'Checking'
-              ">
+            <td>
 
               {{ txn.toAccount || '-' }}
 
@@ -499,10 +478,7 @@
 
             <!-- SAVINGS / CHECKING -->
 
-            <td *ngIf="
-                accountType === 'Savings'
-                || accountType === 'Checking'
-              "
+            <td
                 [ngClass]="
                 txn.type === 'Credit'
                 ? 'credit-text'
@@ -517,14 +493,7 @@
 
             <!-- FD / RD -->
 
-            <td *ngIf="
-                accountType === 'Fixed Deposit'
-                || accountType === 'Recurring Deposit'
-              ">
-
-              ₹{{ txn.interestEarned }}
-
-            </td>
+          
 
           </tr>
 
@@ -564,4 +533,5 @@
 
   </div>
 
+</div>
 </div>

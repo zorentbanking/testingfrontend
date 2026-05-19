@@ -183,16 +183,40 @@
             </div>
           </div>
 
-          <div class="mb-4" *ngIf="accountForm.value.accountType === 'Recurring Deposit'">
-            <label class="form-label zorent-text-muted small fw-bold">Installment Date (Monthly)</label>
-            <input type="date" class="form-control zorent-input custom-datepicker" formControlName="installmentDate"
-                   [min]="minInstallmentDate" [max]="maxInstallmentDate">
-            <div class="mt-2">
-              <small class="text-muted">
-                Select any day of this month for your monthly installment.
-              </small>
-            </div>
-          </div>
+          <div class="mb-4"
+     *ngIf="accountForm.value.accountType === 'Recurring Deposit'">
+
+  <label class="form-label zorent-text-muted small fw-bold">
+    Installment Date (Monthly)
+  </label>
+
+  <div class="position-relative">
+
+  <input
+    type="text"
+    class="form-control zorent-input"
+    [value]="formattedInstallmentDate"
+    placeholder="Select Installment Date"
+    readonly
+    (click)="dateInput.showPicker()">
+
+  <input
+    #dateInput
+    type="date"
+    formControlName="installmentDate"
+    [min]="minInstallmentDate"
+    [max]="maxInstallmentDate"
+    class="custom-hidden-date"
+    (change)="formatInstallmentDate()">
+
+</div>
+  <div class="mt-2">
+    <small class="text-muted">
+      Select any day of this month for your monthly installment.
+    </small>
+  </div>
+
+</div>
 
           <div class="mb-4" *ngIf="accountForm.value.accountType === 'Fixed Deposit' || accountForm.value.accountType === 'Recurring Deposit'">
             <div class="d-flex justify-content-between align-items-center mb-2">

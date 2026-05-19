@@ -48,6 +48,8 @@ currencySymbol = APP_CONSTANTS.currencySymbol;
 
   maxInstallmentDate: string = '';
 
+  formattedInstallmentDate: string = '';
+
 
   constructor(
     private fb: FormBuilder,
@@ -208,14 +210,14 @@ currencySymbol = APP_CONSTANTS.currencySymbol;
         today.toISOString().split('T')[0];
 
       // Last day of current month
-      const lastDayOfMonth = new Date(
-        today.getFullYear(),
-        today.getMonth() + 1,
-        0
-      );
+     const next30 = new Date();
 
-      this.maxInstallmentDate =
-        lastDayOfMonth.toISOString().split('T')[0];
+next30.setDate(
+  today.getDate() + 30
+);
+
+this.maxInstallmentDate =
+  next30.toISOString().split('T')[0];
 
       if (
         !this.accountForm.contains(
@@ -357,6 +359,67 @@ currencySymbol = APP_CONSTANTS.currencySymbol;
         );
     }
   }
+
+  formatInstallmentDate(): void {
+
+  const selectedDate =
+    this.accountForm.value.installmentDate;
+
+  if (!selectedDate) {
+
+    this.formattedInstallmentDate = '';
+
+    return;
+  }
+
+  const date = new Date(selectedDate);
+
+  const day = date.getDate();
+
+  // BLOCK 28 29 30 31
+  if (day >= 28) {
+
+    alert(
+      '28, 29, 30, 31 dates are not allowed'
+    );
+
+    this.accountForm
+      .get('installmentDate')
+      ?.setValue('');
+
+    this.formattedInstallmentDate = '';
+
+    return;
+  }
+
+  let suffix = 'th';
+
+  if (day === 1 || day === 21)
+    suffix = 'st';
+
+  else if (day === 2 || day === 22)
+    suffix = 'nd';
+
+  else if (day === 3 || day === 23)
+    suffix = 'rd';
+
+  this.formattedInstallmentDate =
+    `${day}${suffix}`;
+}
+
+isInvalidDate(dateString: string): boolean {
+
+  const date = new Date(dateString);
+
+  const day = date.getDate();
+
+  return (
+    day === 28 ||
+    day === 29 ||
+    day === 30 ||
+    day === 31
+  );
+}
 
   // SUBMIT
   onSubmit(): void {
