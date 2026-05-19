@@ -582,8 +582,8 @@
                         <!-- CLOSE ACCOUNT -->
                         <div class="col-6">
 
-                            <button class="btn btn-danger text-light w-100 rounded-pill"
-                                    [disabled]="acc.status === 'Closed'"
+                            <button class="btn btn-danger text-light w-100 rounded-pill close-btn"
+                                    [disabled]="isDisabled(acc)"
                                     [routerLink]="['/close-fd']"
                                     [queryParams]="{
           accountNumber: acc.accountNumber
@@ -626,8 +626,8 @@
 
                           <div class="col-6">
 
-                            <button class="btn btn-danger text-light w-100 rounded-pill"
-                                    [disabled]="acc.status === 'Closed'"
+                            <button class="btn btn-danger text-light w-100 rounded-pill close-btn"
+                                    [disabled]="isDisabled(acc)"
                                     [routerLink]="['/close-fd']"
                                     [queryParams]="{
           accountNumber: acc.accountNumber
