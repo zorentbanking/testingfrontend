@@ -401,3 +401,15 @@ button:disabled,
 
   transition: all 0.3s ease;
 }
+
+.zorent-auth-wrapper {
+  min-height: 100vh;
+  background-color: #f1f5f9;
+  font-family: 'Inter', sans-serif;
+  background-image: url('/assets/login-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+}

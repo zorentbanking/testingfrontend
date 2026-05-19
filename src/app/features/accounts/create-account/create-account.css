@@ -303,7 +303,7 @@
 
 
 input[readonly].zorent-input {
-  background-color: #f8fafc !important;
+  background-color: #ffffff !important;
   border-style: dashed !important;
   color: #64748b !important;
 }
@@ -517,4 +517,14 @@ input[readonly].zorent-input {
   padding-bottom: 0;
 
   transition: all 0.3s ease;
+}
+
+.custom-hidden-date {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }

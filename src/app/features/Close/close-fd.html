@@ -154,34 +154,95 @@
     </div>
 
     <div *ngIf="isAgreed" class="settlement-summary animate-fade">
-      <p class="summary-header">Settlement Breakdown</p>
+
+      <p class="summary-header">
+        Settlement Breakdown
+      </p>
+
       <div class="data-row">
         <span>Principal Amount</span>
-        <span>{{currencySymbol}}{{fdDetails.principal | number:'1.2-2'}}</span>
+
+        <span>
+          ₹{{
+        (
+          isSuccess
+            ? fdDetails.principal
+            : fdDetails.principal
+        ) | number:'1.2-2'
+          }}
+        </span>
       </div>
+
       <div class="data-row">
         <span>Total Interest</span>
-        <span class="text-accent">+ {{currencySymbol}}{{totalInterest | number:'1.2-2'}}</span>
+
+        <span class="text-accent">
+          + ₹{{
+        (
+          isSuccess
+            ? fdDetails.earnedInterest
+            : totalInterest
+        ) | number:'1.2-2'
+          }}
+        </span>
       </div>
+
       <div class="total-divider"></div>
+
       <div class="data-row">
-        <span class="total-label">Total Payout</span>
-        <span class="payout-value">{{currencySymbol}}{{finalPayout | number:'1.2-2'}}</span>
+        <span class="total-label">
+          Total Payout
+        </span>
+
+        <span class="payout-value">
+          ₹{{
+        (
+          isSuccess
+            ? fdDetails.amount
+            : finalPayout
+        ) | number:'1.2-2'
+          }}
+        </span>
       </div>
+
     </div>
 
     <div *ngIf="isAgreed" class="security-section animate-fade">
+
       <div class="input-field">
-        <label>Transfer to Account</label>
-        <input type="text" [(ngModel)]="targetAccount" placeholder="Account Number">
-      </div>
+
+  <label>Transfer to Account</label>
+
+  <select
+    class="form-select"
+    [(ngModel)]="targetAccount">
+
+    <option value="">
+      Select Account
+    </option>
+
+    <option
+      *ngFor="let acc of accounts"
+      [value]="acc.accountNumber">
+
+      {{ acc.accountType }}
+      -
+      {{ acc.accountNumber }}
+
+    </option>
+
+  </select>
+
+</div>
 
     </div>
 
     <button class="btn-submit"
-        [disabled]="!isAgreed || !targetAccount || loading"
+            [disabled]="!isAgreed || !targetAccount || loading"
             (click)="processClosure()">
+
       Authorize Closure
+
     </button>
   </div>
 
@@ -193,7 +254,7 @@
     <div class="receipt-box">
       <div class="receipt-row"><span>Ref ID:</span> <span>{{ transactionId }}</span></div>
       <div class="receipt-row"><span>Transferred To:</span> <span>{{targetAccount}}</span></div>
-      <div class="receipt-row"><span>Amount:</span> <span class="fw-bold text-dark">{{currencySymbol}}{{finalPayout | number:'1.2-2'}}</span></div>
+      <div class="receipt-row"><span>Amount:</span> <span class="fw-bold text-dark">₹{{finalPayout | number:'1.2-2'}}</span></div>
     </div>
 
     <button class="btn-dashboard" (click)="navDashboard()">Back to Dashboard</button>
