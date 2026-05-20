@@ -1,113 +1,144 @@
+<div class="zorent-auth-wrapper">
 <div class="dashboard-wrapper">
 
-  <div class="container py-4">
+  <div class="container">
 
     <!-- HEADER -->
-    <div class="d-flex justify-content-between align-items-center mb-5 pb-3 header-border zorent-sticky-header">
+    <div class="navbar-wrapper">
 
-      <nav class="d-flex gap-4 align-items-center">
+      <div class="d-flex justify-content-between align-items-center mb-5 pb-3 header-border zorent-sticky-header">
 
-        <a routerLink="/dashboard"
-           class="d-flex align-items-center text-decoration-none">
+        <!-- LEFT NAVIGATION -->
+        <nav class="d-flex gap-4 align-items-center">
 
-          <div class="zorent-logo-container me-3 shadow-sm">
+          <!-- LOGO -->
+          <a routerLink="/dashboard"
+             class="d-flex align-items-center text-decoration-none">
 
-            <img src="https://logowik.com/content/uploads/images/t_zeronet1628.jpg"
-                 alt="Zorent Logo"
-                 class="zorent-main-logo">
+            <div class="zorent-logo-container me-3 shadow-sm">
 
-          </div>
-
-          <div class="fw-bold logo-glow fs-4 me-3">
-
-            ZORENT
-
-          </div>
-
-        </a>
-
-        <a routerLink="/dashboard"
-           class="nav-link-custom">
-
-          Dashboard
-
-        </a>
-
-        <a class="nav-link-custom active">
-
-          Closed Accounts
-
-        </a>
-
-      </nav>
-
-      <!-- PROFILE -->
-      <div class="profile-area d-flex align-items-center gap-3">
-
-        <div class="profile-trigger"
-             (click)="toggleProfile()">
-
-          <div class="avatar-circle shadow-sm">
-
-            {{ userName.charAt(0).toUpperCase() }}
-
-          </div>
-
-        </div>
-
-        <ul class="custom-dropdown shadow-lg"
-            [class.show]="isProfileOpen">
-
-          <li class="user-details-header">
-
-            <div class="text-center mb-3">
-
-              <h6 class="fw-bold mb-0">
-
-                {{ userName }}
-
-              </h6>
-
-              <small class="text-muted">
-
-                username : {{ userUsername }}
-
-              </small>
+              <img src="https://logowik.com/content/uploads/images/t_zeronet1628.jpg"
+                   alt="Zorent Logo"
+                   class="zorent-main-logo">
 
             </div>
 
-          </li>
+            <div class="fw-bold logo-glow fs-4 me-3">
 
-          <li>
+              ZORENT
 
-            <a class="profile-item"
-               routerLink="/dashboard">
+            </div>
 
-              Dashboard
+          </a>
 
-            </a>
+          <!-- NAVIGATION -->
+          <a routerLink="/dashboard"
+             routerLinkActive="active"
+             class="nav-link-custom">
 
-          </li>
+            Dashboard
 
-          <li>
+          </a>
 
-            <a class="logout-item"
-               (click)="logout()">
+          <a routerLink="/transactions"
+             routerLinkActive="active"
+             class="nav-link-custom">
 
-              Logout
+            Transactions
 
-            </a>
+          </a>
 
-          </li>
+          <a routerLink="/transfer"
+             routerLinkActive="active"
+             class="nav-link-custom">
 
-        </ul>
+            Transfer
+
+          </a>
+
+        </nav>
+
+        <!-- PROFILE -->
+        <div class="profile-area d-flex align-items-center gap-3">
+
+          <div class="profile-trigger"
+               (click)="toggleProfile()">
+
+            <div class="avatar-circle shadow-sm">
+
+              {{ userName.charAt(0).toUpperCase() }}
+
+            </div>
+
+            <i class="bi bi-chevron-down ms-2 small text-muted"></i>
+
+          </div>
+
+          <!-- DROPDOWN -->
+          <ul class="custom-dropdown shadow-lg"
+              [class.show]="isProfileOpen">
+
+            <li class="user-details-header">
+
+              <div class="text-center mb-3">
+
+                <h6 class="fw-bold mb-0">
+
+                  {{ userName }}
+
+                </h6>
+
+                <small class="text-muted">
+
+                  username : {{ userUsername }}
+
+                </small>
+
+              </div>
+
+            </li>
+
+            <li>
+
+              <a class="profile-item"
+                 routerLink="/profile-settings">
+
+                <i class="bi bi-person-circle me-2"></i>
+
+                Profile Settings
+
+              </a>
+
+            </li>
+
+            <li>
+
+              <a class="logout-item"
+                 (click)="logout()">
+
+                <i class="bi bi-box-arrow-right me-2"></i>
+
+                Logout
+
+              </a>
+
+            </li>
+
+          </ul>
+
+          <!-- LOGOUT BUTTON -->
+          <button class="logout-icon-btn"
+                  (click)="logout()">
+
+            <i class="bi bi-box-arrow-right"></i>
+
+          </button>
+
+        </div>
 
       </div>
 
     </div>
-
-    <!-- NET WORTH -->
-   
 
     <!-- TITLE -->
     <div class="mb-4">
@@ -138,15 +169,43 @@
 
     <!-- EMPTY -->
     <div *ngIf="!loading && accounts.length === 0"
-         class="text-center">
+         class="empty-state-container">
 
-      No Closed Accounts Found
+      <div class="empty-state-card">
+
+        <div class="empty-icon-wrapper">
+
+          <i class="bi bi-safe2 empty-icon"></i>
+
+        </div>
+
+        <h2 class="fw-bold mb-3">
+
+          No Closed Accounts Found
+
+        </h2>
+
+        <p class="text-muted mb-4">
+
+          You currently do not have any closed bank accounts.
+          Once an account is closed, it will appear here.
+
+        </p>
+
+        <button class="btn zorent-btn-accent rounded-pill px-4 py-2"
+                routerLink="/dashboard">
+
+          Back to Dashboard
+
+        </button>
+
+      </div>
 
     </div>
 
     <!-- ACCOUNT CARDS -->
-    <!-- ACCOUNT CARDS -->
-    <div class="row g-4">
+    <div class="row g-4"
+         *ngIf="accounts.length > 0">
 
       <div class="col-md-6"
            *ngFor="let acc of accounts">
@@ -222,8 +281,8 @@
                               (click)="$event.stopPropagation()"
                               [routerLink]="['/statement']"
                               [queryParams]="{
-                            accountNumber: acc.accountNumber
-                          }">
+                                accountNumber: acc.accountNumber
+                              }">
 
                         Statement
 
@@ -327,12 +386,7 @@
 
     </div>
 
-
-
   </div>
 
-      </div>
-
-    
-
-
+</div>
+</div>

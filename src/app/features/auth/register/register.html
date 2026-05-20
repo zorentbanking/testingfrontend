@@ -12,335 +12,351 @@
     <div class="row align-items-center g-5 mt-1">
 
       <div class="col-lg-6 text-dark pe-lg-5">
-        <h1 class="display-4 fw-bolder mb-4" style="color: #0f172a;">
+
+        <h1 class="display-2 fw-bolder mb-4" style="color: #0f172a;">
           Master your<br><span class="text-gradient-accent">wealth.</span>
         </h1>
+
         <p class="fs-5 mb-4 pe-md-5" style="color: #475569; line-height: 1.6;">
           Your money, protected by Zorent. Experience a smarter, safer way to manage your digital life.
         </p>
 
-        <div class="encryption-container rounded-4 p-3 d-inline-flex align-items-center gap-3">
+        <div class="encryption-container rounded-4 p-3 d-inline-flex align-items-center gap-3 mb-4">
           <div class="shield-orb">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-shield-lock-fill" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.8 11.8 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7 7 0 0 0 1.048-.625 11.8 11.8 0 0 0 2.517-2.453c1.678-2.195 2.931-5.513 2.465-9.99a1.54 1.54 0 0 0-1.044-1.263 63 63 0 0 0-2.887-.87C9.843.266 8.69 0 8 0m0 5a1.5 1.5 0 0 1 .5 2.915V10a.5.5 0 0 1-1 0V7.915A1.5 1.5 0 0 1 8 5" />
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                 fill="currentColor" class="bi bi-shield-lock-fill" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                    d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.8 11.8 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7 7 0 0 0 1.048-.625 11.8 11.8 0 0 0 2.517-2.453c1.678-2.195 2.931-5.513 2.465-9.99a1.54 1.54 0 0 0-1.044-1.263 63 63 0 0 0-2.887-.87C9.843.266 8.69 0 8 0m0 5a1.5 1.5 0 0 1 .5 2.915V10a.5.5 0 0 1-1 0V7.915A1.5 1.5 0 0 1 8 5" />
             </svg>
           </div>
+
           <div>
             <div class="fw-bold text-dark">End-to-End Encryption</div>
             <div class="zorent-text-accent small fw-semibold">Bank Grade Security System</div>
           </div>
         </div>
+
+        <div class="hero-container">
+          <img src="assets/banner1.jpeg"
+               alt="Zorent Wealth Bridge Banner"
+               class="hero-banner">
+        </div>
+
       </div>
 
-      <div class="col-lg-6">
-        <div class="card zorent-auth-card border-0 p-4 p-md-5 rounded-4 shadow-sm">
-          <h3 class="fw-bold mb-4" style="color: #0f172a;">Open Account</h3>
-          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-            <div *ngIf="errorMessage" class="alert alert-danger">
-              {{ errorMessage }}
-            </div>
+     
 
-            <div *ngIf="successMessage" class="alert alert-success">
-              {{ successMessage }}
-            </div>
-            <div class="row g-3 mb-4">
-              <div class="col-md-6">
-                <label class="form-label small fw-bold">Name</label>
 
-                <input type="text"
-                       class="form-control zorent-input"
-                       formControlName="fullName"
-                       placeholder="Enter your full name"
-                       [class.is-invalid]="registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched">
 
-                <div class="error-msg"
-                     *ngIf="registerForm.get('fullName')?.touched">
-
-                  <span *ngIf="registerForm.get('fullName')?.errors?.['required']">
-                    Name is required
-                  </span>
-
-                  <span *ngIf="registerForm.get('fullName')?.errors?.['minlength']">
-                    Name must be at least 3 characters
-                  </span>
-
-                  <span *ngIf="fullName?.errors?.['pattern']">
-                    Only letters are allowed
-                  </span>
-
+          <div class="col-lg-6">
+            <div class="card zorent-auth-card border-0 p-4 p-md-5 rounded-4 shadow-sm">
+              <h3 class="fw-bold mb-4" style="color: #0f172a;">Open Account</h3>
+              <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div *ngIf="errorMessage" class="alert alert-danger">
+                  {{ errorMessage }}
                 </div>
-              </div>
+
+                <div *ngIf="successMessage" class="alert alert-success">
+                  {{ successMessage }}
+                </div>
+                <div class="row g-3 mb-4">
+                  <div class="col-md-6">
+                    <label class="form-label small fw-bold">Name</label>
+
+                    <input type="text"
+                           class="form-control zorent-input"
+                           formControlName="fullName"
+                           placeholder="Enter your full name"
+                           [class.is-invalid]="registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched">
+
+                    <div class="error-msg"
+                         *ngIf="registerForm.get('fullName')?.touched">
+
+                      <span *ngIf="registerForm.get('fullName')?.errors?.['required']">
+                        Name is required
+                      </span>
+
+                      <span *ngIf="registerForm.get('fullName')?.errors?.['minlength']">
+                        Name must be at least 3 characters
+                      </span>
+
+                      <span *ngIf="fullName?.errors?.['pattern']">
+                        Only letters are allowed
+                      </span>
+
+                    </div>
+                  </div>
 
 
-              <div class="col-md-6">
+                  <div class="col-md-6">
 
-                <label class="form-label small fw-bold">
-                  Email Address
-                </label>
+                    <label class="form-label small fw-bold">
+                      Email Address
+                    </label>
 
-                <input type="email"
-                       class="form-control zorent-input"
-                       formControlName="email"
-                       placeholder="Enter email address"
-                       [class.is-invalid]="email?.invalid && email?.touched">
+                    <input type="email"
+                           class="form-control zorent-input"
+                           formControlName="email"
+                           placeholder="Enter email address"
+                           [class.is-invalid]="email?.invalid && email?.touched">
 
-                <div class="error-msg"
-                     *ngIf="email?.touched && email?.errors">
+                    <div class="error-msg"
+                         *ngIf="email?.touched && email?.errors">
 
-                  <!-- REQUIRED -->
-                  <span *ngIf="email?.errors?.['required']">
-                    Email is required
-                  </span>
+                      <!-- REQUIRED -->
+                      <span *ngIf="email?.errors?.['required']">
+                        Email is required
+                      </span>
 
-                  <!-- PATTERN ERRORS -->
-                  <span *ngIf="
+                      <!-- PATTERN ERRORS -->
+                      <span *ngIf="
     !email?.errors?.['required'] &&
     email?.errors?.['pattern']
   ">
 
-                    <!-- STARTS WITH NUMBER -->
-                    <ng-container *ngIf="startsWithNumber(email?.value); else checkLowerCase">
-                      Email must start with a letter
-                    </ng-container>
+                        <!-- STARTS WITH NUMBER -->
+                        <ng-container *ngIf="startsWithNumber(email?.value); else checkLowerCase">
+                          Email must start with a letter
+                        </ng-container>
 
-                    <!-- LOWERCASE CHECK -->
-                    <ng-template #checkLowerCase>
+                        <!-- LOWERCASE CHECK -->
+                        <ng-template #checkLowerCase>
 
-                      <ng-container *ngIf="email?.value !== email?.value?.toLowerCase(); else invalidEmail">
-                        Invalid email format
-                      </ng-container>
+                          <ng-container *ngIf="email?.value !== email?.value?.toLowerCase(); else invalidEmail">
+                            Invalid email format
+                          </ng-container>
 
-                    </ng-template>
+                        </ng-template>
 
-                    <!-- INVALID FORMAT -->
-                    <ng-template #invalidEmail>
-                      Invalid email format
-                    </ng-template>
+                        <!-- INVALID FORMAT -->
+                        <ng-template #invalidEmail>
+                          Invalid email format
+                        </ng-template>
 
-                  </span>
+                      </span>
 
-                </div>
+                    </div>
 
-              </div>
+                  </div>
 
-              <div class="col-md-6">
+                  <div class="col-md-6">
 
-                <label class="form-label small fw-bold">
-                  Phone Number
-                </label>
+                    <label class="form-label small fw-bold">
+                      Phone Number
+                    </label>
 
-                <input type="text"
-                       class="form-control zorent-input"
-                       formControlName="phone"
-                       placeholder="Enter 10 digit phone number"
-                       [class.is-invalid]="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched">
+                    <input type="text"
+                           class="form-control zorent-input"
+                           formControlName="phone"
+                           placeholder="Enter 10 digit phone number"
+                           [class.is-invalid]="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched">
 
-                <div class="error-msg"
-                     *ngIf="phone?.touched && phone?.errors">
+                    <div class="error-msg"
+                         *ngIf="phone?.touched && phone?.errors">
 
-                  <span *ngIf="phone?.errors?.['required']">
-                    Phone number is required
-                  </span>
+                      <span *ngIf="phone?.errors?.['required']">
+                        Phone number is required
+                      </span>
 
-                  <span *ngIf="phone?.errors?.['pattern']">
-                    Enter a valid 10 digit mobile number
-                  </span>
+                      <span *ngIf="phone?.errors?.['pattern']">
+                        Enter a valid 10 digit mobile number
+                      </span>
 
-                </div>
-              </div>
+                    </div>
+                  </div>
 
-              <div class="col-md-6">
+                  <div class="col-md-6">
 
-                <label class="form-label small fw-bold">
-                  Date of Birth
-                </label>
+                    <label class="form-label small fw-bold">
+                      Date of Birth
+                    </label>
 
-                <input type="date"
-                       class="form-control zorent-input"
-                       formControlName="dateOfBirth"
-                       [max]="todayDate"
-                       [class.is-invalid]="registerForm.get('dateOfBirth')?.invalid && registerForm.get('dateOfBirth')?.touched">
+                    <input type="date"
+                           class="form-control zorent-input"
+                           formControlName="dateOfBirth"
+                           [max]="todayDate"
+                           [class.is-invalid]="registerForm.get('dateOfBirth')?.invalid && registerForm.get('dateOfBirth')?.touched">
 
-                <div class="error-msg"
-                     *ngIf="registerForm.get('dateOfBirth')?.touched">
+                    <div class="error-msg"
+                         *ngIf="registerForm.get('dateOfBirth')?.touched">
 
-                  <span *ngIf="registerForm.get('dateOfBirth')?.errors?.['required']">
-                    Date of birth is required
-                  </span>
+                      <span *ngIf="registerForm.get('dateOfBirth')?.errors?.['required']">
+                        Date of birth is required
+                      </span>
 
-                  <span *ngIf="registerForm.get('dateOfBirth')?.errors?.['underAge']">
-                    User must be at least 18 years old
-                  </span>
+                      <span *ngIf="registerForm.get('dateOfBirth')?.errors?.['underAge']">
+                        User must be at least 18 years old
+                      </span>
 
-                </div>
-              </div>
+                    </div>
+                  </div>
 
-              <div class="col-12">
+                  <div class="col-12">
 
-                <label class="form-label small fw-bold">
-                  Residential Address
-                </label>
+                    <label class="form-label small fw-bold">
+                      Residential Address
+                    </label>
 
-                <textarea class="form-control zorent-input"
-                          formControlName="address"
-                          rows="2"
-                          maxlength="1500"
-                          placeholder="Enter residential address"
-                          [class.is-invalid]="registerForm.get('address')?.invalid
+                    <textarea class="form-control zorent-input"
+                              formControlName="address"
+                              rows="2"
+                              maxlength="1500"
+                              placeholder="Enter residential address"
+                              [class.is-invalid]="registerForm.get('address')?.invalid
             && registerForm.get('address')?.touched">
   </textarea>
 
-                <!-- CHARACTER COUNTER -->
-                <div class="text-end small text-muted mt-1">
-                  {{
+                    <!-- CHARACTER COUNTER -->
+                    <div class="text-end small text-muted mt-1">
+                      {{
       1500 - (registerForm.get('address')?.value?.length || 0)
-                  }} characters remaining
-                </div>
+                      }} characters remaining
+                    </div>
 
-                <div class="error-msg"
-                     *ngIf="registerForm.get('address')?.touched">
+                    <div class="error-msg"
+                         *ngIf="registerForm.get('address')?.touched">
 
-                  <span *ngIf="registerForm.get('address')?.errors?.['required']">
-                    Address is required
-                  </span>
+                      <span *ngIf="registerForm.get('address')?.errors?.['required']">
+                        Address is required
+                      </span>
 
-                  <span *ngIf="registerForm.get('address')?.errors?.['maxlength']">
-                    Address cannot exceed 1500 characters
-                  </span>
+                      <span *ngIf="registerForm.get('address')?.errors?.['maxlength']">
+                        Address cannot exceed 1500 characters
+                      </span>
 
-                </div>
+                    </div>
 
-              </div>
+                  </div>
 
-              <div class="col-md-6">
+                  <div class="col-md-6">
 
-                <label class="form-label small fw-bold">
-                  Username
-                </label>
+                    <label class="form-label small fw-bold">
+                      Username
+                    </label>
 
-                <input type="text"
-                       class="form-control zorent-input"
-                       formControlName="username"
-                       placeholder="Choose username"
-                       [class.is-invalid]="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+                    <input type="text"
+                           class="form-control zorent-input"
+                           formControlName="username"
+                           placeholder="Choose username"
+                           [class.is-invalid]="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
 
-                <div class="error-msg"
-                     *ngIf="username?.touched && username?.errors">
+                    <div class="error-msg"
+                         *ngIf="username?.touched && username?.errors">
 
-                  <!-- REQUIRED -->
-                  <span *ngIf="username?.errors?.['required']">
-                    Username is required
-                  </span>
+                      <!-- REQUIRED -->
+                      <span *ngIf="username?.errors?.['required']">
+                        Username is required
+                      </span>
 
-                  <!-- MIN LENGTH -->
-                  <span *ngIf="
+                      <!-- MIN LENGTH -->
+                      <span *ngIf="
     !username?.errors?.['required'] &&
     username?.errors?.['minlength']
   ">
-                    Username must be at least 4 characters
-                  </span>
+                        Username must be at least 4 characters
+                      </span>
 
-                  <!-- MAX LENGTH -->
-                  <span *ngIf="
+                      <!-- MAX LENGTH -->
+                      <span *ngIf="
     !username?.errors?.['required'] &&
     !username?.errors?.['minlength'] &&
     username?.errors?.['maxlength']
   ">
-                    Username cannot exceed 20 characters
-                  </span>
+                        Username cannot exceed 20 characters
+                      </span>
 
-                  <!-- PATTERN -->
-                  <!-- MUST START WITH LETTER -->
-                  <span *ngIf="
+                      <!-- PATTERN -->
+                      <!-- MUST START WITH LETTER -->
+                      <span *ngIf="
 !username?.errors?.['required'] &&
 !username?.errors?.['minlength'] &&
 !username?.errors?.['maxlength'] &&
 !startsWithLetter(username?.value)
 ">
-                    Username must start with a letter
-                  </span>
+                        Username must start with a letter
+                      </span>
 
-                  <!-- INVALID CHARACTERS -->
-                  <span *ngIf="
+                      <!-- INVALID CHARACTERS -->
+                      <span *ngIf="
 !username?.errors?.['required'] &&
 !username?.errors?.['minlength'] &&
 !username?.errors?.['maxlength'] &&
 startsWithLetter(username?.value) &&
 !containsValidUsernameChars(username?.value)
 ">
-                    Username can contain only letters, numbers, and underscores
-                  </span>
+                        Username can contain only letters, numbers, and underscores
+                      </span>
 
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+
+                    <label class="form-label small fw-bold">
+                      Secure Password
+                    </label>
+
+                    <div class="position-relative">
+
+                      <input [type]="showPassword ? 'text' : 'password'"
+                             class="form-control zorent-input pe-5"
+                             formControlName="password"
+                             placeholder="Min. 8 characters"
+                             [class.is-invalid]="password?.invalid && password?.touched">
+
+                      <!-- SHOW/HIDE BUTTON -->
+                      <span class="position-absolute top-50 translate-middle-y"
+                            style="right: 45px; cursor:pointer;"
+                            (click)="showPassword = !showPassword">
+
+                        <i class="bi"
+                           [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'">
+                        </i>
+
+                      </span>
+
+                    </div>
+
+                    <div class="error-msg"
+                         *ngIf="password?.touched && password?.errors">
+
+                      <span *ngIf="password?.errors?.['required']">
+                        Password is required
+                      </span>
+
+                      <span *ngIf="password?.errors?.['minlength']">
+                        Password must be at least 8 characters
+                      </span>
+
+                      <span *ngIf="password?.errors?.['pattern']">
+
+                        Password must contain:
+                        <br>
+                        • 1 uppercase letter
+                        <br>
+                        • 1 lowercase letter
+                        <br>
+                        • 1 number
+                        <br>
+                        • 1 special character
+
+                      </span>
+
+                    </div>
+                  </div>
                 </div>
-              </div>
 
-              <div class="col-md-6">
+                <button type="submit" class="btn zorent-btn-accent w-100 py-3 fw-bold rounded-pill mb-4 fs-6">
+                  Create Account &rarr;
+                </button>
 
-                <label class="form-label small fw-bold">
-                  Secure Password
-                </label>
-
-                <div class="position-relative">
-
-                  <input [type]="showPassword ? 'text' : 'password'"
-                         class="form-control zorent-input pe-5"
-                         formControlName="password"
-                         placeholder="Min. 8 characters"
-                         [class.is-invalid]="password?.invalid && password?.touched">
-
-                  <!-- SHOW/HIDE BUTTON -->
-                  <span class="position-absolute top-50 translate-middle-y"
-                        style="right: 45px; cursor:pointer;"
-                        (click)="showPassword = !showPassword">
-
-                    <i class="bi"
-                       [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'">
-                    </i>
-
-                  </span>
-
+                <div class="text-center small">
+                  <span class="text-muted">Already have an account?</span>
+                  <a routerLink="/login" class="text-decoration-none fw-semibold zorent-draw-line-target ms-1" style="color: #006e76;">Sign In here</a>
                 </div>
-
-                <div class="error-msg"
-                     *ngIf="password?.touched && password?.errors">
-
-                  <span *ngIf="password?.errors?.['required']">
-                    Password is required
-                  </span>
-
-                  <span *ngIf="password?.errors?.['minlength']">
-                    Password must be at least 8 characters
-                  </span>
-
-                  <span *ngIf="password?.errors?.['pattern']">
-
-                    Password must contain:
-                    <br>
-                    • 1 uppercase letter
-                    <br>
-                    • 1 lowercase letter
-                    <br>
-                    • 1 number
-                    <br>
-                    • 1 special character
-
-                  </span>
-
-                </div>
-              </div>
+              </form>
             </div>
-
-            <button type="submit" class="btn zorent-btn-accent w-100 py-3 fw-bold rounded-pill mb-4 fs-6">
-              Create Account &rarr;
-            </button>
-
-            <div class="text-center small">
-              <span class="text-muted">Already have an account?</span>
-              <a routerLink="/login" class="text-decoration-none fw-semibold zorent-draw-line-target ms-1" style="color: #006e76;">Sign In here</a>
-            </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>

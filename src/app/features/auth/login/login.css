@@ -4,12 +4,12 @@
 
 .zorent-auth-wrapper {
   min-height: 100vh;
-  background-color: #f1f5f9;
-  font-family: 'Inter', sans-serif;
+  width: 100%;
   background-image: url('/assets/login-bg.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  font-family: 'Inter', sans-serif;
   display: flex;
   flex-direction: column;
 }
@@ -120,3 +120,26 @@
   display: inline-block;
   margin-right: 5px;
 }
+.hero-container {
+  margin-top: 25px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.hero-banner {
+  width: 100%;
+  max-width: 650px;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.main-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+}
+

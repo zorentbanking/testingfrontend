@@ -411,3 +411,78 @@
 
   transition: all 0.3s ease;
 }
+/* EMPTY CLOSED ACCOUNTS STATE */
+.empty-state-container {
+  min-height: 55vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+}
+
+.empty-state-card {
+  width: 100%;
+  max-width: 650px;
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 60px 40px;
+  text-align: center;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+  border: 1px solid #edf2f7;
+  animation: fadeUp 0.5s ease;
+}
+
+.empty-icon-wrapper {
+  width: 110px;
+  height: 110px;
+  margin: auto;
+  margin-bottom: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #eef5ff, #dbeafe);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(13,110,253,0.12);
+}
+
+.empty-icon {
+  font-size: 48px;
+  color: #1a5c8b;
+}
+
+.empty-state-card h2 {
+  font-size: 2rem;
+  color: #1f2937;
+}
+
+.empty-state-card p {
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 480px;
+  margin: auto;
+}
+
+@keyframes fadeUp {
+
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.zorent-auth-wrapper {
+  min-height: 100vh;
+  background-color: #f1f5f9;
+  font-family: 'Inter', sans-serif;
+  background-image: url('/assets/login-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  background-attachment: fixed;
+}

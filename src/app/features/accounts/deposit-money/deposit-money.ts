@@ -7,7 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { APP_CONSTANTS } from '../../../app.constants';
 
 import {
-  Router
+  Router,
+  RouterModule
 } from '@angular/router';
 
 import {
@@ -21,7 +22,8 @@ import {
 
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
 
   templateUrl: './deposit-money.html',
@@ -274,7 +276,9 @@ export class DepositMoney implements OnInit {
 
   toggleProfile(): void {
 
-    this.isProfileOpen = !this.isProfileOpen;
+    this.isProfileOpen =
+      !this.isProfileOpen;
+
   }
 
   logout(): void {
