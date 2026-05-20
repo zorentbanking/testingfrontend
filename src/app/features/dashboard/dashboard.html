@@ -156,22 +156,7 @@
           <div *ngIf="errorMessage" class="alert alert-danger">
             {{ errorMessage }}
           </div>
-          <div *ngIf="!loading && accounts.length === 0"
-               class="no-account-box text-center">
-
-            <div class="no-account-icon">
-              <i class="bi bi-wallet2"></i>
-            </div>
-
-            <h4><b>No Accounts Found</b></h4>
-
-            <p>
-              You have not created any bank accounts yet.
-            </p>
-
          
-
-          </div>
           <h5 class="zorent-text-muted text-uppercase small fw-bold mb-2">Total Net Worth</h5>
           <h1 class="display-4 fw-bold mb-0">{{ currencySymbol }}{{ netWorth | number:'1.2-2' }}</h1>
         </div>

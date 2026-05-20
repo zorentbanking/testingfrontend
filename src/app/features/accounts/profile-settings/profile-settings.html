@@ -403,6 +403,26 @@
 
           <h3>Change Password</h3>
 
+          <!-- TOP PASSWORD ALERT -->
+
+          <div *ngIf="passwordErrorMessage"
+               class="top-alert error">
+
+            <i class="bi bi-exclamation-circle-fill"></i>
+
+            {{ passwordErrorMessage }}
+
+          </div>
+
+          <div *ngIf="passwordSuccessMessage"
+               class="top-alert success">
+
+            <i class="bi bi-check-circle-fill"></i>
+
+            {{ passwordSuccessMessage }}
+
+          </div>
+
           <div class="form-grid">
 
             <div class="form-group">
@@ -476,23 +496,6 @@
 
           </button>
 
-          <div class="mt-2">
-
-            <small class="text-danger"
-                   *ngIf="passwordErrorMessage">
-
-              {{ passwordErrorMessage }}
-
-            </small>
-
-            <small class="text-success"
-                   *ngIf="passwordSuccessMessage">
-
-              {{ passwordSuccessMessage }}
-
-            </small>
-
-          </div>
         </div>
 
         <!-- TRANSACTION PIN -->
@@ -500,6 +503,23 @@
         <div class="section-card fade-card" *ngIf="activeSession === 'pin'">
 
           <h3>Transaction PIN</h3>
+          <div *ngIf="pinErrorMessage"
+               class="top-alert error">
+
+            <i class="bi bi-exclamation-circle-fill"></i>
+
+            {{ pinErrorMessage }}
+
+          </div>
+
+          <div *ngIf="pinSuccessMessage"
+               class="top-alert success">
+
+            <i class="bi bi-check-circle-fill"></i>
+
+            {{ pinSuccessMessage }}
+
+          </div>
 
           <div class="form-grid">
 
@@ -555,23 +575,7 @@
             Change Transaction PIN
 
           </button>
-          <div class="mt-2">
-
-            <small class="text-danger"
-                   *ngIf="pinErrorMessage">
-
-              {{ pinErrorMessage }}
-
-            </small>
-
-            <small class="text-success"
-                   *ngIf="pinSuccessMessage">
-
-              {{ pinSuccessMessage }}
-
-            </small>
-
-          </div>
+         
 
         </div>
 

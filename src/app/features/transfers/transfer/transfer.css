@@ -445,19 +445,19 @@
     background: #dc2626;
     transform: scale(1.08);
   }
+.transactions-wrapper {
+  margin-top: 40px;
+}
 .zorent-sticky-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 1000;
-
-  background: rgba(248,249,250,0.92);
-
+  background: rgba(248,249,250,0.96);
   backdrop-filter: blur(8px);
-
-  padding-top: 0;
-  padding-bottom: 0;
-
-  transition: all 0.3s ease;
+  padding: 14px 40px;
+  border-bottom: 1px solid #e9ecef;
 }
 .zorent-auth-wrapper {
   min-height: 100vh;

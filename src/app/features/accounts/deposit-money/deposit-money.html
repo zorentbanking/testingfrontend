@@ -195,7 +195,7 @@
 
     <!-- BUTTON -->
     <button class="btn-submit"
-            [disabled]="loading || depositAmount <= 0"
+           [disabled]="loading || depositAmount < 100"
             (click)="processDeposit()">
 
       Deposit Now
