@@ -48,6 +48,8 @@ currencySymbol = APP_CONSTANTS.currencySymbol;
 
   maxInstallmentDate: string = '';
 
+  installmentDays:number[]=[];
+
   formattedInstallmentDate: string = '';
 
 
@@ -216,8 +218,13 @@ next30.setDate(
   today.getDate() + 30
 );
 
-this.maxInstallmentDate =
-  next30.toISOString().split('T')[0];
+this.installmentDays = [];
+
+for (let i = 1; i <= 27; i++) {
+
+  this.installmentDays.push(i);
+
+}
 
       if (
         !this.accountForm.contains(

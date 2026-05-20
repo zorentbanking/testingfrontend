@@ -528,3 +528,20 @@ input[readonly].zorent-input {
   height: 100%;
   pointer-events: none;
 }
+
+.zorent-installment-dropdown {
+  height: 58px;
+  border: 2px dashed #cfd8dc;
+  border-radius: 14px;
+  background-color: #ffffff;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 0 18px;
+  box-shadow: none;
+  transition: 0.3s ease;
+}
+
+.zorent-installment-dropdown:focus {
+  border-color: #5aa9e6;
+  box-shadow: 0 0 0 0.15rem rgba(90, 169, 230, 0.15);
+}
