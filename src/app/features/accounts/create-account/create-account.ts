@@ -28,6 +28,10 @@ currencySymbol = APP_CONSTANTS.currencySymbol;
 
   interestRate: number = 0;
 
+  selectedInstallmentDay: number | null = null;
+
+  showInstallmentPicker=false;
+
   maturityAmount: number = 0;
 
   maturityDate: Date | null = null;
@@ -50,7 +54,7 @@ currencySymbol = APP_CONSTANTS.currencySymbol;
 
   installmentDays:number[]=[];
 
-  formattedInstallmentDate: string = '';
+  formattedInstallmentDate = '';
 
 
   constructor(
@@ -123,6 +127,20 @@ currencySymbol = APP_CONSTANTS.currencySymbol;
 
     this.router.navigate(['/login']);
   }
+
+  selectInstallmentDay(day: number): void {
+
+  this.selectedInstallmentDay = day;
+  this.accountForm.patchValue({
+    installmentDate: day
+  });
+
+    this.formatInstallmentDate(day);
+
+
+  this.showInstallmentPicker = false;
+
+}
 
   // ACCOUNT RULES
   updateAccountRules(type: string): void {
@@ -367,66 +385,40 @@ for (let i = 1; i <= 27; i++) {
     }
   }
 
-  formatInstallmentDate(): void {
-
-  const selectedDate =
-    this.accountForm.value.installmentDate;
-
-  if (!selectedDate) {
-
-    this.formattedInstallmentDate = '';
-
-    return;
-  }
-
-  const date = new Date(selectedDate);
-
-  const day = date.getDate();
-
-  // BLOCK 28 29 30 31
-  if (day >= 28) {
-
-    alert(
-      '28, 29, 30, 31 dates are not allowed'
-    );
-
-    this.accountForm
-      .get('installmentDate')
-      ?.setValue('');
-
-    this.formattedInstallmentDate = '';
-
-    return;
-  }
+  formatInstallmentDate(day: number): void {
 
   let suffix = 'th';
 
-  if (day === 1 || day === 21)
+  if (day === 1 || day === 21) {
     suffix = 'st';
+  }
 
-  else if (day === 2 || day === 22)
+  else if (day === 2 || day === 22) {
     suffix = 'nd';
+  }
 
-  else if (day === 3 || day === 23)
+  else if (day === 3 || day === 23) {
     suffix = 'rd';
+  }
 
   this.formattedInstallmentDate =
     `${day}${suffix}`;
+
 }
 
-isInvalidDate(dateString: string): boolean {
+// isInvalidDate(dateString: string): boolean {
 
-  const date = new Date(dateString);
+//   const date = new Date(dateString);
 
-  const day = date.getDate();
+//   const day = date.getDate();
 
-  return (
-    day === 28 ||
-    day === 29 ||
-    day === 30 ||
-    day === 31
-  );
-}
+//   return (
+//     day === 28 ||
+//     day === 29 ||
+//     day === 30 ||
+//     day === 31
+//   );
+// }
 
   // SUBMIT
   onSubmit(): void {

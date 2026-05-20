@@ -520,29 +520,65 @@ input[readonly].zorent-input {
   transition: all 0.3s ease;
 }
 
-.custom-hidden-date {
+.installment-calendar {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+  justify-items: center;
+}
+
+.calendar-date {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 2px solid #dfe6e9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  background: #ffffff;
+}
+
+.calendar-date:hover {
+  border-color: #00b894;
+  color: #00b894;
+  transform: scale(1.05);
+}
+
+.calendar-date.selected {
+  background: #00b894;
+  color: white;
+  border-color: #00b894;
+  box-shadow: 0 6px 16px rgba(0, 184, 148, 0.3);
+}
+
+.installment-popup {
   position: absolute;
-  top: 0;
+  top: 70px;
   left: 0;
-  opacity: 0;
   width: 100%;
-  height: 100%;
-  pointer-events: none;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 12px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
 }
 
-.zorent-installment-dropdown {
-  height: 58px;
-  border: 2px dashed #cfd8dc;
-  border-radius: 14px;
-  background-color: #ffffff;
-  font-size: 18px;
-  font-weight: 500;
-  padding: 0 18px;
-  box-shadow: none;
-  transition: 0.3s ease;
-}
+@keyframes fadeIn {
 
-.zorent-installment-dropdown:focus {
-  border-color: #5aa9e6;
-  box-shadow: 0 0 0 0.15rem rgba(90, 169, 230, 0.15);
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
 }

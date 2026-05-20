@@ -190,24 +190,39 @@
     Installment Date (Monthly)
   </label>
 
-  <select
-  class="form-select  zorent-installment-dropdown"
-  formControlName="installmentDate">
+  <div class="position-relative">
 
-  <option value="">
-    Select Installment Date
-  </option>
+  <input
+    type="text"
+    class="form-control zorent-input"
+    [value]="formattedInstallmentDate"
+    placeholder="Select Installment Date"
+    readonly
+    (click)="showInstallmentPicker = !showInstallmentPicker">
 
-<option
-  *ngFor="let day of installmentDays"
-  [value]="day">
+  <div
+    class="installment-popup"
+    *ngIf="showInstallmentPicker">
 
-  {{ day }}
-  {{ day % 10 === 1 && day !== 11 ? 'st' :
-     day % 10 === 2 && day !== 12 ? 'nd' :
-     day % 10 === 3 && day !== 13 ? 'rd' : 'th' }}
+    <div class="installment-calendar">
 
-</option></select>
+      <div
+        class="calendar-date"
+        *ngFor="let day of installmentDays"
+        [class.selected]="selectedInstallmentDay === day"
+        (click)="selectInstallmentDay(day)">
+
+        {{ day }}
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
   <div class="mt-2">
     <small class="text-muted">
       Select any day of this month for your monthly installment.
