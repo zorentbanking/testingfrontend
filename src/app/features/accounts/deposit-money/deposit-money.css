@@ -239,6 +239,7 @@
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
+  background-attachment: fixed;
 }
 
 /* =========================
