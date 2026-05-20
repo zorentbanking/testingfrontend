@@ -400,16 +400,9 @@
 .zorent-sticky-header {
   position: sticky;
   top: 0;
-  z-index: 1000;
-
-  background: rgba(248,249,250,0.92);
-
+  z-index: 9999;
+  background: rgba(248, 249, 250, 0.95);
   backdrop-filter: blur(8px);
-
-  padding-top: 0;
-  padding-bottom: 0;
-
-  transition: all 0.3s ease;
 }
 /* EMPTY CLOSED ACCOUNTS STATE */
 .empty-state-container {

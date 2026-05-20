@@ -566,7 +566,7 @@
 
                         <!-- DEPOSIT -->
                         <div class="col-6">
-                          <button class="btn btn-success w-100 rounded-pill"
+                          <button class="btn btn-success w-100 rounded-pill "
                                   [routerLink]="['/deposit-money']"
                                   [state]="{
           accountNumber: acc.accountNumber
@@ -580,22 +580,21 @@
                         </div>
 
                         <!-- CLOSE ACCOUNT -->
-                        <div class="col-6">
+                                  <div class="col-6">
 
-                            <button class="btn btn-danger text-light w-100 rounded-pill"
-                                    [disabled]="acc.status === 'Closed'"
-                                    [routerLink]="['/close-fd']"
-                                    [queryParams]="{
-          accountNumber: acc.accountNumber
-        }"
-                                    (click)="$event.stopPropagation()">
+            <button class="btn btn-danger text-light w-100 rounded-pill close-btn"
+                    [routerLink]="['/close-fd']"
+                    [disabled]="isDisabled(acc)"
+                    [queryParams]="{
+  accountNumber: acc.accountNumber
+}"
+                    (click)="$event.stopPropagation()">
 
-                              Close Account
+              Close Account
 
-                            
-                            </button>
+            </button>
 
-                          </div>
+          </div>
 
                       </div>
 
@@ -624,22 +623,21 @@
 
                           </div>
 
-                          <div class="col-6">
+                                    <div class="col-6">
 
-                            <button class="btn btn-danger text-light w-100 rounded-pill"
-                                    [disabled]="acc.status === 'Closed'"
-                                    [routerLink]="['/close-fd']"
-                                    [queryParams]="{
-          accountNumber: acc.accountNumber
-        }"
-                                    (click)="$event.stopPropagation()">
+            <button class="btn btn-danger text-light w-100 rounded-pill close-btn"
+                    [routerLink]="['/close-fd']"
+                    [disabled]="isDisabled(acc)"
+                    [queryParams]="{
+  accountNumber: acc.accountNumber
+}"
+                    (click)="$event.stopPropagation()">
 
-                              Close Account
+              Close Account
 
-                            
-                            </button>
+            </button>
 
-                          </div>
+          </div>
 
 
                         </div>

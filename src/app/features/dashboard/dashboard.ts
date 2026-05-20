@@ -145,6 +145,27 @@ export class DashboardComponent implements OnInit {
     );
   }
 
+    isDisabled(account: any): boolean {
+
+    // Get all active accounts
+
+    const activeAccounts = this.accounts.filter(
+
+      (a: any) => a.status === 'Active'
+
+    );
+
+    // Disable only if this is the last active account
+
+    return activeAccounts.length <= 1;
+
+  }
+
+
+
+
+
+
   toggleProfile(): void {
 
     this.isProfileOpen = !this.isProfileOpen;
