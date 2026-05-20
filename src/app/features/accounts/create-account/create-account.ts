@@ -131,9 +131,20 @@ currencySymbol = APP_CONSTANTS.currencySymbol;
   selectInstallmentDay(day: number): void {
 
   this.selectedInstallmentDay = day;
-  this.accountForm.patchValue({
-    installmentDate: day
-  });
+  const today = new Date();
+
+const year = today.getFullYear();
+
+const month =
+  String(today.getMonth() + 1)
+    .padStart(2, '0');
+
+const formattedDate =
+  `${year}-${month}-${String(day).padStart(2, '0')}`;
+
+this.accountForm.patchValue({
+  installmentDate: formattedDate
+});
 
     this.formatInstallmentDate(day);
 
