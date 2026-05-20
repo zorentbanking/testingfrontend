@@ -25,6 +25,7 @@ import { AccountSuccessComponent }
   from './features/accounts/account-success/account-success';
 
   import { CloseFd } from './features/Close/close-fd';
+import { FooterComponent } from './footer/footer';
 @NgModule({
   declarations: [
     App,
@@ -39,7 +40,8 @@ import { AccountSuccessComponent }
     StatementComponent,
     ProfileSettingsComponent,
     ClosedAccountsComponent,
-    CloseFd
+    CloseFd,
+    FooterComponent
    
    
   ],
