@@ -332,41 +332,53 @@ export class TransactionHistoryComponent implements OnInit {
     }
   }
 
-  exportCsv(): void {
+ exportCsv(): void {
 
-    const filters = this.filterForm.value;
+  const filters = this.filterForm.value;
 
-    const body = {
-      accountId: filters.accountId,
-      fromDate: filters.startDate || null,
-      toDate: filters.endDate || null,
-      type: filters.type === 'All' ? null : filters.type,
-      minAmount: filters.minAmount || null,
-      maxAmount: filters.maxAmount || null,
-      keyword: filters.keyword || null
-    };
+  const body = {
 
-    this.http.post(
-      'https://localhost:7085/api/transactions/export',
-      body,
-      {
-        headers: this.getHeaders(),
-        responseType: 'blob'
-      }
-    ).subscribe(blob => {
+    accountId:
+      filters.accountId == '0' || filters.accountId == ''
+        ? null
+        : Number(filters.accountId),
 
-      const url = window.URL.createObjectURL(blob);
+    fromDate: filters.startDate || null,
 
-      const a = document.createElement('a');
+    toDate: filters.endDate || null,
 
-      a.href = url;
+    type:
+      filters.type === 'All'
+        ? null
+        : filters.type,
 
-      a.download = 'transactions.csv';
+    minAmount: filters.minAmount || null,
 
-      a.click();
+    maxAmount: filters.maxAmount || null,
 
-      window.URL.revokeObjectURL(url);
-    });
-  }
+    keyword: filters.keyword || null
+  };
 
+  this.http.post(
+    'https://localhost:7085/api/transactions/export',
+    body,
+    {
+      headers: this.getHeaders(),
+      responseType: 'blob'
+    }
+  ).subscribe(blob => {
+
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+
+    a.href = url;
+
+    a.download = 'transactions.csv';
+
+    a.click();
+
+    window.URL.revokeObjectURL(url);
+  });
+}
 }
