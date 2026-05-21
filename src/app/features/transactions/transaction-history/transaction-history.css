@@ -7,9 +7,10 @@
 .header-border {
   border-bottom: 1px solid #e9ecef;
 }
-.text-light{
-    --bs-text-opacity:1;
-    color:#212529
+
+.text-light {
+  --bs-text-opacity: 1;
+  color: #212529
 }
 
 .zorent-logo-container {
@@ -17,7 +18,7 @@
   height: 42px;
   background: #ffffff;
   border-radius: 10px;
-
+  display: flex;
   align-items: center;
   justify-content: center;
   padding: 5px;
@@ -295,6 +296,7 @@
   justify-content: center;
   z-index: 1000;
 }
+
 .navbar-wrapper {
   position: relative;
   z-index: 2000;
@@ -333,6 +335,7 @@
   color: #6c757d;
   margin-bottom: 25px;
 }
+
 .header-border {
   border-bottom: 1px solid #e9ecef;
 }
@@ -499,9 +502,11 @@
     background: #dc2626;
     transform: scale(1.08);
   }
+
 .user-dropdown-name {
   color: #212529 !important;
 }
+
 button:disabled,
 .btn:disabled {
   opacity: 0.4 !important;
@@ -524,55 +529,23 @@ button:disabled,
   transform: translateY(-2px);
   transition: all 0.3s ease;
 }
-.transactions-wrapper {
-  margin-top: 40px;
+
+.zorent-sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: rgba(248, 249, 250, 0.95);
+  backdrop-filter: blur(8px);
 }
 
 .zorent-auth-wrapper {
   min-height: 100vh;
-  width: 100%;
   background-color: #f1f5f9;
   font-family: 'Inter', sans-serif;
   background-image: url('/assets/login-bg.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
-  padding-bottom: 30px;
-}
-.container {
- 
-  width: 100%;
-}
-
-.dashboard-wrapper,
-.transactions-wrapper {
-  width: 100%;
-  padding: 0 24px;
-  box-sizing: border-box;
-}
-.navbar-wrapper {
-  width: 100%;
   display: flex;
-  justify-content: center;
-}
-.zorent-sticky-header nav {
-  display: flex;
-
-  align-items: center;
-  gap: 24px;
-}
-
-.zorent-sticky-header {
-  position: fixed ;
-  top: 0;
-  z-index: 1000;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(248, 249, 250, 0.92);
-  backdrop-filter: blur(8px);
-  padding: 12px 24px; /* MATCH DASHBOARD SPACING */
-  border-bottom: 1px solid #e9ecef;
+  flex-direction: column;
 }

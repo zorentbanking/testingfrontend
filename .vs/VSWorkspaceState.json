@@ -1,6 +1,17 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\features",
+    "\\src\\app\\features\\accounts",
+    "\\src\\app\\features\\accounts\\profile-settings",
+    "\\src\\app\\features\\auth",
+    "\\src\\app\\features\\transactions",
+    "\\src\\app\\features\\transactions\\transaction-history",
+    "\\src\\app\\features\\transfers",
+    "\\src\\app\\features\\transfers\\transfer"
   ],
+  "SelectedNode": "\\src\\app\\app-module.ts",
   "PreviewInSolutionExplorer": false
 }

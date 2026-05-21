@@ -1,0 +1,236 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\transfers\\transfer\\transfer.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\features\\transfers\\transfer\\transfer.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\transfers\\transfer\\transfer.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\features\\transfers\\transfer\\transfer.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\transactions\\transaction-history\\transaction-history.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\features\\transactions\\transaction-history\\transaction-history.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\transactions\\transaction-history\\transaction-history.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\features\\transactions\\transaction-history\\transaction-history.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\dashboard\\dashboard.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\features\\dashboard\\dashboard.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\dashboard\\dashboard.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\features\\dashboard\\dashboard.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\dashboard\\dashboard.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\features\\dashboard\\dashboard.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\accounts\\deposit-money\\deposit-money.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\features\\accounts\\deposit-money\\deposit-money.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\accounts\\deposit-money\\deposit-money.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\features\\accounts\\deposit-money\\deposit-money.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\accounts\\profile-settings\\profile-settings.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\features\\accounts\\profile-settings\\profile-settings.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\accounts\\profile-settings\\profile-settings.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\features\\accounts\\profile-settings\\profile-settings.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\Close\\close-fd.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\features\\Close\\close-fd.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 10,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:7:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:6:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:8:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "transaction-history.css",
+              "DocumentMoniker": "C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\transactions\\transaction-history\\transaction-history.css",
+              "RelativeDocumentMoniker": "src\\app\\features\\transactions\\transaction-history\\transaction-history.css",
+              "ToolTip": "C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\transactions\\transaction-history\\transaction-history.css",
+              "RelativeToolTip": "src\\app\\features\\transactions\\transaction-history\\transaction-history.css",
+              "ViewState": "AgIAAAQCAAAAAAAAAAAswCcCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-05-20T16:27:12.086Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "transaction-history.html",
+              "DocumentMoniker": "C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\transactions\\transaction-history\\transaction-history.html",
+              "RelativeDocumentMoniker": "src\\app\\features\\transactions\\transaction-history\\transaction-history.html",
+              "ToolTip": "C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\transactions\\transaction-history\\transaction-history.html",
+              "RelativeToolTip": "src\\app\\features\\transactions\\transaction-history\\transaction-history.html",
+              "ViewState": "AgIAAPsAAAAAAAAAAAAswB8BAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-05-20T16:26:08.447Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "dashboard.html",
+              "DocumentMoniker": "C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\dashboard\\dashboard.html",
+              "RelativeDocumentMoniker": "src\\app\\features\\dashboard\\dashboard.html",
+              "ToolTip": "C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\dashboard\\dashboard.html",
+              "RelativeToolTip": "src\\app\\features\\dashboard\\dashboard.html",
+              "ViewState": "AgIAAI4CAAAAAAAAAAAowLACAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-05-20T16:23:10.787Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "deposit-money.html",
+              "DocumentMoniker": "C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\accounts\\deposit-money\\deposit-money.html",
+              "RelativeDocumentMoniker": "src\\app\\features\\accounts\\deposit-money\\deposit-money.html",
+              "ToolTip": "C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\accounts\\deposit-money\\deposit-money.html",
+              "RelativeToolTip": "src\\app\\features\\accounts\\deposit-money\\deposit-money.html",
+              "ViewState": "AgIAAK8AAAAAAAAAAAAWwMUAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-05-20T17:11:48.7Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "transfer.html",
+              "DocumentMoniker": "C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\transfers\\transfer\\transfer.html",
+              "RelativeDocumentMoniker": "src\\app\\features\\transfers\\transfer\\transfer.html",
+              "ToolTip": "C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\transfers\\transfer\\transfer.html",
+              "RelativeToolTip": "src\\app\\features\\transfers\\transfer\\transfer.html",
+              "ViewState": "AgIAACUBAAAAAAAAAAAswEgBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-05-20T16:38:32.307Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "transfer.css",
+              "DocumentMoniker": "C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\transfers\\transfer\\transfer.css",
+              "RelativeDocumentMoniker": "src\\app\\features\\transfers\\transfer\\transfer.css",
+              "ToolTip": "C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\transfers\\transfer\\transfer.css",
+              "RelativeToolTip": "src\\app\\features\\transfers\\transfer\\transfer.css",
+              "ViewState": "AgIAALYBAAAAAAAAAAAswNkBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-05-20T16:38:38.239Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "dashboard.ts",
+              "DocumentMoniker": "C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\dashboard\\dashboard.ts",
+              "RelativeDocumentMoniker": "src\\app\\features\\dashboard\\dashboard.ts",
+              "ToolTip": "C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\dashboard\\dashboard.ts",
+              "RelativeToolTip": "src\\app\\features\\dashboard\\dashboard.ts",
+              "ViewState": "AgIAAI0AAAAAAAAAAAAAAK0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-05-20T18:29:37.941Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "dashboard.css",
+              "DocumentMoniker": "C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\dashboard\\dashboard.css",
+              "RelativeDocumentMoniker": "src\\app\\features\\dashboard\\dashboard.css",
+              "ToolTip": "C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\dashboard\\dashboard.css",
+              "RelativeToolTip": "src\\app\\features\\dashboard\\dashboard.css",
+              "ViewState": "AgIAAOoBAAAAAAAAAAAowAwCAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-05-20T16:26:26.296Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "deposit-money.ts",
+              "DocumentMoniker": "C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\accounts\\deposit-money\\deposit-money.ts",
+              "RelativeDocumentMoniker": "src\\app\\features\\accounts\\deposit-money\\deposit-money.ts",
+              "ToolTip": "C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\accounts\\deposit-money\\deposit-money.ts",
+              "RelativeToolTip": "src\\app\\features\\accounts\\deposit-money\\deposit-money.ts",
+              "ViewState": "AgIAACAAAAAAAAAAAAAawCUAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-05-20T17:12:07.353Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "profile-settings.html",
+              "DocumentMoniker": "C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\accounts\\profile-settings\\profile-settings.html",
+              "RelativeDocumentMoniker": "src\\app\\features\\accounts\\profile-settings\\profile-settings.html",
+              "ToolTip": "C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\accounts\\profile-settings\\profile-settings.html",
+              "RelativeToolTip": "src\\app\\features\\accounts\\profile-settings\\profile-settings.html",
+              "ViewState": "AgIAADcCAAAAAAAAAAAmwEECAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-05-20T16:55:08.523Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "profile-settings.css",
+              "DocumentMoniker": "C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\accounts\\profile-settings\\profile-settings.css",
+              "RelativeDocumentMoniker": "src\\app\\features\\accounts\\profile-settings\\profile-settings.css",
+              "ToolTip": "C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\accounts\\profile-settings\\profile-settings.css",
+              "RelativeToolTip": "src\\app\\features\\accounts\\profile-settings\\profile-settings.css",
+              "ViewState": "AgIAABcCAAAAAAAAAAAmwD4CAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-05-20T16:56:57.214Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "close-fd.css",
+              "DocumentMoniker": "C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\Close\\close-fd.css",
+              "RelativeDocumentMoniker": "src\\app\\features\\Close\\close-fd.css",
+              "ToolTip": "C:\\Users\\rohan.vante\\Desktop\\Gfrontend\\src\\app\\features\\Close\\close-fd.css",
+              "RelativeToolTip": "src\\app\\features\\Close\\close-fd.css",
+              "ViewState": "AgIAAC4BAAAAAAAAAAAAADQBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-05-20T16:09:29.739Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

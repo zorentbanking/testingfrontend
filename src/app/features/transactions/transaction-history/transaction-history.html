@@ -1,10 +1,15 @@
-<div class="zorent-auth-wrapper"> 
+<div class="zorent-auth-wrapper">
   <div class="container">
-    <div class="navbar-wrapper">
-      <div class="d-flex justify-content-between align-items-center mb-5 pb-3 header-border zorent-sticky-header">
+    <div class="navbar-wrapper zorent-sticky-header">
+
+
+      <div class="d-flex justify-content-between align-items-center mb-5 pb-3 header-border">
+
+
+
         <!-- LEFT NAVIGATION -->
 
-        <nav class="d-flex gap-4 align-items-center">
+        <nav class="d-flex gap-4 align-items-center z">
 
           <!-- LOGO -->
 
@@ -139,145 +144,144 @@
       </div>
     </div>
 
-      <div class="transactions-wrapper" [class.blur-content]="!hasAccounts">
-        <div class="card zorent-main-card rounded-4 border-0 mb-4">
-          <div class="card-body p-4">
-            <h5 class="fw-bold text-white mb-3">Find Transactions</h5>
-            <form [formGroup]="filterForm" (ngSubmit)="applyFilters()">
-              <div class="row g-3">
-                <div class="col-md-3">
-                  <label class="form-label zorent-text-muted small">Account</label>
-                  <select class="form-select zorent-input" formControlName="accountId">
-                    <ng-container *ngIf="accounts.length > 0">
-                      <option value="0">All Accounts</option>
+    <div class="transactions-wrapper" [class.blur-content]="!hasAccounts">
+      <div class="card zorent-main-card rounded-4 border-0 mb-4">
+        <div class="card-body p-4">
+          <h5 class="fw-bold text-white mb-3">Find Transactions</h5>
+          <form [formGroup]="filterForm" (ngSubmit)="applyFilters()">
+            <div class="row g-3">
+              <div class="col-md-3">
+                <label class="form-label zorent-text-muted small">Account</label>
+                <select class="form-select zorent-input" formControlName="accountId">
+                  <ng-container *ngIf="accounts.length > 0">
+                    <option value="0">All Accounts</option>
 
-                      <option *ngFor="let acc of accounts" [value]="acc.id">
-                        {{ acc.accountType }} - {{ acc.accountNumber }}
-                        {{acc.status === 'Closed' ? '(Closed)' : ''}}
-                      </option>
-                    </ng-container>
-                  </select>
-                </div>
-                <div class="col-md-3">
-                  <label class="form-label zorent-text-muted small">Keyword Search</label>
-                  <input type="text" class="form-control zorent-input" formControlName="keyword" placeholder="Search description...">
-                </div>
-                <div class="col-md-3">
-                  <label class="form-label zorent-text-muted small">Transaction Type</label>
-                  <select class="form-select zorent-input" formControlName="type">
-                    <option value="All">All Types</option>
-                    <option value="Credit">Credit Only</option>
-                    <option value="Debit">Debit Only</option>
-                  </select>
-                </div>
-                <div class="col-md-3"></div>
-                <div class="col-md-3">
-                  <label class="form-label zorent-text-muted small">Min Amount (INR)</label>
-                  <input type="number" class="form-control zorent-input" formControlName="minAmount" placeholder="enter amount">
-                </div>
-                <div class="col-md-3">
-                  <label class="form-label zorent-text-muted small">Max Amount (INR)</label>
-                  <input type="number" class="form-control zorent-input" formControlName="maxAmount" placeholder="enter amount">
-                </div>
-                <div class="col-md-3">
-                  <label class="form-label zorent-text-muted small">Start Date</label>
-                  <input type="date" class="form-control zorent-input" formControlName="startDate">
-                </div>
-                <div class="col-md-3">
-                  <label class="form-label zorent-text-muted small">End Date</label>
-                  <input type="date" class="form-control zorent-input" formControlName="endDate" [max]="todayDate">
-                </div>
-                <div class="col-12 d-flex justify-content-end gap-2 mt-3">
-                  <button type="button" class="btn zorent-btn-outline rounded-pill px-4" (click)="resetFilters()">Reset</button>
-                  <button type="submit" class="btn zorent-btn-accent rounded-pill px-4 fw-bold ">Apply Filters</button>
-                </div>
+                    <option *ngFor="let acc of accounts" [value]="acc.id">
+                      {{ acc.accountType }} - {{ acc.accountNumber }}
+                      {{acc.status === 'Closed' ? '(Closed)' : ''}}
+                    </option>
+                  </ng-container>
+                </select>
               </div>
-            </form>
-          </div>
+              <div class="col-md-3">
+                <label class="form-label zorent-text-muted small">Keyword Search</label>
+                <input type="text" class="form-control zorent-input" formControlName="keyword" placeholder="Search description...">
+              </div>
+              <div class="col-md-3">
+                <label class="form-label zorent-text-muted small">Transaction Type</label>
+                <select class="form-select zorent-input" formControlName="type">
+                  <option value="All">All Types</option>
+                  <option value="Credit">Credit Only</option>
+                  <option value="Debit">Debit Only</option>
+                </select>
+              </div>
+              <div class="col-md-3"></div>
+              <div class="col-md-3">
+                <label class="form-label zorent-text-muted small">Min Amount (INR)</label>
+                <input type="number" class="form-control zorent-input" formControlName="minAmount" placeholder="enter amount">
+              </div>
+              <div class="col-md-3">
+                <label class="form-label zorent-text-muted small">Max Amount (INR)</label>
+                <input type="number" class="form-control zorent-input" formControlName="maxAmount" placeholder="enter amount">
+              </div>
+              <div class="col-md-3">
+                <label class="form-label zorent-text-muted small">Start Date</label>
+                <input type="date" class="form-control zorent-input" formControlName="startDate">
+              </div>
+              <div class="col-md-3">
+                <label class="form-label zorent-text-muted small">End Date</label>
+                <input type="date" class="form-control zorent-input" formControlName="endDate" [max]="todayDate">
+              </div>
+              <div class="col-12 d-flex justify-content-end gap-2 mt-3">
+                <button type="button" class="btn zorent-btn-outline rounded-pill px-4" (click)="resetFilters()">Reset</button>
+                <button type="submit" class="btn zorent-btn-accent rounded-pill px-4 fw-bold ">Apply Filters</button>
+              </div>
+            </div>
+          </form>
         </div>
-        <div class="card zorent-main-card rounded-4 border-0">
-          <div class="card-body p-4 p-md-5">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-              <h3 class="fw-bold text-white mb-0">Results</h3>
-              <button class="btn zorent-btn-outline rounded-pill px-4" style="background: #1a5c8b; border-color: #1a5c8b; color: white;"
-                      (click)="exportCsv()">
+      </div>
+      <div class="card zorent-main-card rounded-4 border-0">
+        <div class="card-body p-4 p-md-5">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="fw-bold text-white mb-0">Results</h3>
+            <button class="btn zorent-btn-outline rounded-pill px-4" style="background: #1a5c8b; border-color: #1a5c8b; color: white;"
+                    (click)="exportCsv()">
 
-                Export
+              Export
 
-              </button>
-            </div>
-            <div class="table-responsive">
-              <table class="table table-borderless zorent-table align-middle">
-                <thead>
-                  <tr>
-                    <th (click)="sortBy('dateTime')" class="sortable-header">Date/Time <span>&#8693;</span></th>
-                    <th>Txn ID</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                    <th (click)="sortBy('amount')" class="text-end sortable-header">Amount <span>&#8693;</span></th>
-                   
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let txn of paginatedTransactions" class="zorent-table-row">
-                    <td class="zorent-text-muted">{{ txn.date | date:'short' }}</td>
-                    <td class="text-white">{{ txn.transactionId }}</td>
-                    <td>
-                      <span class="badge rounded-pill" [ngClass]="txn.type === 'Credit' ? 'zorent-badge-credit' : 'zorent-badge-debit'">
-                        {{ txn.type }}
-                      </span>
-                    </td>
-                    <td class="text-white fw-semibold">{{ txn.description }}</td>
-                    <td class="text-end fw-bold" [ngClass]="txn.type === 'Credit' ? 'text-success' : 'text-white'">
-                      {{ txn.type === 'Credit' ? '+' : '-' }}{{ txn.amount | currency:'INR' }}
-                    </td>
-                   
-                  </tr>
-                  <tr *ngIf="paginatedTransactions.length === 0">
-                    <td colspan="6" class="text-center text-muted py-4">No transactions found matching your criteria.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="d-flex justify-content-between align-items-center mt-4">
+            </button>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-borderless zorent-table align-middle">
+              <thead>
+                <tr>
+                  <th (click)="sortBy('dateTime')" class="sortable-header">Date/Time <span>&#8693;</span></th>
+                  <th>Txn ID</th>
+                  <th>Type</th>
+                  <th>Description</th>
+                  <th (click)="sortBy('amount')" class="text-end sortable-header">Amount <span>&#8693;</span></th>
 
-              <button class="btn zorent-btn-outline btn-sm rounded-pill px-3" [disabled]="currentPage === 1" (click)="prevPage()">Previous</button>
-              <span class="zorent-text-muted small">Page {{ currentPage }} of {{ totalPages }}</span>
-              <button class="btn zorent-btn-outline btn-sm rounded-pill px-3" [disabled]="currentPage === totalPages || totalPages === 0" (click)="nextPage()">Next</button>
-            </div>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let txn of paginatedTransactions" class="zorent-table-row">
+                  <td class="zorent-text-muted">{{ txn.date | date:'short' }}</td>
+                  <td class="text-white">{{ txn.transactionId }}</td>
+                  <td>
+                    <span class="badge rounded-pill" [ngClass]="txn.type === 'Credit' ? 'zorent-badge-credit' : 'zorent-badge-debit'">
+                      {{ txn.type }}
+                    </span>
+                  </td>
+                  <td class="text-white fw-semibold">{{ txn.description }}</td>
+                  <td class="text-end fw-bold" [ngClass]="txn.type === 'Credit' ? 'text-success' : 'text-white'">
+                    {{ txn.type === 'Credit' ? '+' : '-' }}{{ txn.amount | currency:'INR' }}
+                  </td>
+
+                </tr>
+                <tr *ngIf="paginatedTransactions.length === 0">
+                  <td colspan="6" class="text-center text-muted py-4">No transactions found matching your criteria.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mt-4">
+
+            <button class="btn zorent-btn-outline btn-sm rounded-pill px-3" [disabled]="currentPage === 1" (click)="prevPage()">Previous</button>
+            <span class="zorent-text-muted small">Page {{ currentPage }} of {{ totalPages }}</span>
+            <button class="btn zorent-btn-outline btn-sm rounded-pill px-3" [disabled]="currentPage === totalPages || totalPages === 0" (click)="nextPage()">Next</button>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
 
-    <div class="empty-account-overlay"
-         *ngIf="!hasAccounts">
+  <div class="empty-account-overlay"
+       *ngIf="!hasAccounts">
 
-      <div class="empty-account-card">
+    <div class="empty-account-card">
 
-        <div class="empty-icon">
-          <i class="bi bi-bank"></i>
-        </div>
-
-        <h3>No Accounts Linked</h3>
-
-        <p>
-          You need to create a bank account
-          before accessing transactions.
-        </p>
-
-        <button class="btn zorent-btn-accent rounded-pill px-4"
-                routerLink="/create-account">
-
-          Create Account
-
-        </button>
-
+      <div class="empty-icon">
+        <i class="bi bi-bank"></i>
       </div>
+
+      <h3>No Accounts Linked</h3>
+
+      <p>
+        You need to create a bank account
+        before accessing transactions.
+      </p>
+
+      <button class="btn zorent-btn-accent rounded-pill px-4"
+              routerLink="/create-account">
+
+        Create Account
+
+      </button>
 
     </div>
 
+  </div>
 
 
 </div>

@@ -523,3 +523,12 @@
     transform: translateY(0);
   }
 }
+
+.close-btn:disabled {
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+  color: white !important;
+  cursor: no-drop;
+  opacity: 1;
+  pointer-events: all !important;
+}
