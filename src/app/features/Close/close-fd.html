@@ -1,262 +1,318 @@
- <div class="zorent-sticky-header container py-4">
+<div class="zorent-sticky-header">
+  <div class="container-fluid px-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-5 pb-3 header-border">
 
 
 
-      <div class="d-flex justify-content-between align-items-center mb-5 pb-3 header-border">
-         
-        <nav class="d-flex gap-4 align-items-center">
-          <a routerLink="/dashboard"
-             class="d-flex align-items-center text-decoration-none">
+      <!-- LEFT NAVIGATION -->
 
-            <div class="zorent-logo-container me-3 shadow-sm">
+      <nav class="d-flex gap-4 align-items-center z">
 
-              <img src="https://logowik.com/content/uploads/images/t_zeronet1628.jpg"
-                   alt="Zorent Logo"
-                   class="zorent-main-logo">
+        <!-- LOGO -->
 
-            </div>
+        <a routerLink="/dashboard"
+           class="d-flex align-items-center text-decoration-none">
 
-            <div class="fw-bold logo-glow fs-4 me-3">
+          <div class="zorent-logo-container me-3 shadow-sm">
 
-              ZORENT
-
-            </div>
-
-          </a>
-          <a routerLink="/dashboard" replaceUrl="true" class="nav-link-custom active">Dashboard</a>
-          <a routerLink="/transactions" class="nav-link-custom">Transactions</a>
-          <a routerLink="/transfer" class="nav-link-custom">Transfer</a>
-        </nav>
-
-
-        <div class="profile-area d-flex align-items-center gap-3">
-
-          <!-- LOGOUT ICON -->
-          <!-- PROFILE -->
-
-          <div class="profile-trigger"
-               (click)="toggleProfile()">
-
-            <div class="avatar-circle shadow-sm">
-
-              {{ userName.charAt(0).toUpperCase() }}
-
-            </div>
-
-            <i class="bi bi-chevron-down ms-2 small text-muted"></i>
+            <img src="https://logowik.com/content/uploads/images/t_zeronet1628.jpg"
+                 alt="Zorent Logo"
+                 class="zorent-main-logo">
 
           </div>
 
-          <ul class="custom-dropdown shadow-lg"
-              [class.show]="isProfileOpen">
+          <div class="fw-bold logo-glow fs-4 me-3">
 
-            <li class="user-details-header">
+            ZORENT
 
-              <div class="text-center mb-3">
+          </div>
 
-                <h6 class="fw-bold mb-0">
+        </a>
 
-                  {{ userName }}
+        <!-- NAVIGATION -->
 
-                </h6>
+        <a routerLink="/dashboard"
+           routerLinkActive="active"
+           class="nav-link-custom">
 
-                <small class="text-muted">
+          Dashboard
 
-                  username : {{ userUsername }}
+        </a>
 
-                </small>
+        <a routerLink="/transactions"
+           routerLinkActive="active"
+           class="nav-link-custom">
 
-              </div>
+          Transactions
 
-            </li>
+        </a>
 
-            <li>
+        <a routerLink="/transfer"
+           routerLinkActive="active"
+           class="nav-link-custom">
 
-              <a class="profile-item"
-                 routerLink="/profile-settings">
+          Transfer
 
-                <i class="bi bi-person-circle me-2"></i>
+        </a>
 
-                Profile Settings
+      </nav>
 
-              </a>
+      <!-- RIGHT PROFILE -->
 
-            </li>
-            <li>
+      <div class="profile-area d-flex align-items-center gap-3">
 
-              <a class="profile-item"
-                 routerLink="/closed-accounts">
+        <!-- LOGOUT BUTTON -->
+        <!-- PROFILE -->
 
-                <i class="bi bi-archive me-2"></i>
+        <div class="profile-trigger"
+             (click)="toggleProfile()">
 
-                Closed Accounts
+          <div class="avatar-circle shadow-sm">
 
-              </a>
+            {{ userName.charAt(0).toUpperCase() }}
 
-            </li>
+          </div>
 
-            <li>
-
-              <a class="logout-item"
-                 (click)="logout()">
-
-                <i class="bi bi-box-arrow-right me-2"></i>
-
-                Logout
-
-              </a>
-
-            </li>
-
-          </ul>
-
-          <button class="logout-icon-btn"
-                  (click)="logout()">
-
-            <i class="bi bi-box-arrow-right"></i>
-
-          </button>
+          <i class="bi bi-chevron-down ms-2 small text-muted"></i>
 
         </div>
-      </div>
-      </div>
-      
-   
 
-<div class="closure-container">
+        <!-- DROPDOWN -->
 
-  <div *ngIf="!isSuccess" class="professional-card">
-    <div class="card-header">
-      <div class="shield-icon">
-        <i class="bi bi-shield-lock-fill"></i>
+        <ul class="custom-dropdown shadow-lg"
+            [class.show]="isProfileOpen">
+
+          <li class="user-details-header">
+
+            <div class="text-center mb-3">
+
+              <h6 class="fw-bold mb-0 user-dropdown-name">
+
+                {{ userName }}
+
+              </h6>
+
+              <small class="text-muted">
+
+                username : {{ userUsername }}
+
+              </small>
+
+            </div>
+
+          </li>
+
+          <li>
+
+            <a class="profile-item"
+               routerLink="/profile-settings">
+
+              <i class="bi bi-person-circle me-2"></i>
+
+              Profile Settings
+
+            </a>
+
+          </li>
+
+          <li>
+
+            <a class="logout-item"
+               (click)="logout()">
+
+              <i class="bi bi-box-arrow-right me-2"></i>
+
+              Logout
+
+            </a>
+
+          </li>
+
+        </ul>
+        <button class="logout-icon-btn"
+                (click)="logout()">
+
+          <i class="bi bi-box-arrow-right"></i>
+
+        </button>
+
       </div>
-      <h2>
-        {{ fdDetails.accountType }} Closure
-      </h2>
-      <p class="account-badge">ID: {{fdDetails.fdAccountNumber}}</p>
+
     </div>
-    <div *ngIf="errorMessage" class="error-box">
-      {{ errorMessage }}
-    </div>
-    <div class="details-box">
-      <p class="section-title">Investment Details</p>
-      <div class="info-grid">
-        <div class="info-item"><span>Start Date:</span> <strong>{{ fdDetails.startDate | date:'dd MMM yyyy' }}</strong></div>
-        <div class="info-item"><span>End Date:</span> <strong>{{ fdDetails.endDate | date:'dd MMM yyyy' }}</strong></div>
-        <div class="info-item"><span>Source:</span> <strong>{{fdDetails.sourceAccount}}</strong></div>
+
+  </div>
+</div>
+
+
+
+  <div class="closure-container">
+
+    <div *ngIf="!isSuccess" class="professional-card">
+      <div class="card-header">
+        <div class="shield-icon">
+          <i class="bi bi-shield-lock-fill"></i>
+        </div>
+        <h2>
+          {{ fdDetails.accountType }} Closure
+        </h2>
+
+      </div>
+      <div *ngIf="errorMessage" class="error-box">
+        {{ errorMessage }}
+      </div>
+      <div class="details-box">
+        <p class="section-title">Investment Details</p>
+        <div class="info-grid">
+          <div class="info-item"><span>Start Date:</span> <strong>{{ fdDetails.startDate | date:'dd MMM yyyy' }}</strong></div>
+          <div class="info-item"><span>End Date:</span> <strong>{{ fdDetails.endDate | date:'dd MMM yyyy' }}</strong></div>
+          <div class="info-item"><span>From Account:</span> <strong>{{fdDetails.sourceAccount}}</strong></div>
+        </div>
+
+        <label class="agreement-label">
+          <input type="checkbox" [(ngModel)]="isAgreed">
+          <span class="custom-check"></span>
+          I verify and authorize this account closure.
+        </label>
       </div>
 
-      <label class="agreement-label">
-        <input type="checkbox" [(ngModel)]="isAgreed">
-        <span class="custom-check"></span>
-        I verify and authorize this account closure.
-      </label>
-    </div>
+      <div *ngIf="isAgreed" class="settlement-summary animate-fade">
 
-    <div *ngIf="isAgreed" class="settlement-summary animate-fade">
+        <p class="summary-header">
+          Settlement Breakdown
+        </p>
 
-      <p class="summary-header">
-        Settlement Breakdown
-      </p>
+        <div class="data-row">
+          <span>Principal Amount</span>
 
-      <div class="data-row">
-        <span>Principal Amount</span>
-
-        <span>
-          ₹{{
+          <span>
+            {{ currencySymbol }}{{
         (
           isSuccess
             ? fdDetails.principal
             : fdDetails.principal
         ) | number:'1.2-2'
-          }}
-        </span>
-      </div>
+            }}
+          </span>
+        </div>
 
-      <div class="data-row">
-        <span>Total Interest</span>
+        <div class="data-row">
+          <span>Total Interest</span>
 
-        <span class="text-accent">
-          + ₹{{
+          <span class="text-accent">
+            + {{ currencySymbol }}{{
         (
           isSuccess
             ? fdDetails.earnedInterest
             : totalInterest
         ) | number:'1.2-2'
-          }}
-        </span>
-      </div>
+            }}
+          </span>
+        </div>
 
-      <div class="total-divider"></div>
+        <div class="total-divider"></div>
 
-      <div class="data-row">
-        <span class="total-label">
-          Total Payout
-        </span>
+        <div class="data-row">
+          <span class="total-label">
+            Total Payout
+          </span>
 
-        <span class="payout-value">
-          ₹{{
+          <span class="payout-value">
+            {{ currencySymbol }}{{
         (
           isSuccess
             ? fdDetails.amount
             : finalPayout
         ) | number:'1.2-2'
-          }}
-        </span>
+            }}
+          </span>
+        </div>
+
       </div>
 
+      <div *ngIf="isAgreed" class="security-section animate-fade">
+
+        <div class="input-field">
+
+          <label>Transfer to Account</label>
+
+          <select class="form-select"
+                  [(ngModel)]="targetAccount">
+
+            <option value="">
+              Select Account
+            </option>
+
+            <option *ngFor="let acc of filteredAccounts"
+                    [value]="acc.accountNumber">
+
+              {{ acc.accountType }}
+              -
+              {{ acc.accountNumber }}
+
+
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+      <button class="btn-submit"
+              [disabled]="!isAgreed || !targetAccount || loading"
+              (click)="processClosure()">
+
+        Closure
+
+      </button>
     </div>
 
-    <div *ngIf="isAgreed" class="security-section animate-fade">
+    <div *ngIf="isSuccess" class="professional-card success-layout">
+      <div class="success-ring">✓</div>
+      <h2 class="success-title">Closed Successfully</h2>
+      <p class="success-msg">Funds have been successfully transferred.</p>
 
-      <div class="input-field">
+      <div class="receipt-box">
 
-  <label>Transfer to Account</label>
+        <div class="receipt-row">
+          <span>Transaction ID:</span>
+          <span>{{ transactionId }}</span>
+        </div>
 
-  <select
-    class="form-select"
-    [(ngModel)]="targetAccount">
+        <div class="receipt-row">
+          <span>Transferred To:</span>
+          <span>{{ targetAccount }}</span>
+        </div>
 
-    <option value="">
-      Select Account
-    </option>
+        <div class="receipt-row">
+          <span>Principal Amount:</span>
+          <span>
+            {{ currencySymbol }}{{ fdDetails.principal | number:'1.2-2' }}
+          </span>
+        </div>
 
-    <option
-      *ngFor="let acc of accounts"
-      [value]="acc.accountNumber">
 
-      {{ acc.accountType }}
-      -
-      {{ acc.accountNumber }}
 
-    </option>
+        <div class="receipt-row">
+          <span>Interest Earned:</span>
+          <span class="text-success fw-semibold">
+            +  {{ currencySymbol }}{{ totalInterest | number:'1.2-2' }}
+          </span>
+        </div>
 
-  </select>
+        <div class="receipt-divider"></div>
 
-</div>
+        <div class="receipt-row total-row">
+          <span>Total Payout:</span>
+          <span class="fw-bold text-dark">
+            {{ currencySymbol }}{{ finalPayout | number:'1.2-2' }}
+          </span>
+        </div>
 
+      </div>
+
+      <button class="btn-dashboard" (click)="navDashboard()">Back to Dashboard</button>
     </div>
-
-    <button class="btn-submit"
-            [disabled]="!isAgreed || !targetAccount || loading"
-            (click)="processClosure()">
-
-      Authorize Closure
-
-    </button>
   </div>
 
-  <div *ngIf="isSuccess" class="professional-card success-layout">
-    <div class="success-ring">✓</div>
-    <h2 class="success-title">Closure Authorized</h2>
-    <p class="success-msg">Funds have been successfully liquidated and transferred.</p>
-
-    <div class="receipt-box">
-      <div class="receipt-row"><span>Ref ID:</span> <span>{{ transactionId }}</span></div>
-      <div class="receipt-row"><span>Transferred To:</span> <span>{{targetAccount}}</span></div>
-      <div class="receipt-row"><span>Amount:</span> <span class="fw-bold text-dark">₹{{finalPayout | number:'1.2-2'}}</span></div>
-    </div>
-
-    <button class="btn-dashboard" (click)="navDashboard()">Back to Dashboard</button>
-  </div>
-</div>

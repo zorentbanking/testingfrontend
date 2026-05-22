@@ -1,7 +1,7 @@
 
 <div class="zorent-auth-wrapper">
-<div class="dashboard-wrapper">
- 
+  <div class="dashboard-wrapper">
+
     <div class="welcome-toast shadow-lg"
          *ngIf="showWelcomeMessage">
 
@@ -30,7 +30,7 @@
 
 
 
-    <div class="container">
+    <div class="container-fluid px-4">
       <div class="d-flex justify-content-between align-items-center mb-5 pb-3 header-border zorent-sticky-header">
         <nav class="d-flex gap-4 align-items-center">
           <a routerLink="/dashboard"
@@ -156,7 +156,7 @@
           <div *ngIf="errorMessage" class="alert alert-danger">
             {{ errorMessage }}
           </div>
-         
+
           <h5 class="zorent-text-muted text-uppercase small fw-bold mb-2">Total Net Worth</h5>
           <h1 class="display-4 fw-bold mb-0">{{ currencySymbol }}{{ netWorth | number:'1.2-2' }}</h1>
         </div>
@@ -170,52 +170,47 @@
         <div class="account-type-toggle mb-4"
              *ngIf="accounts.length > 0">
 
-  <button
-    class="toggle-btn"
-    [class.active-toggle]="selectedAccountType === 'All'"
-    (click)="selectedAccountType = 'All'">
+          <button class="toggle-btn"
+                  [class.active-toggle]="selectedAccountType === 'All'"
+                  (click)="selectedAccountType = 'All'">
 
-    All Accounts
+            All Accounts
 
-  </button>
+          </button>
 
-  <button
-    class="toggle-btn savings-toggle"
-    [class.active-toggle]="selectedAccountType === 'Savings'"
-    (click)="selectedAccountType = 'Savings'">
+          <button class="toggle-btn savings-toggle"
+                  [class.active-toggle]="selectedAccountType === 'Savings'"
+                  (click)="selectedAccountType = 'Savings'">
 
-    Savings
+            Savings
 
-  </button>
+          </button>
 
-  <button
-    class="toggle-btn checking-toggle"
-    [class.active-toggle]="selectedAccountType === 'Checking'"
-    (click)="selectedAccountType = 'Checking'">
+          <button class="toggle-btn checking-toggle"
+                  [class.active-toggle]="selectedAccountType === 'Checking'"
+                  (click)="selectedAccountType = 'Checking'">
 
-    Checking
+            Checking
 
-  </button>
+          </button>
 
-  <button
-    class="toggle-btn fd-toggle"
-    [class.active-toggle]="selectedAccountType === 'Fixed Deposit'"
-    (click)="selectedAccountType = 'Fixed Deposit'">
+          <button class="toggle-btn fd-toggle"
+                  [class.active-toggle]="selectedAccountType === 'Fixed Deposit'"
+                  (click)="selectedAccountType = 'Fixed Deposit'">
 
-    Fixed Deposit
+            Fixed Deposit
 
-  </button>
+          </button>
 
-  <button
-    class="toggle-btn rd-toggle"
-    [class.active-toggle]="selectedAccountType === 'Recurring Deposit'"
-    (click)="selectedAccountType = 'Recurring Deposit'">
+          <button class="toggle-btn rd-toggle"
+                  [class.active-toggle]="selectedAccountType === 'Recurring Deposit'"
+                  (click)="selectedAccountType = 'Recurring Deposit'">
 
-    Recurring Deposit
+            Recurring Deposit
 
-  </button>
+          </button>
 
-</div>
+        </div>
         <div class="d-flex gap-2 mb-4">
           <button class="btn zorent-btn-outline rounded-pill px-4" routerLink="/transactions">Transactions</button>
           <button class="btn zorent-btn-accent rounded-pill px-4" routerLink="/create-account">+ New Account</button>
@@ -228,309 +223,67 @@
 
         <div class="row g-4">
 
-  <!-- NO FILTERED ACCOUNTS -->
-  <div
-    *ngIf="filteredAccounts.length === 0"
-    class="col-12">
+          <!-- NO FILTERED ACCOUNTS -->
+          <div *ngIf="filteredAccounts.length === 0"
+               class="col-12">
 
-    <div class="empty-filter-state">
+            <div class="empty-filter-state">
 
-      <div class="empty-icon">
-        <i class="bi bi-wallet2"></i>
-      </div>
+              <div class="empty-icon">
+                <i class="bi bi-wallet2"></i>
+              </div>
 
-      <h4>
-        No Accounts Found
-      </h4>
+              <h4>
+                No Accounts Found
+              </h4>
 
-      <p>
-        No {{ selectedAccountType }}
-        accounts are available.
-      </p>
+              <p>
+                No {{ selectedAccountType }}
+                accounts are available.
+              </p>
 
-    </div>
+            </div>
 
-  </div>
+          </div>
 
-  <!-- ACCOUNT CARDS -->
-  <div class="col-md-6"
-       *ngFor="let acc of filteredAccounts">
-          <!-- FLIP CONTAINER -->
-          <div class="flip-card-container">
+          <!-- ACCOUNT CARDS -->
+          <div class="col-md-6"
+               *ngFor="let acc of filteredAccounts">
+            <!-- FLIP CONTAINER -->
+            <div class="flip-card-container">
 
-            <div class="flip-card-inner"
-                 [class.flipped]="isFlipped[acc.accountNumber]">
+              <div class="flip-card-inner"
+                   [class.flipped]="isFlipped[acc.accountNumber]">
 
-              <!-- FRONT SIDE -->
-              <div class="card h-100 zorent-account-card border-0 flip-front"
-                   (click)="isFlipped[acc.accountNumber] = true">
+                <!-- FRONT SIDE -->
+                <div class="card h-100 zorent-account-card border-0 flip-front"
+                     (click)="isFlipped[acc.accountNumber] = true">
 
-                <div class="card-body p-4 d-flex flex-column">
+                  <div class="card-body p-4 d-flex flex-column">
 
-                  <!-- TOP -->
-                  <div class="d-flex justify-content-between align-items-center mb-4">
+                    <!-- TOP -->
+                    <div class="d-flex justify-content-between align-items-center mb-4">
 
-                    <span class="type-badge"
-                          [ngClass]="
+                      <span class="type-badge"
+                            [ngClass]="
                       acc.accountType === 'Checking'
                       ? 'type-checking'
                       : 'type-savings'
                     ">
 
-                      {{ acc.accountType }}
+                        {{ acc.accountType }}
 
-                    </span>
+                      </span>
 
-                    <span class="status-indicator">
+                      <span class="status-indicator">
 
-                      <span class="dot"
-                            [ngClass]="
+                        <span class="dot"
+                              [ngClass]="
                         acc.status === 'Active'
                         ? 'pulse'
                         : 'inactive-dot'
                       ">
-                      </span>
-
-                      {{ acc.status }}
-
-                    </span>
-
-                  </div>
-
-                  <!-- ACCOUNT -->
-                  <div class="mb-3">
-
-                    <p class="zorent-text-muted small mb-1">
-
-                      Account Number
-
-                    </p>
-
-                    <h5 class="fw-bold mb-0">
-
-                      {{ acc.accountNumber }}
-
-                    </h5>
-
-                  </div>
-
-                  <!-- BALANCE -->
-                  <div class="mb-4">
-
-                    <p class="zorent-text-muted small mb-1">
-
-                      Available Balance
-
-                    </p>
-
-                    <h2 class="fw-bold mb-0">
-
-                      {{ currencySymbol }}{{ acc.balance | number:'1.2-2' }}
-
-                    </h2>
-
-                  </div>
-
-                  <!-- BUTTONS -->
-                  <!-- BUTTONS -->
-                  <div class="mt-auto">
-
-                    <!-- SAVINGS -->
-                    <div class="row g-2"
-                         *ngIf="acc.accountType === 'Savings'">
-
-                      <div class="col-6">
-
-                        <button class="btn btn-primary w-100 rounded-pill"
-                                (click)="$event.stopPropagation()"
-                                [routerLink]="['/statement']"
-                                [queryParams]="{
-                accountNumber: acc.accountNumber
-              }">
-
-                          Statement
-
-                        </button>
-
-                      </div>
-
-                      <div class="col-6">
-
-                        <button class="btn btn-success w-100 rounded-pill"
-                                (click)="$event.stopPropagation()"
-                                routerLink="/transfer">
-
-                          Transfer
-
-                        </button>
-
-                      </div>
-
-                    </div>
-
-                    <!-- CHECKING -->
-                    <div class="row g-2"
-                         *ngIf="acc.accountType === 'Checking'">
-
-                      <div class="col-6">
-
-                        <button class="btn btn-primary w-100 rounded-pill"
-                                (click)="$event.stopPropagation()"
-                                [routerLink]="['/statement']"
-                                [queryParams]="{
-                accountNumber: acc.accountNumber
-              }">
-
-                          Statement
-
-                        </button>
-
-                      </div>
-
-                      <div class="col-6">
-
-                        <button class="btn btn-success w-100 rounded-pill"
-                                (click)="$event.stopPropagation()"
-                                routerLink="/transfer">
-
-                          Transfer
-
-                        </button>
-
-                      </div>
-
-                    </div>
-
-                    <!-- FD -->
-
-                    <div class="row g-2"
-                         *ngIf="acc.accountType === 'Fixed Deposit'">
-
-                     
-                      
-
-                      <div class="col-12">
-
-                        <button class="  btn btn-danger text-light  w-100 rounded-pill"
-                                [routerLink]="['/close-fd']"
-                                [disabled]="acc.status === 'Closed'"
-                                [queryParams]="{
-  accountNumber: acc.accountNumber
-}"
-                                (click)="$event.stopPropagation()">
-
-                          Close Account
-
-                        </button>
-
-                      </div>
-
-                    </div>
-
-                    <!-- FD -->
-                    <div class="row g-2"
-                         *ngIf="acc.accountType === 'Recurring Deposit'">
-
-                      <div class="col-6">
-
-                        <button class="btn btn-primary w-100 rounded-pill"
-                                (click)="$event.stopPropagation()"
-                                [routerLink]="['/statement']"
-                                [queryParams]="{
-              accountNumber: acc.accountNumber
-            }">
-
-                          Statement
-
-                        </button>
-
-                      </div>
-
-                      <div class="col-6">
-
-                        <button class="btn btn-danger text-light w-100 rounded-pill"
-                                [routerLink]="['/close-fd']"
-                                [disabled]="acc.status === 'Closed'"
-                                [queryParams]="{
-              accountNumber: acc.accountNumber
-            }"
-                                (click)="$event.stopPropagation()">
-
-                          Close Account
-
-                        </button>
-
-                      </div>
-
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-
-              <!-- BACK SIDE -->
-              <div class="card h-100 zorent-account-card border-0 flip-back"
-                   (click)="isFlipped[acc.accountNumber] = false">
-
-                <div class="card-body p-4 d-flex flex-column">
-
-                  <h5 class="fw-bold mb-4">
-
-                    Account Details
-
-                  </h5>
-
-                  <!-- DETAILS -->
-                  <div class="border rounded-4 p-3 bg-light mb-4">
-
-                    <div class="d-flex justify-content-between mb-3">
-
-                      <span class="text-muted small">
-                        Account Holder
-                      </span>
-
-                      <span class="fw-semibold">
-                        {{ userName }}
-                      </span>
-
-                    </div>
-
-                    <div class="d-flex justify-content-between mb-3">
-
-                      <span class="text-muted small">
-                        Username
-                      </span>
-
-                      <span class="fw-semibold">
-                        {{ userUsername }}
-                      </span>
-
-                    </div>
-
-                    <div class="d-flex justify-content-between mb-3">
-
-                      <span class="text-muted small">
-                        Phone Number
-                      </span>
-
-                      <span class="fw-semibold">
-                        {{ userPhone }}
-                      </span>
-
-                    </div>
-
-                    <div class="d-flex justify-content-between">
-
-                      <span class="text-muted small">
-                        Account Status
-                      </span>
-
-                      <span class="fw-semibold"
-                            [ngClass]="
-            acc.status === 'Active'
-            ? 'text-success'
-            : 'text-danger'
-          ">
+                        </span>
 
                         {{ acc.status }}
 
@@ -538,59 +291,300 @@
 
                     </div>
 
-                  </div>
+                    <!-- ACCOUNT -->
+                    <div class="mb-3">
 
-                  <!-- EXTRA BUTTONS -->
-                  <!-- EXTRA BUTTONS -->
-                  <div class="mt-auto">
+                      <p class="zorent-text-muted small mb-1">
 
-                    <!-- SAVINGS BACK -->
-                    <div *ngIf="acc.accountType === 'Savings'">
+                        Account Number
 
-                      <div class="row g-2">
+                      </p>
 
-                        <!-- DEPOSIT -->
+                      <h5 class="fw-bold mb-0">
+
+                        {{ acc.accountNumber }}
+
+                      </h5>
+
+                    </div>
+
+                    <!-- BALANCE -->
+                    <div class="mb-4">
+
+                      <p class="zorent-text-muted small mb-1">
+
+                        Available Balance
+
+                      </p>
+
+                      <h2 class="fw-bold mb-0">
+
+                        {{ currencySymbol }}{{ acc.balance | number:'1.2-2' }}
+
+                      </h2>
+
+                    </div>
+
+                    <!-- BUTTONS -->
+                    <!-- BUTTONS -->
+                    <div class="mt-auto">
+
+                      <!-- SAVINGS -->
+                      <div class="row g-2"
+                           *ngIf="acc.accountType === 'Savings'">
+
                         <div class="col-6">
-                          <button class="btn btn-success w-100 rounded-pill "
-                                  [routerLink]="['/deposit-money']"
-                                  [state]="{
-          accountNumber: acc.accountNumber
-        }"
-                                  (click)="$event.stopPropagation()">
 
-                            Deposit
+                          <button class="btn btn-primary w-100 rounded-pill"
+                                  (click)="$event.stopPropagation()"
+                                  [routerLink]="['/statement']"
+                                  [queryParams]="{
+                accountNumber: acc.accountNumber
+              }">
+
+                            Statement
 
                           </button>
 
                         </div>
 
-                        <!-- CLOSE ACCOUNT -->
-                                  <div class="col-6">
+                        <div class="col-6">
 
-            <button class="btn btn-danger text-light w-100 rounded-pill close-btn"
-                    [routerLink]="['/close-fd']"
-                    [disabled]="isDisabled(acc)"
-                    [queryParams]="{
+                          <button class="btn btn-success w-100 rounded-pill"
+                                  (click)="$event.stopPropagation()"
+                                  routerLink="/transfer">
+
+                            Transfer
+
+                          </button>
+
+                        </div>
+
+                      </div>
+
+                      <!-- CHECKING -->
+                      <div class="row g-2"
+                           *ngIf="acc.accountType === 'Checking'">
+
+                        <div class="col-6">
+
+                          <button class="btn btn-primary w-100 rounded-pill"
+                                  (click)="$event.stopPropagation()"
+                                  [routerLink]="['/statement']"
+                                  [queryParams]="{
+                accountNumber: acc.accountNumber
+              }">
+
+                            Statement
+
+                          </button>
+
+                        </div>
+
+                        <div class="col-6">
+
+                          <button class="btn btn-success w-100 rounded-pill"
+                                  (click)="$event.stopPropagation()"
+                                  routerLink="/transfer">
+
+                            Transfer
+
+                          </button>
+
+                        </div>
+
+                      </div>
+
+                      <!-- FD -->
+
+                      <div class="row g-2"
+                           *ngIf="acc.accountType === 'Fixed Deposit'">
+
+
+
+
+                        <div class="col-12">
+
+                          <button class="  btn btn-danger text-light  w-100 rounded-pill"
+                                  [routerLink]="['/close-fd']"
+                                  [disabled]="acc.status === 'Closed'"
+                                  [queryParams]="{
   accountNumber: acc.accountNumber
 }"
-                    (click)="$event.stopPropagation()">
+                                  (click)="$event.stopPropagation()">
 
-              Close Account
+                            Close Account
 
-            </button>
+                          </button>
 
-          </div>
+                        </div>
+
+                      </div>
+
+                      <!-- FD -->
+                      <div class="row g-2"
+                           *ngIf="acc.accountType === 'Recurring Deposit'">
+
+                        <div class="col-6">
+
+                          <button class="btn btn-primary w-100 rounded-pill"
+                                  (click)="$event.stopPropagation()"
+                                  [routerLink]="['/statement']"
+                                  [queryParams]="{
+              accountNumber: acc.accountNumber
+            }">
+
+                            Statement
+
+                          </button>
+
+                        </div>
+
+                        <div class="col-6">
+
+                          <button class="btn btn-danger text-light w-100 rounded-pill"
+                                  [routerLink]="['/close-fd']"
+                                  [disabled]="acc.status === 'Closed'"
+                                  [queryParams]="{
+              accountNumber: acc.accountNumber
+            }"
+                                  (click)="$event.stopPropagation()">
+
+                            Close Account
+
+                          </button>
+
+                        </div>
 
                       </div>
 
                     </div>
+                  </div>
+                </div>
+
+                <!-- BACK SIDE -->
+                <div class="card h-100 zorent-account-card border-0 flip-back"
+                     (click)="isFlipped[acc.accountNumber] = false">
+
+                  <div class="card-body p-4 d-flex flex-column">
+
+                    <h5 class="fw-bold mb-4">
+
+                      Account Details
+
+                    </h5>
+
+                    <!-- DETAILS -->
+                    <div class="border rounded-4 p-3 bg-light mb-4">
+
+                      <div class="d-flex justify-content-between mb-3">
+
+                        <span class="text-muted small">
+                          Account Holder
+                        </span>
+
+                        <span class="fw-semibold">
+                          {{ userName }}
+                        </span>
+
+                      </div>
+
+                      <div class="d-flex justify-content-between mb-3">
+
+                        <span class="text-muted small">
+                          Username
+                        </span>
+
+                        <span class="fw-semibold">
+                          {{ userUsername }}
+                        </span>
+
+                      </div>
+
+                      <div class="d-flex justify-content-between mb-3">
+
+                        <span class="text-muted small">
+                          Phone Number
+                        </span>
+
+                        <span class="fw-semibold">
+                          {{ userPhone }}
+                        </span>
+
+                      </div>
+
+                      <div class="d-flex justify-content-between">
+
+                        <span class="text-muted small">
+                          Account Status
+                        </span>
+
+                        <span class="fw-semibold"
+                              [ngClass]="
+            acc.status === 'Active'
+            ? 'text-success'
+            : 'text-danger'
+          ">
+
+                          {{ acc.status }}
+
+                        </span>
+
+                      </div>
+
+                    </div>
+
+                    <!-- EXTRA BUTTONS -->
+                    <!-- EXTRA BUTTONS -->
+                    <div class="mt-auto">
+
+                      <!-- SAVINGS BACK -->
+                      <div *ngIf="acc.accountType === 'Savings'">
+
+                        <div class="row g-2">
+
+                          <!-- DEPOSIT -->
+                          <div class="col-6">
+                            <button class="btn btn-success w-100 rounded-pill "
+                                    [routerLink]="['/deposit-money']"
+                                    [state]="{
+          accountNumber: acc.accountNumber
+        }"
+                                    (click)="$event.stopPropagation()">
+
+                              Deposit
+
+                            </button>
+
+                          </div>
+
+                          <!-- CLOSE ACCOUNT -->
+                          <div class="col-6">
+
+                            <button class="btn btn-danger text-light w-100 rounded-pill close-btn"
+                                    [routerLink]="['/close-fd']"
+                                    [disabled]="isDisabled(acc)"
+                                    [queryParams]="{
+  accountNumber: acc.accountNumber
+}"
+                                    (click)="$event.stopPropagation()">
+
+                              Close Account
+
+                            </button>
+
+                          </div>
+
+                        </div>
+
+                      </div>
 
                       <!-- CHECKING BACK -->
                       <div *ngIf="acc.accountType === 'Checking'">
 
                         <div class="row g-2 mb-2">
 
-                          
+
 
                           <div class="col-6">
 
@@ -603,26 +597,26 @@
 
                               Deposit
 
-                            
+
                             </button>
 
                           </div>
 
-                                    <div class="col-6">
+                          <div class="col-6">
 
-            <button class="btn btn-danger text-light w-100 rounded-pill close-btn"
-                    [routerLink]="['/close-fd']"
-                    [disabled]="isDisabled(acc)"
-                    [queryParams]="{
+                            <button class="btn btn-danger text-light w-100 rounded-pill close-btn"
+                                    [routerLink]="['/close-fd']"
+                                    [disabled]="isDisabled(acc)"
+                                    [queryParams]="{
   accountNumber: acc.accountNumber
 }"
-                    (click)="$event.stopPropagation()">
+                                    (click)="$event.stopPropagation()">
 
-              Close Account
+                              Close Account
 
-            </button>
+                            </button>
 
-          </div>
+                          </div>
 
 
                         </div>
@@ -633,19 +627,17 @@
 
                         </div>
 
-                        
+
 
                       </div>
 
                       <!-- FD BACK -->
-                      
-
                       <!-- RD BACK -->
                       <div *ngIf="acc.accountType === 'Recurring Deposit'">
 
                         <div class="row g-2">
 
-                          
+
 
                           <div class="col-12">
 
@@ -662,13 +654,15 @@
 
                           </div>
 
-                          
+
 
                         </div>
 
                       </div>
 
                     </div>
+
+                  </div>
 
                 </div>
 
@@ -679,8 +673,7 @@
           </div>
 
         </div>
-
       </div>
     </div>
-</div>
+  </div>
 </div>

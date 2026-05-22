@@ -43,6 +43,8 @@ export class DepositMoney implements OnInit {
 
   currencySymbol = APP_CONSTANTS.currencySymbol;
 
+  currency = APP_CONSTANTS.currency;
+
   isSuccess = false;
 
   errorMessage = '';

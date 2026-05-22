@@ -567,3 +567,20 @@ header-border {
     background: #dc2626;
     transform: scale(1.08);
   }
+.container-fluid {
+  max-width: 100%;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+.deposit-page {
+  min-height: 100vh;
+  background: #f8f9fa;
+  width: 100%;
+  display: block;
+}
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}

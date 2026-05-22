@@ -15,6 +15,7 @@ import { Account } from '../../../core/models/account.model';
 import { AccountService } from '../../../core/services/account.service';
 
 import { TransactionService } from '../../../core/services/transaction.service';
+import { APP_CONSTANTS } from '../../../app.constants';
 
 @Component({
   selector: 'app-transfer',
@@ -26,6 +27,9 @@ import { TransactionService } from '../../../core/services/transaction.service';
 export class TransferComponent implements OnInit {
 
   transferForm!: FormGroup;
+  currencySymbol = APP_CONSTANTS.currencySymbol;
+
+  currency = APP_CONSTANTS.currency;
 
   myAccounts: Account[] = [];
 

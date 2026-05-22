@@ -1,5 +1,5 @@
 <div class="zorent-auth-wrapper">
-  <div class="container">
+  <div class="container-fluid px-4">
     <div class="navbar-wrapper zorent-sticky-header">
 
 
@@ -177,11 +177,11 @@
               </div>
               <div class="col-md-3"></div>
               <div class="col-md-3">
-                <label class="form-label zorent-text-muted small">Min Amount (INR)</label>
+                <label class="form-label zorent-text-muted small">Min Amount ({{ currency }})</label>
                 <input type="number" class="form-control zorent-input" formControlName="minAmount" placeholder="enter amount">
               </div>
               <div class="col-md-3">
-                <label class="form-label zorent-text-muted small">Max Amount (INR)</label>
+                <label class="form-label zorent-text-muted small">Max Amount ({{ currency }})</label>
                 <input type="number" class="form-control zorent-input" formControlName="maxAmount" placeholder="enter amount">
               </div>
               <div class="col-md-3">
@@ -215,7 +215,7 @@
             <table class="table table-borderless zorent-table align-middle">
               <thead>
                 <tr>
-                  <th (click)="sortBy('dateTime')" class="sortable-header">Date/Time <span>&#8693;</span></th>
+                  <th (click)="sortBy('date')" class="sortable-header">Date/Time <span>&#8693;</span></th>
                   <th>Txn ID</th>
                   <th>Type</th>
                   <th>Description</th>
@@ -226,20 +226,36 @@
               <tbody>
                 <tr *ngFor="let txn of paginatedTransactions" class="zorent-table-row">
                   <td class="zorent-text-muted">{{ txn.date | date:'short' }}</td>
-                  <td class="text-white">{{ txn.transactionId }}</td>
+                  <td class="txn-id-cell">{{ txn.transactionId }}</td>
                   <td>
                     <span class="badge rounded-pill" [ngClass]="txn.type === 'Credit' ? 'zorent-badge-credit' : 'zorent-badge-debit'">
                       {{ txn.type }}
                     </span>
                   </td>
-                  <td class="text-white fw-semibold">{{ txn.description }}</td>
+                  <td class="txn-desc-cell">
+                    {{ txn.description }}
+                  </td>
                   <td class="text-end fw-bold" [ngClass]="txn.type === 'Credit' ? 'text-success' : 'text-white'">
-                    {{ txn.type === 'Credit' ? '+' : '-' }}{{ txn.amount | currency:'INR' }}
+                    {{ txn.type === 'Credit' ? '+' : '-' }}{{ txn.amount | currency:currency }}
                   </td>
 
                 </tr>
                 <tr *ngIf="paginatedTransactions.length === 0">
-                  <td colspan="6" class="text-center text-muted py-4">No transactions found matching your criteria.</td>
+                  <td colspan="6" class="py-5">
+                    <div class="empty-transaction-box">
+                      <div class="empty-transaction-icon">
+                        <i class="bi bi-search"></i>
+                      </div>
+
+                      <h5 class="empty-transaction-title">
+                        No Transactions Found
+                      </h5>
+
+                      <p class="empty-transaction-text">
+                        No transactions matched your current filters.
+                      </p>
+                    </div>
+                  </td>
                 </tr>
               </tbody>
             </table>

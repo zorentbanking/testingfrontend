@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { APP_CONSTANTS } from '../../../app.constants';
 
 @Component({
   selector: 'app-transaction-history',
@@ -15,6 +16,8 @@ export class TransactionHistoryComponent implements OnInit {
   allTransactions: any[] = [];
   filteredTransactions: any[] = [];
   paginatedTransactions: any[] = [];
+  currencySymbol = APP_CONSTANTS.currencySymbol;
+  currency = APP_CONSTANTS.currency;
 
   accounts: any[] = [];
 
@@ -208,10 +211,11 @@ export class TransactionHistoryComponent implements OnInit {
         const responseData = res.data;
 
         this.filteredTransactions =
-          responseData.data || [];
+          [...(responseData.data || [])];
 
-        this.filteredTransactions =
-          this.sortTransactions(this.filteredTransactions);
+        this.filteredTransactions.sort((a, b) =>
+          new Date(b.date).getTime() - new Date(a.date).getTime()
+        );
 
         this.totalPages =
           Math.ceil(responseData.totalRecords / this.itemsPerPage) || 1;

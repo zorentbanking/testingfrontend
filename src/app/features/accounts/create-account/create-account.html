@@ -1,5 +1,5 @@
 
-  <div class="container">
+  <div class="container-fluid px-4">
     <div class="d-flex justify-content-between align-items-center mb-5 pb-3 header-border zorent-sticky-header">
 
       <!-- LEFT NAVIGATION -->
@@ -160,149 +160,151 @@
 
           <div class="mb-4">
             <label class="form-label zorent-text-muted small fw-bold">
-              {{ accountForm.value.accountType === 'Recurring Deposit' ? 'Monthly Installment Amount (USD)' : 'Initial Deposit (USD)' }}
+              {{
+ accountForm.value.accountType === 'Recurring Deposit'
+  ? 'Monthly Installment Amount (' + currency + ')'
+  : 'Initial Deposit (' + currency + ')'
+              }}
             </label>
-            <input type="number" class="form-control zorent-input" formControlName="initialDeposit"
-                   placeholder="Enter amount" [min]="minDeposit" max="10000000">
-            <div class="info"
-                 style="color:brown;"
-                 *ngIf="accountForm.value.accountType">
-              minimum deposit is {{ minDeposit }}
-            </div>
-
-            <div *ngIf="accountForm.get('initialDeposit')?.touched && accountForm.get('initialDeposit')?.invalid" class="text-danger mt-2 small">
-              <div *ngIf="accountForm.get('initialDeposit')?.errors?.['min']">
-                Minimum deposit of {{ currencySymbol }}{{ minDeposit }} is required.
-              </div>
-              <div *ngIf="accountForm.get('initialDeposit')?.errors?.['required'] && !accountForm.get('initialDeposit')?.errors?.['min']">
-                Initial deposit is required.
-              </div>
-              <div *ngIf="accountForm.get('initialDeposit')?.errors?.['max']">
-                Maximum deposit limit is {{ currencySymbol }}1,00,00,000.
+            <div class="position-relative">
+              <input type="number" class="form-control zorent-input" formControlName="initialDeposit"
+                     placeholder="Enter amount" [min]="minDeposit" max="10000000">
+              <div class="info"
+                   *ngIf="accountForm.value.accountType">
+                Minimum deposit is {{ currencySymbol }}{{ minDeposit }}
               </div>
             </div>
-          </div>
 
-          <div class="mb-4"
-     *ngIf="accountForm.value.accountType === 'Recurring Deposit'">
-
-  <label class="form-label zorent-text-muted small fw-bold">
-    Installment Date (Monthly)
-  </label>
-
-  <div class="position-relative">
-
-  <input
-    type="text"
-    class="form-control zorent-input"
-    [value]="formattedInstallmentDate"
-    placeholder="Select Installment Date"
-    readonly
-    (click)="showInstallmentPicker = !showInstallmentPicker">
-
-  <div
-    class="installment-popup"
-    *ngIf="showInstallmentPicker">
-
-    <div class="installment-calendar">
-
-      <div
-        class="calendar-date"
-        *ngFor="let day of installmentDays"
-        [class.selected]="selectedInstallmentDay === day"
-        (click)="selectInstallmentDay(day)">
-
-        {{ day }}
-
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-  <div class="mt-2">
-    <small class="text-muted">
-      Select any day of this month for your monthly installment.
-    </small>
-  </div>
-
-</div>
-
-          <div class="mb-4" *ngIf="accountForm.value.accountType === 'Fixed Deposit' || accountForm.value.accountType === 'Recurring Deposit'">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <label class="form-label zorent-text-muted small fw-bold mb-0">Duration (Months)</label>
-              <span *ngIf="accountForm.value.tenureMonths > 0" class="badge bg-light text-dark border">
-                Equivalent to {{ (accountForm.value.tenureMonths / 12).toFixed(1) }} Years
-              </span>
-            </div>
-            <input type="number" class="form-control zorent-input" formControlName="tenureMonths"
-                   placeholder="Enter duration in months" min="0" max="120">
-
-            <div *ngIf="accountForm.get('tenureMonths')?.touched && accountForm.get('tenureMonths')?.invalid" class="text-danger mt-2 small">
-              <div *ngIf="accountForm.get('tenureMonths')?.errors?.['required']">Duration is required</div>
-              <div *ngIf="accountForm.get('tenureMonths')?.errors?.['min']">Minimum duration is 6 months</div>
-              <div *ngIf="accountForm.get('tenureMonths')?.errors?.['max']">Maximum duration allowed is 120 months</div>
-            </div>
-          </div>
-
-          <div class="mb-4" *ngIf="accountForm.value.accountType === 'Fixed Deposit' || accountForm.value.accountType === 'Recurring Deposit'">
-            <label class="form-label zorent-text-muted small fw-bold">Interest Rate</label>
-            <div class="input-group">
-              <input type="text" class="form-control zorent-input" [value]="interestRate + '%'" readonly
-                     style="background-color: #dee2e6 !important; cursor: not-allowed; color: #495057; font-weight: 600; border: 1px solid #ced4da;">
-            </div>
-          </div>
-
-          <div class="zorent-main-card mt-4 p-4 shadow-sm"
-               *ngIf="maturityAmount > 0 && (accountForm.value.accountType === 'Fixed Deposit' || accountForm.value.accountType === 'Recurring Deposit')"
-               style="background-color: #f8f9fa; border: 1px solid #dee2e6;">
-
-            <h6 class="fw-bold text-primary mb-3">
-              <i class="bi bi-graph-up-arrow me-2"></i>Summary
-            </h6>
-
-            <div class="row g-3">
-              <div class="col-6">
-                <p class="zorent-text-muted small mb-1">
-                  {{ accountForm.value.accountType === 'Recurring Deposit' ? 'Monthly Installment' : 'Principal Amount' }}
-                </p>
-                <p class="fw-bold mb-0 text-dark">{{ currencySymbol }}{{ accountForm.value.initialDeposit | number:'1.2-2' }}</p>
-              </div>
-              <div class="col-6 text-end">
-                <p class="zorent-text-muted small mb-1">Total Interest To be Earned</p>
-                <p class="fw-bold text-success mb-0">+ {{ currencySymbol }}{{ (maturityAmount - (accountForm.value.accountType === 'Recurring Deposit' ? (accountForm.value.initialDeposit * accountForm.value.tenureMonths) : accountForm.value.initialDeposit)) | number:'1.2-2' }}</p>
-              </div>
-
-              <div class="col-12 mt-2" *ngIf="accountForm.value.accountType === 'Recurring Deposit'">
-                <div class="p-2 rounded-2" style="background: #eef2f7; border-left: 3px solid #1a5c8b;">
-                  <span class="zorent-text-muted small">Total Period: </span>
-                  <span class="fw-bold text-dark">{{ accountForm.value.tenureMonths }} Monthly Deposit</span>
+              <div *ngIf="accountForm.get('initialDeposit')?.touched && accountForm.get('initialDeposit')?.invalid" class="text-danger mt-2 small">
+                <div *ngIf="accountForm.get('initialDeposit')?.errors?.['min']">
+                  Minimum deposit of {{ currencySymbol }}{{ minDeposit }} is required.
                 </div>
-              </div>
-
-              <div class="col-12 mt-3 pt-3" style="border-top: 1px dashed #ced4da;">
-                <div class="d-flex justify-content-between align-items-center">
-                  <div>
-                    <p class="zorent-text-muted small mb-0">TENURE</p>
-                    <p class="fw-bold text-dark mb-0">{{ maturityDate | date:'dd/MM/yyyy' }}</p>
-                  </div>
-                  <div class="text-end">
-                    <p class="text-primary small mb-0">Maturity Amount</p>
-                    <h4 class="fw-bold text-primary mb-0">{{ currencySymbol }}{{ maturityAmount | number:'1.2-2' }}</h4>
-                  </div>
+                <div *ngIf="accountForm.get('initialDeposit')?.errors?.['required'] && !accountForm.get('initialDeposit')?.errors?.['min']">
+                  Initial deposit is required.
+                </div>
+                <div *ngIf="accountForm.get('initialDeposit')?.errors?.['max']">
+                  Maximum deposit limit is {{ currencySymbol }}1,00,00,000.
                 </div>
               </div>
             </div>
-          </div>
 
-          <button type="submit" class="btn zorent-btn-accent w-100 rounded-pill mt-4" [disabled]="accountForm.invalid || loading">
-            {{ loading ? 'Creating Account...' : 'Confirm & Create Account →' }}
-          </button>
+            <div class="mb-4"
+                 *ngIf="accountForm.value.accountType === 'Recurring Deposit'">
 
-        </form>
+              <label class="form-label zorent-text-muted small fw-bold">
+                Installment Date (Monthly)
+              </label>
+
+              <div class="position-relative">
+
+                <input type="text"
+                       class="form-control zorent-input"
+                       [value]="formattedInstallmentDate"
+                       placeholder="Select Installment Date"
+                       readonly
+                       (click)="showInstallmentPicker = !showInstallmentPicker">
+
+                <div class="installment-popup"
+                     *ngIf="showInstallmentPicker">
+
+                  <div class="installment-calendar">
+
+                    <div class="calendar-date"
+                         *ngFor="let day of installmentDays"
+                         [class.selected]="selectedInstallmentDay === day"
+                         (click)="selectInstallmentDay(day)">
+
+                      {{ day }}
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <div class="mt-2">
+                <small class="text-muted">
+                  Select any day of this month for your monthly installment.
+                </small>
+              </div>
+
+            </div>
+
+            <div class="mb-4" *ngIf="accountForm.value.accountType === 'Fixed Deposit' || accountForm.value.accountType === 'Recurring Deposit'">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <label class="form-label zorent-text-muted small fw-bold mb-0">Duration (Months)</label>
+                <span *ngIf="accountForm.value.tenureMonths > 0" class="badge bg-light text-dark border">
+                  Equivalent to {{ (accountForm.value.tenureMonths / 12).toFixed(1) }} Years
+                </span>
+              </div>
+              <input type="number" class="form-control zorent-input" formControlName="tenureMonths"
+                     placeholder="Enter duration in months" min="0" max="120">
+
+              <div *ngIf="accountForm.get('tenureMonths')?.touched && accountForm.get('tenureMonths')?.invalid" class="text-danger mt-2 small">
+                <div *ngIf="accountForm.get('tenureMonths')?.errors?.['required']">Duration is required</div>
+                <div *ngIf="accountForm.get('tenureMonths')?.errors?.['min']">Minimum duration is 6 months</div>
+                <div *ngIf="accountForm.get('tenureMonths')?.errors?.['max']">Maximum duration allowed is 120 months</div>
+              </div>
+            </div>
+
+            <div class="mb-4" *ngIf="accountForm.value.accountType === 'Fixed Deposit' || accountForm.value.accountType === 'Recurring Deposit'">
+              <label class="form-label zorent-text-muted small fw-bold">Interest Rate</label>
+              <div class="input-group">
+                <input type="text" class="form-control zorent-input" [value]="interestRate + '%'" readonly
+                       style="background-color: #dee2e6 !important; cursor: not-allowed; color: #495057; font-weight: 600; border: 1px solid #ced4da;">
+              </div>
+            </div>
+
+            <div class="zorent-main-card mt-4 p-4 shadow-sm"
+                 *ngIf="maturityAmount > 0 && (accountForm.value.accountType === 'Fixed Deposit' || accountForm.value.accountType === 'Recurring Deposit')"
+                 style="background-color: #f8f9fa; border: 1px solid #dee2e6;">
+
+              <h6 class="fw-bold text-primary mb-3">
+                <i class="bi bi-graph-up-arrow me-2"></i>Summary
+              </h6>
+
+              <div class="row g-3">
+                <div class="col-6">
+                  <p class="zorent-text-muted small mb-1">
+                    {{ accountForm.value.accountType === 'Recurring Deposit' ? 'Monthly Installment' : 'Principal Amount' }}
+                  </p>
+                  <p class="fw-bold mb-0 text-dark">{{ currencySymbol }}{{ accountForm.value.initialDeposit | number:'1.2-2' }}</p>
+                </div>
+                <div class="col-6 text-end">
+                  <p class="zorent-text-muted small mb-1">Total Interest To be Earned</p>
+                  <p class="fw-bold text-success mb-0">+ {{ currencySymbol }}{{ (maturityAmount - (accountForm.value.accountType === 'Recurring Deposit' ? (accountForm.value.initialDeposit * accountForm.value.tenureMonths) : accountForm.value.initialDeposit)) | number:'1.2-2' }}</p>
+                </div>
+
+                <div class="col-12 mt-2" *ngIf="accountForm.value.accountType === 'Recurring Deposit'">
+                  <div class="p-2 rounded-2" style="background: #eef2f7; border-left: 3px solid #1a5c8b;">
+                    <span class="zorent-text-muted small">Total Period: </span>
+                    <span class="fw-bold text-dark">{{ accountForm.value.tenureMonths }} Monthly Deposit</span>
+                  </div>
+                </div>
+
+                <div class="col-12 mt-3 pt-3" style="border-top: 1px dashed #ced4da;">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <p class="zorent-text-muted small mb-0">TENURE</p>
+                      <p class="fw-bold text-dark mb-0">{{ maturityDate | date:'dd/MM/yyyy' }}</p>
+                    </div>
+                    <div class="text-end">
+                      <p class="text-primary small mb-0">Maturity Amount</p>
+                      <h4 class="fw-bold text-primary mb-0">{{ currencySymbol }}{{ maturityAmount | number:'1.2-2' }}</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn zorent-btn-accent w-100 rounded-pill mt-4" [disabled]="accountForm.invalid || loading">
+              {{ loading ? 'Creating Account...' : 'Confirm & Create Account →' }}
+            </button>
+
+</form>
       </div>
     </div>
   </div>

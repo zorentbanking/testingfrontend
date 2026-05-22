@@ -1,5 +1,5 @@
 <div class="profile-page">
-  <div class="container">
+  <div class="container-fluid px-4">
 
   <!-- TOP NAVBAR -->
   <div class="d-flex justify-content-between align-items-center mb-5 pb-3 header-border zorent-sticky-header">
@@ -170,11 +170,11 @@
           Change Password
         </a>
 
-        <a [class.active-link]="activeSession === 'pin'"
+        <!--<a [class.active-link]="activeSession === 'pin'"
            (click)="setSection('pin')">
           <i class="bi bi-key me-2"></i>
           Transaction PIN
-        </a>
+        </a>-->
 
         <!-- <a [class.active-link]="activeSession === 'kyc'"
            (click)="setSection('kyc')">
@@ -500,7 +500,7 @@
 
         <!-- TRANSACTION PIN -->
 
-        <div class="section-card fade-card" *ngIf="activeSession === 'pin'">
+        <!--<div class="section-card fade-card" *ngIf="activeSession === 'pin'">
 
           <h3>Transaction PIN</h3>
           <div *ngIf="pinErrorMessage"
@@ -577,7 +577,7 @@
           </button>
          
 
-        </div>
+        </div>-->
 
         <!-- KYC -->
 

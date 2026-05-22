@@ -1,3 +1,4 @@
 export const APP_CONSTANTS = {
-currencySymbol: '₹'
+  currencySymbol: '$',
+  currency: 'USD',
 };

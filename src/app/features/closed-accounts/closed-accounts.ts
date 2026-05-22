@@ -90,16 +90,18 @@ export class ClosedAccountsComponent implements OnInit {
       next: (res: any) => {
 
         this.loading = false;
-        this.closedAccounts =
-          (res.data || []).filter(
-            (x: any) =>
-              x.status === 'Closed'
-          );
+        this.closedAccounts = this.accounts;
 
         this.accounts =
-          (res.data || []).filter(
-            (a: any) => a.status === 'Closed'
-          );
+          (res.data || [])
+            .filter(
+              (a: any) => a.status === 'Closed'
+            )
+            .sort(
+              (a: any, b: any) =>
+                new Date(b.closedAt).getTime() -
+                new Date(a.closedAt).getTime()
+            );
 
         this.calculateNetWorth();
 

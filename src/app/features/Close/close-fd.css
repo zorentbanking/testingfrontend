@@ -642,3 +642,165 @@
     font-size: 24px;
   }
 }
+.receipt-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 24px;
+  margin-top: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  font-size: 15px;
+  color: #334155;
+}
+
+  .receipt-row span:first-child {
+    font-weight: 600;
+    color: #64748b;
+  }
+
+  .receipt-row span:last-child {
+    font-weight: 500;
+    color: #0f172a;
+  }
+
+.receipt-divider {
+  border-top: 1px dashed #cbd5e1;
+  margin: 10px 0;
+}
+
+.total-row {
+  padding-top: 16px;
+  font-size: 17px;
+}
+
+  .total-row span:last-child {
+    font-size: 20px;
+    color: #16a34a;
+  }
+
+.text-success {
+  color: #16a34a;
+}
+/* STICKY HEADER */
+.zorent-sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(248, 249, 250, 0.95);
+  backdrop-filter: blur(8px);
+}
+
+/* BORDER */
+.header-border {
+  border-bottom: 1px solid #e9ecef;
+}
+
+/* LOGO */
+.zorent-logo-container {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.zorent-main-logo {
+  width: 100%;
+}
+
+/* BRAND */
+.logo-glow {
+  color: #1a5c8b;
+  font-weight: 800;
+}
+
+/* NAV LINKS */
+.nav-link-custom {
+  text-decoration: none;
+  color: #6c757d;
+  font-weight: 500;
+  position: relative;
+}
+
+  .nav-link-custom:hover,
+  .nav-link-custom.active {
+    color: #1a5c8b;
+  }
+
+/* PROFILE */
+.profile-area {
+  position: relative;
+}
+
+.profile-trigger {
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 50px;
+  background: #fff;
+  border: 1px solid #e9ecef;
+  cursor: pointer;
+}
+
+.avatar-circle {
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(135deg, #1a5c8b, #007bff);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* DROPDOWN */
+.custom-dropdown {
+  position: absolute;
+  right: 0;
+  top: 55px;
+  min-width: 240px;
+  background: #fff;
+  border-radius: 12px;
+  display: none;
+  list-style: none;
+  border: 1px solid #e9ecef;
+}
+
+  .custom-dropdown.show {
+    display: block;
+  }
+
+.profile-item,
+.logout-item {
+  display: block;
+  padding: 12px 16px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+  .profile-item:hover {
+    background: #f5f9ff;
+  }
+
+.logout-item {
+  color: #dc3545;
+}
+
+.logout-icon-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #ef4444;
+  color: white;
+  border: none;
+}

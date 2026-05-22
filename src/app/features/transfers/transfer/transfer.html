@@ -1,5 +1,5 @@
 <div class="zorent-auth-wrapper">
-  <div class="container ">
+  <div class="container-fluid px-4 ">
     <div class="navbar-wrapper zorent-sticky-header">
       <div class="d-flex justify-content-between align-items-center mb-5 pb-3 header-border ">
 
@@ -176,7 +176,7 @@
                             [value]="acc.id">
 
                       {{ acc.accountType }} - {{ acc.accountNumber }}
-                      (Avail: {{ acc.balance | currency:'INR' }})
+                      (Avail: {{ acc.balance | currency:currency }})
 
                     </option>
 
@@ -232,7 +232,7 @@
               <div class="mb-4">
 
                 <label class="form-label zorent-text-muted small fw-bold">
-                  Amount (INR)
+                  Amount ({{ currency }})
                 </label>
 
                 <input type="number"
@@ -255,7 +255,7 @@
                   <span *ngIf="transferForm.get('amount')?.errors?.['max']">
 
                     Maintain minimum balance of
-                    {{ minimumBalance | currency:'INR' }}
+                    {{ minimumBalance | currency:currency }}
 
                   </span>
 
@@ -265,11 +265,14 @@
 
                 </div>
 
-                <div class="small mt-2 text-warning"
+                <div class="available-balance"
                      *ngIf="selectedAccountBalance">
 
-                  Available Balance:
-                  {{ selectedAccountBalance | currency:'INR' }}
+                  <span>Available Balance:</span>
+
+                  <span>
+                    {{ selectedAccountBalance | currency:currency }}
+                  </span>
 
                 </div>
               </div>

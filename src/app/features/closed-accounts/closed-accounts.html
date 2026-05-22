@@ -1,7 +1,7 @@
 <div class="zorent-auth-wrapper">
 <div class="dashboard-wrapper">
 
-  <div class="container">
+  <div class="container-fluid px-4">
 
     <!-- HEADER -->
     <div class="navbar-wrapper zorent-sticky-header">
@@ -254,17 +254,33 @@
                 </div>
 
                 <!-- BALANCE -->
+                <!-- BALANCE / LAST TRANSACTED -->
+                <!-- BALANCE / LAST TRANSACTED -->
                 <div class="mb-4">
 
                   <p class="zorent-text-muted small mb-1">
 
-                    Final Settlement Amount
+                    {{
+      acc.accountType === 'Fixed Deposit' ||
+      acc.accountType === 'Recurring Deposit'
+        ? 'Total Amount Earned'
+        : 'Available Balance'
+                    }}
 
                   </p>
 
                   <h2 class="fw-bold mb-0">
 
-                    {{ currencySymbol }}{{ acc.balance | number:'1.2-2' }}
+                    {{ currencySymbol }}
+
+                    {{
+(
+  acc.accountType === 'Fixed Deposit' ||
+  acc.accountType === 'Recurring Deposit'
+)
+  ? ((acc.lastTransactionAmount || 0) | number:'1.2-2')
+  : (acc.balance | number:'1.2-2')
+                    }}
 
                   </h2>
 
@@ -363,7 +379,15 @@
                 </div>
 
                 <!-- CLOSED DATE -->
+                <!-- DATES -->
                 <div class="mt-auto text-center">
+
+                  <small class="text-muted d-block mb-1">
+
+                    Created On :
+                    {{ acc.createdAt | date:'mediumDate' }}
+
+                  </small>
 
                   <small class="text-muted">
 

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FormsModule } from '@angular/forms';
+import { APP_CONSTANTS } from '../../app.constants';
 
 import {
   Router,
@@ -26,12 +27,16 @@ import {
 })
 
 export class CloseFd implements OnInit {
+  currencySymbol = APP_CONSTANTS.currencySymbol;
+
+  currency = APP_CONSTANTS.currency;
 
   isAgreed = false;
 
   isSuccess = false;
 
-  accounts:any[]=[];
+  accounts: any[] = [];
+  filteredAccounts: any[] = [];
 
   loading = false;
 
@@ -127,6 +132,7 @@ loadAccounts(): void {
               acc.accountType === 'Checking'
             )
         );
+      
 
       console.log(
         'AVAILABLE ACCOUNTS',
@@ -234,6 +240,22 @@ loadAccounts(): void {
               data.tenureMonths || 12
             ) / 12
         };
+        this.filteredAccounts =
+          this.accounts.filter(
+            (acc: any) =>
+              String(acc.accountNumber).trim() !==
+              String(this.fdDetails.sourceAccount).trim()
+          );
+
+        console.log(
+          'SOURCE ACCOUNT',
+          this.fdDetails.sourceAccount
+        );
+
+        console.log(
+          'FILTERED ACCOUNTS',
+          this.filteredAccounts
+        );
 
         console.log(
           'FD DETAILS',

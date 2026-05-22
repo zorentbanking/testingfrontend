@@ -25,6 +25,8 @@ export class CreateAccountComponent
   accountForm!: FormGroup;
 currencySymbol = APP_CONSTANTS.currencySymbol;
   minDeposit: number = 0;
+  currency = APP_CONSTANTS.currency;
+  
 
   interestRate: number = 0;
 
