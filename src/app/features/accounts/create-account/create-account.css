@@ -3,7 +3,11 @@
   background-color: #f8f9fa;
   min-height: 100vh;
 }
-
+.pb-3{
+  padding-bottom: 1rem !important;
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+}
 .zorent-form-container {
   max-width: 600px;
   margin: 0 auto;
@@ -218,7 +222,7 @@
 
 .zorent-text-muted {
   color: #64748b !important;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 0.75rem !important;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -283,7 +287,7 @@
   font-size: 0.75rem !important;
   text-transform: uppercase !important;
   letter-spacing: 1px !important;
-  font-weight: 700 !important;
+  font-weight: 500 !important;
   margin-bottom: 8px !important;
   display: block;
 }
@@ -336,7 +340,7 @@ input[readonly].zorent-input {
   transition: all 0.3s ease !important;
 }
 .header-border {
-  border-bottom: 1px solid #e9ecef;
+  border-bottom: 1px solid #e1e4e7;
 }
 
 .logo-glow {
@@ -431,6 +435,7 @@ input[readonly].zorent-input {
 
   .custom-dropdown.show {
     display: block;
+    animation:slideIn 0.3s ease;
   }
 
 .user-details-header {
@@ -495,6 +500,7 @@ input[readonly].zorent-input {
   justify-content: center;
   font-size: 18px;
   transition: 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
   .logout-icon-btn:hover {
@@ -590,4 +596,23 @@ input[readonly].zorent-input {
     transform: translateY(0);
   }
 }
+nav .nav-link-custom {
+  font-weight: 500 !important;
+  letter-spacing: 0 !important;
+}
 
+nav .logo-glow {
+  font-weight: 700 !important;
+}
+.zorent-auth-wrapper {
+  min-height: 100vh;
+  background-color: #f1f5f9;
+  font-family: 'Inter', sans-serif;
+  background-image: url('/assets/login-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  background-attachment: fixed;
+}

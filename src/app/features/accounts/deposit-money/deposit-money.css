@@ -5,6 +5,12 @@
   color: #1a1a1b;
   padding-bottom: 20px;
 }
+
+.pb-3{
+  padding-bottom: 1rem !important;
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+}
 /* MAIN CONTAINER */
 
 .closure-container {
@@ -15,7 +21,7 @@
    NAVBAR
 ========================= */
 
-header-border {
+.header-border {
   border-bottom: 1px solid #e1e4e7;}
 
 /* --- Glowing ZORENT Logo --- */
@@ -63,7 +69,6 @@ header-border {
 /* --- Premium Profile Bar & Dropdown --- */
 .profile-area {
   position: relative;
-  padding-top: 4px;
 }
 
 .profile-trigger {
@@ -584,3 +589,86 @@ body, html {
   width: 100%;
   overflow-x: hidden;
 }
+.deposit-page {
+  min-height: 100vh;
+  background-color: #f1f5f9;
+  font-family: 'Inter', sans-serif;
+  background-image: url('/assets/login-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  background-attachment: fixed;
+}
+.profile-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #0d6efd;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin: auto;
+}
+
+.user-details-header {
+  padding: 15px;
+  min-width: 280px;
+}
+.zorent-logo-container {
+  width: 42px;
+  height: 42px;
+  background: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+.zorent-main-logo {
+  max-width: 100%;
+  height: auto;
+}
+.logout-icon-btn {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: #ef4444;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+  .logout-icon-btn:hover {
+    background: #dc2626;
+    transform: scale(1.08);
+  }
+
+  .profile-item {
+  display: block;
+  padding: 15px 20px;
+  color: #212529;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+  .profile-item:hover {
+    background: #f5f9ff;
+    color: #0d6efd;
+  }
+
+
+
+

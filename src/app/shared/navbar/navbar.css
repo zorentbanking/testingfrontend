@@ -1,0 +1,107 @@
+.header-border {
+  border-bottom: 1px solid #e1e4e7;
+}
+
+.logo-glow {
+  color: #1a5c8b;
+  letter-spacing: 1px;
+}
+
+.nav-link-custom {
+  text-decoration: none;
+  color: #6c757d;
+  font-weight: 500;
+  position: relative;
+  padding: 8px 0;
+}
+
+.nav-link-custom.active {
+  color: #1a5c8b;
+  border-bottom: 2px solid #1a5c8b;
+}
+
+.profile-area {
+  position: relative;
+}
+
+.profile-trigger {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.avatar-circle {
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(135deg, #1a5c8b, #007bff);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.custom-dropdown {
+  position: absolute;
+  right: 0;
+  top: 55px;
+  background: white;
+  border-radius: 15px;
+  min-width: 250px;
+  display: none;
+  list-style: none;
+  padding: 0;
+  z-index: 1000;
+}
+
+.custom-dropdown.show {
+  display: block;
+}
+
+.profile-item,
+.logout-item {
+  display: block;
+  padding: 15px 20px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.logout-icon-btn {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: #ef4444;
+  color: white;
+}
+
+.zorent-logo-container {
+  width: 42px;
+  height: 42px;
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.zorent-main-logo {
+  width: 100%;
+}
+
+
+.navbar-wrapper {
+
+  z-index: 2000;
+}
+.zorent-sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: rgba(248, 249, 250, 0.95);
+  backdrop-filter: blur(8px);
+}
+
+
+
