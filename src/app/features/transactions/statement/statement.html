@@ -1,537 +1,541 @@
 <div class="zorent-auth-wrapper">
-<div class="statement-page">
+  <div class="statement-page">
 
-  <!-- TOP BAR -->
+    <!-- TOP BAR -->
 
-  <div class="d-flex justify-content-between align-items-center mb-5 pb-3 header-border zorent-sticky-header">
+    <div class="d-flex justify-content-between align-items-center mb-5 pb-3 header-border zorent-sticky-header">
 
-    <!-- LEFT NAVIGATION -->
+      <!-- LEFT NAVIGATION -->
 
-    <nav class="d-flex gap-4 align-items-center">
+      <nav class="d-flex gap-4 align-items-center">
 
-      <!-- LOGO -->
+        <!-- LOGO -->
 
-      <a routerLink="/dashboard"
-         class="d-flex align-items-center text-decoration-none">
+        <a routerLink="/dashboard"
+           class="d-flex align-items-center text-decoration-none">
 
-        <div class="zorent-logo-container me-3 shadow-sm">
+          <div class="zorent-logo-container me-3 shadow-sm">
 
-          <img src="https://logowik.com/content/uploads/images/t_zeronet1628.jpg"
-               alt="Zorent Logo"
-               class="zorent-main-logo">
-
-        </div>
-
-        <div class="fw-bold logo-glow fs-4 me-3">
-
-          ZORENT
-
-        </div>
-
-      </a>
-
-      <!-- NAVIGATION -->
-
-      <a routerLink="/dashboard"
-         routerLinkActive="active"
-         class="nav-link-custom">
-
-        Dashboard
-
-      </a>
-
-      <a routerLink="/transactions"
-         routerLinkActive="active"
-         class="nav-link-custom">
-
-        Transactions
-
-      </a>
-
-      <a routerLink="/transfer"
-         routerLinkActive="active"
-         class="nav-link-custom">
-
-        Transfer
-
-      </a>
-
-    </nav>
-
-    <!-- RIGHT PROFILE -->
-
-    <div class="profile-area d-flex align-items-center gap-3">
-
-      <!-- LOGOUT BUTTON -->
-      <!-- PROFILE -->
-
-      <div class="profile-trigger"
-           (click)="toggleProfile()">
-
-        <div class="avatar-circle shadow-sm">
-
-          {{ userName.charAt(0).toUpperCase() }}
-
-        </div>
-
-        <i class="bi bi-chevron-down ms-2 small text-muted"></i>
-
-      </div>
-
-      <!-- DROPDOWN -->
-
-      <ul class="custom-dropdown shadow-lg"
-          [class.show]="isProfileOpen">
-
-        <li class="user-details-header">
-
-          <div class="text-center mb-3">
-
-            <h6 class="fw-bold mb-0">
-
-              {{ userName }}
-
-            </h6>
-
-            <small class="text-muted">
-
-              username : {{ userUsername }}
-
-            </small>
+            <img src="https://logowik.com/content/uploads/images/t_zeronet1628.jpg"
+                 alt="Zorent Logo"
+                 class="zorent-main-logo">
 
           </div>
 
-        </li>
+          <div class="fw-bold logo-glow fs-4 me-3">
 
-        <li>
+            ZORENT
 
-          <a class="profile-item"
-             routerLink="/profile-settings">
+          </div>
 
-            <i class="bi bi-person-circle me-2"></i>
+        </a>
 
-            Profile Settings
+        <!-- NAVIGATION -->
 
-          </a>
+        <a routerLink="/dashboard"
+           routerLinkActive="active"
+           class="nav-link-custom">
 
-        </li>
+          Dashboard
 
-        <li>
+        </a>
 
-          <a class="logout-item"
-             (click)="logout()">
+        <a routerLink="/transactions"
+           routerLinkActive="active"
+           class="nav-link-custom">
 
-            <i class="bi bi-box-arrow-right me-2"></i>
+          Transactions
 
-            Logout
+        </a>
 
-          </a>
+        <a routerLink="/transfer"
+           routerLinkActive="active"
+           class="nav-link-custom">
 
-        </li>
+          Transfer
 
-      </ul>
-      <button class="logout-icon-btn"
-              (click)="logout()">
+        </a>
 
-        <i class="bi bi-box-arrow-right"></i>
+      </nav>
 
-      </button>
+      <!-- RIGHT PROFILE -->
 
-    </div>
+      <div class="profile-area d-flex align-items-center gap-3">
 
-  </div>
+        <!-- LOGOUT BUTTON -->
+        <!-- PROFILE -->
 
-  <!-- ACCOUNT DETAILS -->
+        <div class="profile-trigger"
+             (click)="toggleProfile()">
 
-  <div class="account-card">
+          <div class="avatar-circle shadow-sm">
 
-    <h2 class="passbook-title">
+            {{ userName.charAt(0).toUpperCase() }}
 
-      Account Details
+          </div>
 
-    </h2>
+          <i class="bi bi-chevron-down ms-2 small text-muted"></i>
 
-    <div class="account-details">
+        </div>
 
-      <div class="detail-item">
+        <!-- DROPDOWN -->
 
-        <span class="label">
-          Customer Name
-        </span>
+        <ul class="custom-dropdown shadow-lg"
+            [class.show]="isProfileOpen">
 
-        <span class="value">
-          {{ customerName }}
-        </span>
+          <li class="user-details-header">
 
-      </div>
+            <div class="text-center mb-3">
 
-      <div class="detail-item">
+              <h6 class="fw-bold mb-0">
 
-        <span class="label">
-          Customer ID
-        </span>
+                {{ userName }}
 
-        <span class="value">
-          {{ customerId }}
-        </span>
+              </h6>
 
-      </div>
+              <small class="text-muted">
 
-      <div class="detail-item">
+                username : {{ userUsername }}
 
-        <span class="label">
-          Account Number
-        </span>
+              </small>
 
-        <span class="value">
-          {{ accountNumber }}
-        </span>
+            </div>
 
-      </div>
+          </li>
 
-      <div class="detail-item">
+          <li>
 
-        <span class="label">
-          Account Type
-        </span>
+            <a class="profile-item"
+               routerLink="/profile-settings">
 
-        <span class="value">
-          {{ accountType }}
-        </span>
+              <i class="bi bi-person-circle me-2"></i>
 
-      </div>
+              Profile Settings
 
-      <div class="detail-item">
+            </a>
 
-        <span class="label">
-          Branch Name
-        </span>
+          </li>
 
-        <span class="value">
-          {{ branchName }}
-        </span>
+          <li>
 
-      </div>
+            <a class="logout-item"
+               (click)="logout()">
 
-      <div class="detail-item">
+              <i class="bi bi-box-arrow-right me-2"></i>
 
-        <span class="label">
-          Available Balance
-        </span>
+              Logout
 
-        <span class="value balance">
-          {{ currencySymbol }}{{ availableBalance | number:'1.2-2' }}
-        </span>
+            </a>
+
+          </li>
+
+        </ul>
+        <button class="logout-icon-btn"
+                (click)="logout()">
+
+          <i class="bi bi-box-arrow-right"></i>
+
+        </button>
 
       </div>
 
     </div>
 
-  </div>
+    <!-- ACCOUNT DETAILS -->
 
-  <!-- FD / RD DETAILS -->
+    <div class="account-card">
 
-  <div class="account-card"
-       *ngIf="
+      <h2 class="passbook-title">
+
+        Account Details
+
+      </h2>
+
+      <div class="account-details">
+
+        <div class="detail-item">
+
+          <span class="label">
+            Customer Name
+          </span>
+
+          <span class="value">
+            {{ customerName }}
+          </span>
+
+        </div>
+
+        <div class="detail-item">
+
+          <span class="label">
+            Customer ID
+          </span>
+
+          <span class="value">
+            {{ customerId }}
+          </span>
+
+        </div>
+
+        <div class="detail-item">
+
+          <span class="label">
+            Account Number
+          </span>
+
+          <span class="value">
+            {{ accountNumber }}
+          </span>
+
+        </div>
+
+        <div class="detail-item">
+
+          <span class="label">
+            Account Type
+          </span>
+
+          <span class="value">
+            {{ accountType }}
+          </span>
+
+        </div>
+
+        <div class="detail-item">
+
+          <span class="label">
+            Branch Name
+          </span>
+
+          <span class="value">
+            {{ branchName }}
+          </span>
+
+        </div>
+
+        <div class="detail-item">
+
+          <span class="label">
+            Available Balance
+          </span>
+
+          <span class="value balance">
+            {{ currencySymbol }}{{ availableBalance | number:'1.2-2' }}
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- FD / RD DETAILS -->
+
+    <div class="account-card"
+         *ngIf="
       accountType === 'Fixed Deposit'
       || accountType === 'Recurring Deposit'
     ">
 
-    <h2 class="passbook-title">
+      <h2 class="passbook-title">
 
-      Deposit Details
-
-    </h2>
-
-    <div class="account-details">
-
-      <div class="detail-item">
-
-        <span class="label">
-          Interest Rate
-        </span>
-
-        <span class="value">
-          {{ interestRate }}%
-        </span>
-
-      </div>
-
-      <div class="detail-item">
-
-        <span class="label">
-          Duration Months
-        </span>
-
-        <span class="value">
-          {{ durationMonths }}
-        </span>
-
-      </div>
-
-      <div class="detail-item">
-
-        <span class="label">
-          Maturity Date
-        </span>
-
-        <span class="value">
-          {{ maturityDate | date:'mediumDate' }}
-        </span>
-
-      </div>
-
-      <div class="detail-item">
-
-        <span class="label">
-          Estimated Maturity Amount
-        </span>
-
-        <span class="value">
-          {{ currencySymbol }}{{ estimatedMaturityAmount | number:'1.2-2' }}
-        </span>
-
-      </div>
-
-      <!-- RD ONLY -->
-
-      <div class="detail-item"
-           *ngIf="
-          accountType === 'Recurring Deposit'
-        ">
-
-        <span class="label">
-          Installment Date
-        </span>
-
-        <span class="value">
-          {{ installmentDate }}
-        </span>
-
-      </div>
-
-      <div class="detail-item"
-           *ngIf="
-          accountType === 'Recurring Deposit'
-        ">
-
-        <span class="label">
-          Total Installments
-        </span>
-
-        <span class="value">
-          {{ totalInstallments }}
-        </span>
-
-      </div>
-
-      <div class="detail-item"
-           *ngIf="
-          accountType === 'Recurring Deposit'
-        ">
-
-        <span class="label">
-          Paid Installments
-        </span>
-
-        <span class="value">
-          {{ paidInstallments }}
-        </span>
-
-      </div>
-
-      <div class="detail-item"
-           *ngIf="
-          accountType === 'Recurring Deposit'
-        ">
-
-        <span class="label">
-          Remaining Installments
-        </span>
-
-        <span class="value">
-          {{ remainingInstallments }}
-        </span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-  <!-- STATEMENT TABLE -->
-
-  <div class="statement-card">
-
-    <div class="statement-header">
-
-      <h2>
-
-        Account Statement
+        {{
+    availableBalance === 0
+      ? 'Closed Deposit Details'
+      : 'Deposit Details'
+        }}
 
       </h2>
 
+      <div class="account-details">
+
+        <div class="detail-item">
+
+          <span class="label">
+            Interest Rate
+          </span>
+
+          <span class="value">
+            {{ interestRate }}%
+          </span>
+
+        </div>
+
+        <div class="detail-item">
+
+          <span class="label">
+            Duration Months
+          </span>
+
+          <span class="value">
+            {{ durationMonths }}
+          </span>
+
+        </div>
+
+        <div class="detail-item">
+
+          <span class="label">
+            Maturity Date
+          </span>
+
+          <span class="value">
+            {{ maturityDate | date:'mediumDate' }}
+          </span>
+
+        </div>
+
+        <div class="detail-item">
+
+          <span class="label">
+            Maturity Amount
+          </span>
+
+          <span class="value">
+            {{ currencySymbol }}{{ estimatedMaturityAmount | number:'1.2-2' }}
+          </span>
+
+
+        </div>
+
+        <!-- RD ONLY -->
+
+        <div class="detail-item"
+             *ngIf="
+          accountType === 'Recurring Deposit'
+        ">
+
+          <span class="label">
+            Installment Date
+          </span>
+
+          <span class="value">
+            {{ installmentDate | date:'mediumDate' }}
+          </span>
+
+        </div>
+
+        <div class="detail-item"
+             *ngIf="
+          accountType === 'Recurring Deposit'
+        ">
+
+          <span class="label">
+            Total Installments
+          </span>
+
+          <span class="value">
+            {{ totalInstallments }}
+          </span>
+
+        </div>
+
+        <div class="detail-item"
+             *ngIf="
+          accountType === 'Recurring Deposit'
+        ">
+
+          <span class="label">
+            Paid Installments
+          </span>
+
+          <span class="value">
+            {{ paidInstallments }}
+          </span>
+
+        </div>
+
+        <div class="detail-item"
+             *ngIf="
+          accountType === 'Recurring Deposit'
+        ">
+
+          <span class="label">
+            Remaining Installments
+          </span>
+
+          <span class="value">
+            {{ remainingInstallments }}
+          </span>
+
+        </div>
+
+      </div>
+
     </div>
 
-    <div *ngIf="loading"
-         class="loading-section">
+    <!-- STATEMENT TABLE -->
 
-      Loading...
+    <div class="statement-card">
 
-    </div>
+      <div class="statement-header">
 
-    <div class="table-responsive"
-         *ngIf="!loading">
+        <h2>
 
-      <table class="table statement-table">
+          Account Statement
 
-        <thead>
+        </h2>
 
-          <tr>
+      </div>
 
-            <th>Date & Time</th>
+      <div *ngIf="loading"
+           class="loading-section">
 
-            <th>Transaction ID</th>
+        Loading...
 
-            <th>Type</th>
+      </div>
 
-            <!-- SAVINGS / CHECKING -->
+      <div class="table-responsive"
+           *ngIf="!loading">
 
-            <th>
+        <table class="table statement-table">
 
-              From Account
+          <thead>
 
-            </th>
+            <tr>
 
-            <th>
+              <th>Date & Time</th>
 
-              To Account
+              <th>Transaction ID</th>
 
-            </th>
+              <th>Type</th>
 
-            <th>Description</th>
+              <!-- SAVINGS / CHECKING -->
 
-            <!-- SAVINGS / CHECKING -->
+              <th>
 
-            <th>
+                From Account
 
-              Amount
+              </th>
 
-            </th>
+              <th>
 
-            
+                To Account
 
-            <!-- FD / RD -->
+              </th>
 
-            
+              <th>Description</th>
 
-          </tr>
+              <!-- SAVINGS / CHECKING -->
 
-        </thead>
+              <th>
 
-        <tbody>
+                Amount
 
-          <tr *ngFor="
+              </th>
+
+
+
+              <!-- FD / RD -->
+
+
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr *ngFor="
               let txn of paginatedStatements
             ">
 
-            <td>
-              {{ txn.date | date:'medium' }}
-            </td>
+              <td>
+                {{ txn.date | date:'medium' }}
+              </td>
 
-            <td>
-              {{ txn.transactionId }}
-            </td>
+              <td>
+                {{ txn.transactionId }}
+              </td>
 
-            <td>
+              <td>
 
-              <span class="badge"
-                    [ngClass]="
+                <span class="badge"
+                      [ngClass]="
                   txn.type === 'Credit'
                   ? 'credit-badge'
                   : 'debit-badge'
                 ">
 
-                {{ txn.type }}
+                  {{ txn.type }}
 
-              </span>
+                </span>
 
-            </td>
+              </td>
 
-            <!-- SAVINGS / CHECKING -->
+              <!-- SAVINGS / CHECKING -->
 
-            <td>
+              <td>
 
-              {{ txn.fromAccount || '-' }}
+                {{ txn.fromAccount || '-' }}
 
-            </td>
+              </td>
 
-            <td>
+              <td>
 
-              {{ txn.toAccount || '-' }}
+                {{ txn.toAccount || '-' }}
 
-            </td>
+              </td>
 
-            <td>
-              {{ txn.description || '-' }}
-            </td>
+              <td>
+                {{ txn.description || '-' }}
+              </td>
 
-            <!-- SAVINGS / CHECKING -->
+              <!-- SAVINGS / CHECKING -->
 
-            <td
-                [ngClass]="
+              <td [ngClass]="
                 txn.type === 'Credit'
                 ? 'credit-text'
                 : 'debit-text'
               ">
 
-              {{ currencySymbol }}{{ txn.amount | number:'1.2-2' }}
+                {{ currencySymbol }}{{ txn.amount | number:'1.2-2' }}
 
-            </td>
+              </td>
 
-          
 
-            <!-- FD / RD -->
 
-          
+              <!-- FD / RD -->
 
-          </tr>
 
-        </tbody>
 
-      </table>
+            </tr>
 
-      <!-- PAGINATION -->
+          </tbody>
 
-      <div class="d-flex justify-content-between align-items-center mt-4">
+        </table>
 
-        <button class="btn btn-outline-secondary rounded-pill px-4 py-2 fw-semibold"
-                [disabled]="currentPage === 1"
-                (click)="previousPage()">
+        <!-- PAGINATION -->
 
-          Previous
+        <div class="d-flex justify-content-between align-items-center mt-4">
 
-        </button>
+          <button class="btn btn-outline-secondary rounded-pill px-4 py-2 fw-semibold"
+                  [disabled]="currentPage === 1"
+                  (click)="previousPage()">
 
-        <span class="zorent-text-muted small fw-semibold">
+            Previous
 
-          Page {{ currentPage }} of {{ totalPages }}
+          </button>
 
-        </span>
+          <span class="zorent-text-muted small fw-semibold">
 
-        <button class="btn btn-outline-primary rounded-pill px-4 py-2 fw-semibold"
-                [disabled]="currentPage === totalPages || totalPages === 0"
-                (click)="nextPage()">
+            Page {{ currentPage }} of {{ totalPages }}
 
-          Next
+          </span>
 
-        </button>
+          <button class="btn btn-outline-primary rounded-pill px-4 py-2 fw-semibold"
+                  [disabled]="currentPage === totalPages || totalPages === 0"
+                  (click)="nextPage()">
+
+            Next
+
+          </button>
+
+        </div>
 
       </div>
 
     </div>
 
   </div>
-
-</div>
 </div>

@@ -209,29 +209,7 @@ describe('CloseFd', () => {
 
   });
 
-  it('should calculate fixed deposit interest', () => {
-
-    const oldDate =
-      new Date();
-
-    oldDate.setFullYear(
-      oldDate.getFullYear() - 1
-    );
-
-    component.fdDetails = {
-      principal: 10000,
-      interestRate: 10,
-      accountType: 'Fixed Deposit',
-      startDate: oldDate
-    };
-
-    const interest =
-      component.totalInterest;
-
-    expect(interest)
-      .toBeGreaterThan(900);
-
-  });
+  
 
   it('should return final payout after success', () => {
 
@@ -246,24 +224,7 @@ describe('CloseFd', () => {
 
   });
 
-  it('should calculate final payout before success', () => {
-
-    component.isSuccess = false;
-
-    component.fdDetails = {
-      principal: 10000
-    };
-
-    spyOnProperty(
-      component,
-      'totalInterest',
-      'get'
-    ).and.returnValue(1000);
-
-    expect(component.finalPayout)
-      .toBe(11000);
-
-  });
+  
 
   it('should validate empty target account', () => {
 

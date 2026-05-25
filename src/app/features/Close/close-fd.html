@@ -146,173 +146,158 @@
 
 
 
-  <div class="closure-container">
+<div class="closure-container">
 
-    <div *ngIf="!isSuccess" class="professional-card">
-      <div class="card-header">
-        <div class="shield-icon">
-          <i class="bi bi-shield-lock-fill"></i>
-        </div>
-        <h2>
-          {{ fdDetails.accountType }} Closure
-        </h2>
-
+  <div *ngIf="!isSuccess" class="professional-card">
+    <div class="card-header">
+      <div class="shield-icon">
+        <i class="bi bi-shield-lock-fill"></i>
       </div>
-      <div *ngIf="errorMessage" class="error-box">
-        {{ errorMessage }}
-      </div>
-      <div class="details-box">
-        <p class="section-title">Investment Details</p>
-        <div class="info-grid">
-          <div class="info-item"><span>Start Date:</span> <strong>{{ fdDetails.startDate | date:'dd MMM yyyy' }}</strong></div>
-          <div class="info-item"><span>End Date:</span> <strong>{{ fdDetails.endDate | date:'dd MMM yyyy' }}</strong></div>
-          <div class="info-item"><span>From Account:</span> <strong>{{fdDetails.sourceAccount}}</strong></div>
-        </div>
+      <h2>
+        {{ fdDetails.accountType }} Closure
+      </h2>
 
-        <label class="agreement-label">
-          <input type="checkbox" [(ngModel)]="isAgreed">
-          <span class="custom-check"></span>
-          I verify and authorize this account closure.
-        </label>
+    </div>
+    <div *ngIf="errorMessage" class="error-box">
+      {{ errorMessage }}
+    </div>
+    <div class="details-box">
+      <p class="section-title">Investment Details</p>
+      <div class="info-grid">
+        <div class="info-item"><span>Start Date:</span> <strong>{{ fdDetails.startDate | date:'dd MMM yyyy' }}</strong></div>
+        <div class="info-item"><span>End Date:</span> <strong>{{ fdDetails.endDate | date:'dd MMM yyyy' }}</strong></div>
+        <div class="info-item"><span>From Account:</span> <strong>{{fdDetails.sourceAccount}}</strong></div>
       </div>
 
-      <div *ngIf="isAgreed" class="settlement-summary animate-fade">
-
-        <p class="summary-header">
-          Settlement Breakdown
-        </p>
-
-        <div class="data-row">
-          <span>Principal Amount</span>
-
-          <span>
-            {{ currencySymbol }}{{
-        (
-          isSuccess
-            ? fdDetails.principal
-            : fdDetails.principal
-        ) | number:'1.2-2'
-            }}
-          </span>
-        </div>
-
-        <div class="data-row">
-          <span>Total Interest</span>
-
-          <span class="text-accent">
-            + {{ currencySymbol }}{{
-        (
-          isSuccess
-            ? fdDetails.earnedInterest
-            : totalInterest
-        ) | number:'1.2-2'
-            }}
-          </span>
-        </div>
-
-        <div class="total-divider"></div>
-
-        <div class="data-row">
-          <span class="total-label">
-            Total Payout
-          </span>
-
-          <span class="payout-value">
-            {{ currencySymbol }}{{
-        (
-          isSuccess
-            ? fdDetails.amount
-            : finalPayout
-        ) | number:'1.2-2'
-            }}
-          </span>
-        </div>
-
-      </div>
-
-      <div *ngIf="isAgreed" class="security-section animate-fade">
-
-        <div class="input-field">
-
-          <label>Transfer to Account</label>
-
-          <select class="form-select"
-                  [(ngModel)]="targetAccount">
-
-            <option value="">
-              Select Account
-            </option>
-
-            <option *ngFor="let acc of filteredAccounts"
-                    [value]="acc.accountNumber">
-
-              {{ acc.accountType }}
-              -
-              {{ acc.accountNumber }}
-
-
-            </option>
-
-          </select>
-
-        </div>
-
-      </div>
-
-      <button class="btn-submit"
-              [disabled]="!isAgreed || !targetAccount || loading"
-              (click)="processClosure()">
-
-        Closure
-
-      </button>
+      <label class="agreement-label">
+        <input type="checkbox" [(ngModel)]="isAgreed">
+        <span class="custom-check"></span>
+        I verify and authorize this account closure.
+      </label>
     </div>
 
-    <div *ngIf="isSuccess" class="professional-card success-layout">
-      <div class="success-ring">✓</div>
-      <h2 class="success-title">Closed Successfully</h2>
-      <p class="success-msg">Funds have been successfully transferred.</p>
+    <div *ngIf="isAgreed" class="settlement-summary animate-fade">
 
-      <div class="receipt-box">
+      <p class="summary-header">
+        Settlement Breakdown
+      </p>
 
-        <div class="receipt-row">
-          <span>Transaction ID:</span>
-          <span>{{ transactionId }}</span>
-        </div>
+      <div class="data-row">
+        <span>Principal Amount</span>
 
-        <div class="receipt-row">
-          <span>Transferred To:</span>
-          <span>{{ targetAccount }}</span>
-        </div>
+        <span>
+          {{ currencySymbol }}{{ fdDetails.principal | number:'1.2-2' }}
+        </span>
+      </div>
 
-        <div class="receipt-row">
-          <span>Principal Amount:</span>
-          <span>
-            {{ currencySymbol }}{{ fdDetails.principal | number:'1.2-2' }}
-          </span>
-        </div>
+      <div class="data-row">
+        <span>Total Interest</span>
 
+        <span class="text-accent">
+          + {{ currencySymbol }}{{ fdDetails.earnedInterest | number:'1.2-2' }}
+        </span>
+      </div>
 
+      <div class="total-divider"></div>
 
-        <div class="receipt-row">
-          <span>Interest Earned:</span>
-          <span class="text-success fw-semibold">
-            +  {{ currencySymbol }}{{ totalInterest | number:'1.2-2' }}
-          </span>
-        </div>
+      <div class="data-row">
+        <span class="total-label">
+          Total Payout
+        </span>
 
-        <div class="receipt-divider"></div>
+        <span class="payout-value">
+          {{ currencySymbol }}{{ finalPayout | number:'1.2-2' }}
+        </span>
+      </div>
 
-        <div class="receipt-row total-row">
-          <span>Total Payout:</span>
-          <span class="fw-bold text-dark">
-            {{ currencySymbol }}{{ finalPayout | number:'1.2-2' }}
-          </span>
-        </div>
+    </div>
+
+    <div *ngIf="isAgreed"
+         class="security-section animate-fade">
+
+      <div class="input-field">
+
+        <label>Transfer to Account</label>
+
+        <select class="form-select"
+                [(ngModel)]="targetAccount">
+
+          <option value="">
+            Select Account
+          </option>
+
+          <option *ngFor="
+        let acc of filteredAccounts;
+        trackBy: trackByAccount
+      "
+                  [value]="acc.accountNumber">
+
+            {{ acc.accountType }}
+            -
+            {{ acc.accountNumber }}
+
+          </option>
+
+        </select>
 
       </div>
 
-      <button class="btn-dashboard" (click)="navDashboard()">Back to Dashboard</button>
     </div>
+
+    <button class="btn-submit"
+            [disabled]="!isAgreed || !targetAccount || loading"
+            (click)="processClosure()">
+
+      Closure
+
+    </button>
   </div>
+
+  <div *ngIf="isSuccess" class="professional-card success-layout">
+    <div class="success-ring">✓</div>
+    <h2 class="success-title">Closed Successfully</h2>
+    <p class="success-msg">Funds have been successfully transferred.</p>
+
+    <div class="receipt-box">
+
+      <div class="receipt-row">
+        <span>Transaction ID:</span>
+        <span>{{ transactionId }}</span>
+      </div>
+
+      <div class="receipt-row">
+        <span>Transferred To:</span>
+        <span>{{ targetAccount }}</span>
+      </div>
+
+      <div class="receipt-row">
+        <span>Principal Amount:</span>
+        <span>
+          {{ currencySymbol }}{{ fdDetails.principal | number:'1.2-2' }}
+        </span>
+      </div>
+
+
+
+      <div class="receipt-row">
+        <span>Interest Earned:</span>
+        <span class="text-success fw-semibold">
+          +  {{ currencySymbol }}{{ totalInterest | number:'1.2-2' }}
+        </span>
+      </div>
+
+      <div class="receipt-divider"></div>
+
+      <div class="receipt-row total-row">
+        <span>Total Payout:</span>
+        <span class="fw-bold text-dark">
+          {{ currencySymbol }}{{ finalPayout | number:'1.2-2' }}
+        </span>
+      </div>
+
+    </div>
+
+    <button class="btn-dashboard" (click)="navDashboard()">Back to Dashboard</button>
+  </div>
+</div>
 
