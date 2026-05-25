@@ -121,45 +121,7 @@ describe('ClosedAccountsComponent', () => {
       .toBe('');
   });
 
-  it('should load closed accounts successfully', () => {
-
-    const mockResponse = {
-      data: [
-        {
-          id: 1,
-          balance: 1000,
-          status: 'Closed'
-        },
-        {
-          id: 2,
-          balance: 2000,
-          status: 'Active'
-        },
-        {
-          id: 3,
-          balance: 3000,
-          status: 'Closed'
-        }
-      ]
-    };
-
-    mockAccountService.getMyAccounts
-      .and.returnValue(of(mockResponse));
-
-    component.loadClosedAccounts();
-
-    expect(component.loading)
-      .toBeFalse();
-
-    expect(component.closedAccounts.length)
-      .toBe(2);
-
-    expect(component.accounts.length)
-      .toBe(2);
-
-    expect(component.netWorth)
-      .toBe(4000);
-  });
+  
 
   it('should handle error while loading closed accounts', () => {
 

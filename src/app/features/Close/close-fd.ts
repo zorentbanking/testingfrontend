@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { FormsModule } from '@angular/forms';
 import { APP_CONSTANTS } from '../../app.constants';
+import { ChangeDetectorRef } from '@angular/core';
 
 import {
   Router,
@@ -55,7 +56,8 @@ export class CloseFd implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -68,7 +70,7 @@ export class CloseFd implements OnInit {
     this.userUsername =
       user.username || '';
 
-      this.loadAccounts();
+    this.loadAccounts();
 
     this.route.queryParams.subscribe(params => {
 
@@ -101,55 +103,56 @@ export class CloseFd implements OnInit {
 
   getHeaders() {
 
-  return {
-    Authorization:
-      `Bearer ${localStorage.getItem('accessToken')}`
-  };
+    return {
+      Authorization:
+        `Bearer ${localStorage.getItem('accessToken')}`
+    };
 
-}
+  }
 
-loadAccounts(): void {
+  loadAccounts(): void {
 
-  this.http.get<any>(
-    'https://localhost:7085/api/accounts/my',
-    {
-      headers: this.getHeaders()
-    }
-  ).subscribe({
+    this.http.get<any>(
+      'https://localhost:7085/api/accounts/my',
+      {
+        headers: this.getHeaders()
+      }
+    ).subscribe({
 
-    next: (res) => {
+      next: (res) => {
 
-      this.accounts =
-        (res.data || []).filter(
-          (acc: any) =>
+        this.accounts =
+          (res.data || []).filter(
+            (acc: any) =>
 
-            acc.status !== 'Closed'
-            &&
+              acc.status !== 'Closed'
+              &&
 
-            (
-              acc.accountType === 'Savings'
-              ||
-              acc.accountType === 'Checking'
-            )
+              (
+                acc.accountType === 'Savings'
+                ||
+                acc.accountType === 'Checking'
+              )
+          );
+
+        this.updateFilteredAccounts();
+
+        console.log(
+          'AVAILABLE ACCOUNTS',
+          this.accounts
         );
-      
 
-      console.log(
-        'AVAILABLE ACCOUNTS',
-        this.accounts
-      );
+      },
 
-    },
+      error: (err) => {
 
-    error: (err) => {
+        console.log(err);
 
-      console.log(err);
+      }
 
-    }
+    });
 
-  });
-
-}
+  }
 
 
   loadDepositDetails(
@@ -206,16 +209,7 @@ loadAccounts(): void {
 
           // BALANCE
           principal:
-            data.accountType === 'Recurring Deposit'
-              ? (
-                (data.paidInstallments || 0) > 0
-                  ? (
-                    (data.monthlyInstallment || 0) *
-                    (data.paidInstallments || 0)
-                  )
-                  : (data.availableBalance || 0)
-              )
-              : (data.availableBalance || 0),
+            Number(data.availableBalance || 0),
 
           // FD/RD VALUES
           interestRate:
@@ -223,7 +217,12 @@ loadAccounts(): void {
 
           maturityAmount:
             data.maturityAmount || 0,
-          earnedInterest: data.earnedInterest ?? 0,
+
+          earnedInterest:
+            Number(data.earnedInterest || 0),
+
+          amount:
+            Number(data.amount || 0),
 
           // DATES
           startDate:
@@ -234,18 +233,15 @@ loadAccounts(): void {
           endDate:
             new Date(),
 
+
           // TENURE
           durationYears:
             (
               data.tenureMonths || 12
             ) / 12
         };
-        this.filteredAccounts =
-          this.accounts.filter(
-            (acc: any) =>
-              String(acc.accountNumber).trim() !==
-              String(this.fdDetails.sourceAccount).trim()
-          );
+        this.updateFilteredAccounts();
+
 
         console.log(
           'SOURCE ACCOUNT',
@@ -282,6 +278,9 @@ loadAccounts(): void {
 
     });
 
+  }
+  trackByAccount(index: number, item: any): string {
+    return item.accountNumber;
   }
   getDaysCompleted(): number {
 
@@ -341,38 +340,29 @@ loadAccounts(): void {
     }
 
     // FIXED DEPOSIT
-    const principal =
-      this.fdDetails.principal;
-
-    const rate =
-      this.fdDetails.interestRate;
-
-    const daysCompleted =
-      this.getDaysCompleted();
-
-    return (
-      principal *
-      rate *
-      daysCompleted
-    ) / (365 * 100);
+    return Number(
+      this.fdDetails.earnedInterest || 0
+    );
 
   }
 
   get finalPayout(): number {
 
-    // AFTER CLOSURE USE BACKEND VALUE
-    // AFTER CLOSURE USE EXACT BACKEND VALUE
-    if (this.isSuccess) {
+    // BEFORE CLOSURE
+    if (!this.isSuccess) {
 
       return Number(
-        this.fdDetails.amount || 0
+        (this.fdDetails.principal || 0)
+        +
+        (this.fdDetails.earnedInterest || 0)
       );
 
     }
 
-    return (
-      this.fdDetails.principal || 0
-    ) + this.totalInterest;
+    // AFTER CLOSURE
+    return Number(
+      this.fdDetails.amount || 0
+    );
 
   }
 
@@ -473,6 +463,32 @@ loadAccounts(): void {
 
     });
 
+  }
+  updateFilteredAccounts(): void {
+
+    if (!this.fdDetails?.sourceAccount) {
+      return;
+    }
+
+    this.filteredAccounts =
+      this.accounts.filter(
+        (acc: any) =>
+          (
+            acc.accountType === 'Savings' ||
+            acc.accountType === 'Checking'
+          ) &&
+          acc.status !== 'Closed' &&
+          acc.accountNumber !== this.fdDetails.sourceAccount
+      );
+
+    this.filteredAccounts = [...this.filteredAccounts];
+
+    this.cdr.detectChanges();
+
+    console.log(
+      'UPDATED FILTERED ACCOUNTS',
+      this.filteredAccounts
+    );
   }
 
   navDashboard() {

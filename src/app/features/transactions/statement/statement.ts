@@ -28,6 +28,8 @@ export class StatementComponent implements OnInit {
   customerId: number = 0;
 
   accountNumber: string = '';
+  accountStatus: string = '';
+  maturityAmount: number = 0;
 
   accountType: string = '';
 
@@ -131,14 +133,12 @@ export class StatementComponent implements OnInit {
           this.interestRate =
             data.interestRate;
 
-          this.durationMonths =
-            data.durationMonths;
+          this.estimatedMaturityAmount = data.maturityAmount;
 
           this.maturityDate =
             data.maturityDate;
 
-          this.estimatedMaturityAmount =
-            data.maturityAmount;
+
 
           this.installmentDate =
             data.installmentDate;
@@ -151,6 +151,11 @@ export class StatementComponent implements OnInit {
 
           this.remainingInstallments =
             data.remainingInstallments;
+          this.durationMonths = this.calculateDurationMonths(
+            data.createdAt,
+            data.maturityDate,
+            data.closedAt
+          );
 
           // TRANSACTIONS
 
@@ -225,7 +230,49 @@ export class StatementComponent implements OnInit {
     }
 
   }
+  calculateDurationMonths(
+    createdAt: any,
+    maturityDate: any,
+    closedAt?: any
+  ): number {
 
+    // ACTIVE ACCOUNT
+    // BALANCE EXISTS
+    if (this.availableBalance > 0) {
+
+      return this.totalInstallments || 0;
+
+    }
+
+    // CLOSED AFTER FULL COMPLETION
+    if (
+      this.paidInstallments ===
+      this.totalInstallments
+    ) {
+
+      return this.totalInstallments || 0;
+
+    }
+
+    // PREMATURE CLOSED ACCOUNT
+    const start = new Date(createdAt);
+
+    const end =
+      closedAt
+        ? new Date(closedAt)
+        : new Date();
+
+    let months =
+      (end.getFullYear() - start.getFullYear()) * 12 +
+      (end.getMonth() - start.getMonth());
+
+    // SAME MONTH CLOSURE
+    if (months < 0) {
+      months = 0;
+    }
+
+    return months;
+  }
   get totalPages(): number {
 
     return Math.ceil(

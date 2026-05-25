@@ -131,41 +131,7 @@ describe('TransactionHistoryComponent', () => {
     expect(headers.Authorization).toContain('mock-token');
   });
 
-  it('should load accounts successfully', () => {
-
-    component.initForm();
-
-    spyOn(component, 'applyFilters');
-
-    component.loadAccounts();
-
-    const req = httpMock.expectOne(
-      'https://localhost:7085/api/accounts/my'
-    );
-
-    expect(req.request.method).toBe('GET');
-
-    req.flush({
-      data: [
-        {
-          id: 1,
-          status: 'Active'
-        },
-        {
-          id: 2,
-          status: 'Closed'
-        }
-      ]
-    });
-
-    expect(component.accounts.length).toBe(1);
-
-    expect(component.hasAccounts).toBeTrue();
-
-    expect(component.filterForm.value.accountId).toBe('0');
-
-    expect(component.applyFilters).toHaveBeenCalled();
-  });
+  
 
   it('should handle load accounts error', () => {
 

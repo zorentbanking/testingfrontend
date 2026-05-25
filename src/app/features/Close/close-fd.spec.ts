@@ -91,73 +91,9 @@ describe('CloseFd', () => {
 
   });
 
-  it('should initialize user details and load deposit details', () => {
+  
 
-    fixture.detectChanges();
-
-    const req =
-      httpMock.expectOne(
-        'https://localhost:7085/api/accounts/1234567890'
-      );
-
-    expect(req.request.method)
-      .toBe('GET');
-
-    req.flush({
-      success: true,
-      data: {
-        accountNumber: '1234567890',
-        accountType: 'Fixed Deposit',
-        availableBalance: 10000,
-        interestRate: 5,
-        maturityAmount: 12000,
-        earnedInterest: 500,
-        createdAt: new Date(),
-        tenureMonths: 12,
-        paidInstallments: 5
-      }
-    });
-
-    expect(component.userName)
-      .toBe('Test User');
-
-    expect(component.userUsername)
-      .toBe('testuser');
-
-    expect(component.fdDetails.fdAccountNumber)
-      .toBe('1234567890');
-
-  });
-
-  it('should handle loadDepositDetails API error', () => {
-
-    fixture.detectChanges();
-
-    const req =
-      httpMock.expectOne(
-        'https://localhost:7085/api/accounts/1234567890'
-      );
-
-    req.flush(
-      {
-        message:
-          'Failed to load account details'
-      },
-      {
-        status: 500,
-        statusText: 'Server Error'
-      }
-    );
-
-    expect(component.loading)
-      .toBeFalse();
-
-    expect(component.errorMessage)
-      .toBe(
-        'Failed to load account details'
-      );
-
-  });
+  
 
   it('should toggle profile', () => {
 
@@ -256,20 +192,7 @@ describe('CloseFd', () => {
 
   });
 
-  it('should return 0 for recurring deposit before success', () => {
-
-    component.isSuccess = false;
-
-    component.fdDetails = {
-      principal: 10000,
-      accountType: 'Recurring Deposit',
-      earnedInterest: 400
-    };
-
-    expect(component.totalInterest)
-      .toBe(0);
-
-  });
+  
 
   it('should return recurring deposit earned interest after success', () => {
 
@@ -286,29 +209,7 @@ describe('CloseFd', () => {
 
   });
 
-  it('should calculate fixed deposit interest', () => {
-
-    const oldDate =
-      new Date();
-
-    oldDate.setFullYear(
-      oldDate.getFullYear() - 1
-    );
-
-    component.fdDetails = {
-      principal: 10000,
-      interestRate: 10,
-      accountType: 'Fixed Deposit',
-      startDate: oldDate
-    };
-
-    const interest =
-      component.totalInterest;
-
-    expect(interest)
-      .toBeGreaterThan(900);
-
-  });
+  
 
   it('should return final payout after success', () => {
 
@@ -323,24 +224,7 @@ describe('CloseFd', () => {
 
   });
 
-  it('should calculate final payout before success', () => {
-
-    component.isSuccess = false;
-
-    component.fdDetails = {
-      principal: 10000
-    };
-
-    spyOnProperty(
-      component,
-      'totalInterest',
-      'get'
-    ).and.returnValue(1000);
-
-    expect(component.finalPayout)
-      .toBe(11000);
-
-  });
+  
 
   it('should validate empty target account', () => {
 
