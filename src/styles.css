@@ -33,3 +33,6 @@
   font-size: 11px;
   margin-top: 4px;
 }
+nav.gap-4, div.profile-area {
+  padding-top: 1rem;
+}
